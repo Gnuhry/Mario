@@ -1,0 +1,10 @@
+C:\Users\Win7\source\repos\Mario\Mario\obj\Debug\Mario.csprojResolveAssemblyReference.cache
+C:\Users\Win7\source\repos\Mario\Mario\obj\Debug\Mario.Properties.Resources.resources
+C:\Users\Win7\source\repos\Mario\Mario\obj\Debug\Mario.csproj.GenerateResource.cache
+C:\Users\Win7\source\repos\Mario\Mario\obj\Debug\Mario.csproj.CoreCompileInputs.cache
+C:\Users\Win7\source\repos\Mario\Mario\bin\Debug\Mario.exe.config
+C:\Users\Win7\source\repos\Mario\Mario\bin\Debug\Mario.exe
+C:\Users\Win7\source\repos\Mario\Mario\bin\Debug\Mario.pdb
+C:\Users\Win7\source\repos\Mario\Mario\obj\Debug\Mario.exe
+C:\Users\Win7\source\repos\Mario\Mario\obj\Debug\Mario.pdb
+C:\Users\Win7\source\repos\Mario\Mario\obj\Debug\Mario.Form1.resources

@@ -16,6 +16,7 @@ namespace Mario
         public Einlesen(string Pfad)
         {
             this.Pfad = Pfad;
+            //test 
         }
         private string[] TextDateiEinlesen()
         {

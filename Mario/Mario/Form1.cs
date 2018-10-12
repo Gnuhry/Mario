@@ -11,7 +11,7 @@ namespace Mario
         {
             InitializeComponent();
             player = new Player(label1);
-            engine = new Engine(new Einlesen(1).interpretFile(), player);
+            engine = new Engine(new ReadFile(1).interpretFile(), player);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)

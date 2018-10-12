@@ -11,7 +11,12 @@ namespace Mario
         string Pfad;
         public Einlesen(int Level)
         {
+<<<<<<< HEAD
             Pfad = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9) + "Level\\" + Level + ".txt";
+=======
+            this.Pfad = Pfad;
+            //test 
+>>>>>>> 19c56b59ee62df4132153910b80d13fd924b23bd
         }
         private string[] TextDateiEinlesen()
         {

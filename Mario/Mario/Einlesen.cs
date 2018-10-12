@@ -2,20 +2,16 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mario
 {
     class Einlesen
     {
-        static int Weite=1, Lange=1;
         string Pfad;
-        public Einlesen(string Pfad)
+        public Einlesen(int Level)
         {
-            this.Pfad = Pfad;
+            Pfad = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9) + "Level\\" + Level + ".txt";
         }
         private string[] TextDateiEinlesen()
         {
@@ -27,28 +23,28 @@ namespace Mario
             reader.Dispose();
             return Datei.ToArray();
         }
-         private Control[] DateiInterpretieren()
+        public Control[] DateiInterpretieren()
         {
             List<Control> controls = new List<Control>();
             string[] Datei = TextDateiEinlesen();
-            for(int Reihe = 0; Reihe < Datei.Length; Reihe++)
+            for (int Reihe = 0; Reihe < Datei.Length; Reihe++)
             {
                 if (Datei[Reihe].Length != Datei[0].Length) return null;
-                for(int Spalte = 0; Spalte < Datei[0].Length; Spalte++)
+                for (int Spalte = 0; Spalte < Datei[0].Length; Spalte++)
                 {
                     switch (Datei[Reihe].ToCharArray()[Spalte])
                     {
-                        case ' ': controls.Add(NewControl(Spalte,Reihe,"","")); break;
+                        case ' ': controls.Add(NewControl(Spalte, Reihe, "", "")); break;
                     }
                 }
             }
             return controls.ToArray();
-        }   
-        private PictureBox NewControl(int Spalte, int Reihe, string ImagePfad,string Tag)
+        }
+        private PictureBox NewControl(int Spalte, int Reihe, string ImagePfad, string Tag)
         {
             PictureBox temp = new PictureBox();
-            temp.Size = new Size(Weite,Lange);
-            temp.Location = new Point(Lange * (Spalte + 1), Weite * (Reihe + 1));
+            temp.Size = new Size(Settings.Weite, Settings.Lange);
+            temp.Location = new Point(Settings.Lange * (Spalte + 1), Settings.Weite * (Reihe + 1));
             temp.Image = Image.FromFile(ImagePfad);
             temp.Tag = Tag;
             return temp;

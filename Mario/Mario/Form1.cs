@@ -1,31 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mario
 {
     public partial class Form1 : Form
     {
-        private Spieler spieler;
+        private Player player;
+        private Engine engine;
         public Form1()
         {
             InitializeComponent();
-            spieler=new Spieler(label1);
+            player = new Player(label1);
+            engine = new Engine(new Einlesen(1).DateiInterpretieren(), player);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             Console.WriteLine(Convert.ToChar(e.KeyValue));
-            switch (Convert.ToChar(e.KeyValue)) {
-                case 'W': spieler.Jump(true); break;
-                case 'A': spieler.Bewegung(false,true); break;
-                case 'D': spieler.Bewegung(true,false); break;
+            switch (Convert.ToChar(e.KeyValue))
+            {
+                case 'W': player.jump = true; break;
+                case 'A': player.left = true; break;
+                case 'D': player.right = true; break;
             }
         }
 
@@ -34,9 +30,9 @@ namespace Mario
             Console.WriteLine(Convert.ToChar(e.KeyValue));
             switch (Convert.ToChar(e.KeyValue))
             {
-                case 'W': spieler.Jump(false); break;
-                case 'A': spieler.Bewegung(false, false); break;
-                case 'D': spieler.Bewegung(false, false); break;
+                case 'W': player.jump = false; break;
+                case 'A': player.left = false; break;
+                case 'D': player.right = false; break;
             }
         }
     }

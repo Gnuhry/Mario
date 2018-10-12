@@ -51,25 +51,25 @@ namespace Mario
         }
         private void MoveBackgroundLeft(ref Control.ControlCollection controlCollection)
         {
-            //TODO alles nach rechts bewegen
+            //TODO alles nach rechts Move
             //ganz rechts die Controls löschen
             //links neue Controls hinzufügen
         }
         private void MoveBackgroundRight(ref Control.ControlCollection controlCollection)
         {
-            //TODO alles nach links bewegen
+            //TODO alles nach links Move
             //ganz links die Controls löschen
             //rechts neue Controls hinzufügen
         }
         private void MoveBackgroundUp(ref Control.ControlCollection controlCollection)
         {
-            //TODO alles nach unten bewegen
+            //TODO alles nach unten Move
             //ganz unten die Controls löschen
             //oben neue Controls hinzufügen
         }
         private void MoveBackgroundDown(ref Control.ControlCollection controlCollection)
         {
-            //TODO alles nach oben bewegen
+            //TODO alles nach oben Move
             //ganz oben die Controls löschen
             //unten neue Controls hinzufügen
         }
@@ -112,7 +112,7 @@ namespace Mario
             {
                 y = -Settings.speedY;
             }
-            player.Bewegen(y, x);
+            player.Move(y, x);
         }
     }
 }

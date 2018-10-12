@@ -13,7 +13,7 @@ namespace Mario
             speedY = 10,
             jumpspeed = 20,
             Width = 1,
-            Height = 1,
+            Hidth = 1,
             timerlenght = 50;
     }
 }

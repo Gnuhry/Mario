@@ -8,7 +8,6 @@ C:\Users\Win7\source\repos\Mario\Mario\bin\Debug\Mario.pdb
 C:\Users\Win7\source\repos\Mario\Mario\obj\Debug\Mario.exe
 C:\Users\Win7\source\repos\Mario\Mario\obj\Debug\Mario.pdb
 C:\Users\Win7\source\repos\Mario\Mario\obj\Debug\Mario.Form1.resources
-<<<<<<< HEAD
 C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\obj\Debug\Mario.csprojResolveAssemblyReference.cache
 C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\obj\Debug\Mario.Form1.resources
 C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\obj\Debug\Mario.Properties.Resources.resources
@@ -19,12 +18,3 @@ C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\obj\Debug\Mario.pdb
 C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\bin\Debug\Mario.exe.config
 C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\bin\Debug\Mario.exe
 C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\bin\Debug\Mario.pdb
-=======
-C:\Users\Max\Documents\GitHub\Mario\Mario\Mario\obj\Debug\Mario.csprojResolveAssemblyReference.cache
-C:\Users\Max\Documents\GitHub\Mario\Mario\Mario\obj\Debug\Mario.Form1.resources
-C:\Users\Max\Documents\GitHub\Mario\Mario\Mario\obj\Debug\Mario.Properties.Resources.resources
-C:\Users\Max\Documents\GitHub\Mario\Mario\Mario\obj\Debug\Mario.csproj.GenerateResource.Cache
-C:\Users\Max\Documents\GitHub\Mario\Mario\Mario\obj\Debug\Mario.csproj.CoreCompileInputs.cache
-C:\Users\Max\Documents\GitHub\Mario\Mario\Mario\obj\Debug\Mario.exe
-C:\Users\Max\Documents\GitHub\Mario\Mario\Mario\obj\Debug\Mario.pdb
->>>>>>> 19c56b59ee62df4132153910b80d13fd924b23bd

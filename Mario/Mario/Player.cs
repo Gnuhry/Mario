@@ -53,7 +53,7 @@ namespace Mario
             control_ = control;
         }
 
-        public void Bewegen(int x, int y)
+        public void Move(int x, int y)
         {
             Point location = control_.Location;
             location.Offset(x, y);

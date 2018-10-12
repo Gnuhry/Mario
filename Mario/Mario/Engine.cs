@@ -83,35 +83,23 @@ namespace Mario
                     player.jumping = false;
                     return;
                 }
-                //Kollisionserkennung oben
-                Console.Write("UP: ");
                 if (collisionDetect(new Rectangle(player.control.Location.X, player.control.Location.Y - Settings.speedX, player.control.Size.Width, player.control.Size.Height)))
                 {
                     x = -Settings.speedX;
-                    Console.WriteLine("Yes");
-                }
-                else
-                {
-                    Console.WriteLine("No");
                 }
             }
             else
             {
-                //Kollisionserkennung unten
-                Console.Write("UP: ");
                 if (collisionDetect(new Rectangle(player.control.Location.X, player.control.Location.Y + Settings.speedX, player.control.Size.Width, player.control.Size.Height)))
                 {
                     x = Settings.speedX;
-                    Console.WriteLine("Yes");
                 }
                 else
                 {
                     player.jumping = true;
                     player.JumpCounter = Settings.jumpspeed;
-                    Console.WriteLine("No");
                 }
             }
-            Console.Write("Right/Left: ");
             if (player.right && player.left)
             {
                 player.right = player.left = false;
@@ -119,12 +107,10 @@ namespace Mario
             else if (player.right && collisionDetect(new Rectangle(player.control.Location.X + Settings.speedX, player.control.Location.Y, player.control.Size.Width, player.control.Size.Height)))
             {
                 y = Settings.speedY;
-                Console.WriteLine("YesR");
             }
             else if (player.left && collisionDetect(new Rectangle(player.control.Location.X - Settings.speedX, player.control.Location.Y, player.control.Size.Width, player.control.Size.Height)))
             {
                 y = -Settings.speedY;
-                Console.WriteLine("YesL");
             }
             player.Bewegen(y, x);
         }

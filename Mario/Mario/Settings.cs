@@ -12,8 +12,8 @@ namespace Mario
             speedX = 10,
             speedY = 10,
             jumpspeed = 20,
-            Weite = 1,
-            Lange = 1,
+            Width = 1,
+            Height = 1,
             timerlenght = 50;
     }
 }

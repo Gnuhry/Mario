@@ -8,43 +8,44 @@ namespace Mario
 {
     class Einlesen
     {
-        string Pfad;
+        string Path;
+        static string DefaultPath = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9);
         public Einlesen(int Level)
         {
-            Pfad = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9) + "Level\\" + Level + ".txt";
+            Path = DefaultPath + "Level\\" + Level + ".txt";
         }
-        private string[] TextDateiEinlesen()
+        private string[] readTextFile()
         {
-            List<string> Datei = new List<string>();
-            if (!File.Exists(Pfad)) return null;
-            StreamReader reader = new StreamReader(Pfad);
+            List<string> file = new List<string>();
+            if (!File.Exists(Path)) return null;
+            StreamReader reader = new StreamReader(Path);
             while (!reader.EndOfStream)
-                Datei.Add(reader.ReadLine());
+                file.Add(reader.ReadLine());
             reader.Dispose();
-            return Datei.ToArray();
+            return file.ToArray();
         }
-        public Control[] DateiInterpretieren()
+        public Control[] interpretFile()
         {
             List<Control> controls = new List<Control>();
-            string[] Datei = TextDateiEinlesen();
-            for (int Reihe = 0; Reihe < Datei.Length; Reihe++)
+            string[] file = readTextFile();
+            for (int row = 0; row < file.Length; row++)
             {
-                if (Datei[Reihe].Length != Datei[0].Length) return null;
-                for (int Spalte = 0; Spalte < Datei[0].Length; Spalte++)
+                if (file[row].Length != file[0].Length) return null;
+                for (int column = 0; column < file[0].Length; column++)
                 {
-                    switch (Datei[Reihe].ToCharArray()[Spalte])
+                    switch (file[row].ToCharArray()[column])
                     {
-                        case ' ': controls.Add(NewControl(Spalte, Reihe, "", "")); break;
+                        case ' ': controls.Add(NewControl(column, row, "", "")); break;
                     }
                 }
             }
             return controls.ToArray();
         }
-        private PictureBox NewControl(int Spalte, int Reihe, string ImagePfad, string Tag)
+        private PictureBox NewControl(int column, int row, string ImagePfad, string Tag)
         {
             PictureBox temp = new PictureBox();
-            temp.Size = new Size(Settings.Weite, Settings.Lange);
-            temp.Location = new Point(Settings.Lange * (Spalte + 1), Settings.Weite * (Reihe + 1));
+            temp.Size = new Size(Settings.Width, Settings.Height);
+            temp.Location = new Point(Settings.Height * (column + 1), Settings.Width * (row + 1));
             temp.Image = Image.FromFile(ImagePfad);
             temp.Tag = Tag;
             return temp;

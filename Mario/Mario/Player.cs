@@ -6,7 +6,8 @@ namespace Mario
     public class Player
     {
         private Control control_;
-        private int JumpCounter_ = Settings.jumpspeed;
+        private Items items;
+        private int JumpCounter_ = Settings.jumpspeed, lives_;
         private bool jumping_ = false, jump_ = false, right_ = false, left_ = false;
         public Control control
         {
@@ -17,6 +18,11 @@ namespace Mario
         {
             get => JumpCounter_;
             set => JumpCounter_ = value;
+        }
+        public int lives
+        {
+            get => lives_;
+            set => lives_ = value;
         }
 
         public bool jumping
@@ -44,13 +50,14 @@ namespace Mario
             set
             {
                 jump_ = value;
-                if (!jump_) JumpCounter_ = 0;
+                if (!jump_ && !items.DoubleJump) JumpCounter_ = 0;
             }
         }
 
-        public Player(Control control)
+        public Player(Control control, Items items)
         {
             control_ = control;
+            this.items = items;
         }
 
         public void Move(int x, int y)

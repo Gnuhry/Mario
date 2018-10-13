@@ -12,14 +12,16 @@ namespace Mario
         private Player player;
         private Timer timer;
         private int pointer,gameWidth;
+        private Items items;
 
-        public Engine(Control[,] controls, Player player)
+        public Engine(Control[] controls, Player player, Items items)
         {
             obstacles = new Rectangle[] { new Rectangle(0, 400, 1000, 1) };
             this.controls = controls;
             this.player = player;
             pointer = 0;
             gameWidth = Screen.PrimaryScreen.WorkingArea.Width / Settings.width;
+            this.items = items;
             timer = new Timer();
             timer.Interval = Settings.timerlenght;
             timer.Tick += Timer;
@@ -106,6 +108,7 @@ namespace Mario
                 {
                     player.jumping = true;
                     player.JumpCounter = Settings.jumpspeed;
+                    items.DoubleJump = false;
                 }
             }
             if (player.right && player.left)

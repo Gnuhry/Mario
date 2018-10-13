@@ -8,8 +8,11 @@ namespace Mario
 {
     class ReadFile
     {
-        string Path;
         static string DefaultPath = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9);
+        string Path,
+        imgStone = DefaultPath + "img\\stone.jpg",
+        imgDirt = DefaultPath + "img\\dirt.jpg";
+
         public ReadFile(int Level)
         {
             Path = DefaultPath + "Level\\" + Level + ".txt";
@@ -24,10 +27,12 @@ namespace Mario
             reader.Dispose();
             return file.ToArray();
         }
-        public Control[] interpretFile()
+        public Control[,] interpretFile()
         {
-            List<Control> controls = new List<Control>();
+
             string[] file = readTextFile();
+            Control[,] erg = new Control[file[0].Length, file.Length];
+            Console.WriteLine(file.Length + "," + file[0].Length);
             for (int row = 0; row < file.Length; row++)
             {
                 if (file[row].Length != file[0].Length) return null;
@@ -35,19 +40,21 @@ namespace Mario
                 {
                     switch (file[row].ToCharArray()[column])
                     {
-                        case ' ': controls.Add(NewControl(column, row, "", "")); break;
+                        case '1': erg[column, row] = NewControl(imgStone, "obstacle"); break;
+                        case '2': erg[column, row] = NewControl(imgDirt, ""); break;
                     }
                 }
             }
-            return controls.ToArray();
+
+            return erg;
         }
-        private PictureBox NewControl(int column, int row, string ImagePath, string Tag)
+        private PictureBox NewControl(string ImagePath, string Tag)
         {
             PictureBox temp = new PictureBox();
-            temp.Size = new Size(Settings.Width, Settings.Hidth);
-            temp.Location = new Point(Settings.Hidth * (column + 1), Settings.Width * (row + 1));
+            temp.Size = new Size(Settings.width, Settings.hight);
             temp.Image = Image.FromFile(ImagePath);
             temp.Tag = Tag;
+
             return temp;
         }
     }

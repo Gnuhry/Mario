@@ -10,9 +10,13 @@ namespace Mario
         public Form1()
         {
             InitializeComponent();
+            player = new Player(label1);
+            engine = new Engine(new ReadFile(1).interpretFile(), player);
+            
             Items items = new Items();
             player = new Player(label1, items);
             engine = new Engine(new ReadFile(1).interpretFile(), player, items);
+            engine.DisplayBackground(Controls);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)

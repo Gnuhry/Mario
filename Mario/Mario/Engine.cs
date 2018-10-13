@@ -7,10 +7,11 @@ namespace Mario
 {
     public class Engine
     {
-        private Control[] controls;
+        private Control[,] controls;
         private Rectangle[] obstacles;
         private Player player;
         private Timer timer;
+        private int pointer,gameWidth;
         private Items items;
 
         public Engine(Control[] controls, Player player, Items items)
@@ -18,6 +19,8 @@ namespace Mario
             obstacles = new Rectangle[] { new Rectangle(0, 400, 1000, 1) };
             this.controls = controls;
             this.player = player;
+            pointer = 0;
+            gameWidth = Screen.PrimaryScreen.WorkingArea.Width / Settings.width;
             this.items = items;
             timer = new Timer();
             timer.Interval = Settings.timerlenght;
@@ -32,9 +35,10 @@ namespace Mario
             }
             return true;
         }
-        private void SetObstacles(Control[] controls)
+        private void SetObstacles(Control[]controls)
         {
             List<Rectangle> rectangles = new List<Rectangle>();
+
             foreach (Control control in controls)
             {
                 if (control.Tag.Equals("obstacle"))
@@ -42,10 +46,24 @@ namespace Mario
                     rectangles.Add(new Rectangle(control.Location, control.Size));
                 }
             }
+            rectangles.Add(new Rectangle(0, 400, 1000, 1));
             obstacles = rectangles.ToArray();
         }
-        private void DisplayBackground(ref Control.ControlCollection controlCollection)
+        public void DisplayBackground(Control.ControlCollection controlCollection)
         {
+            List<Control> gameControls = new List<Control>();
+            for (int row = pointer;row < gameWidth&& row < 10;row++)
+            {
+                for(int column = 0;column < Settings.gamehight&& column < 3;column++)
+                {
+
+                    gameControls.Add(controls[row, column]);
+                    controls[row, column].Location = new Point((row - pointer)*Settings.width, column*Settings.hight);
+                    controlCollection.Add(controls[row, column]);
+                }
+            }
+
+            SetObstacles(gameControls.ToArray());
             //TODO abfrage nach bildschirmgröße und spielpixel anzahl
             //anzeigen der möglichen
             //die anderen nicht hinzufügen
@@ -63,18 +81,8 @@ namespace Mario
             //ganz links die Controls löschen
             //rechts neue Controls hinzufügen
         }
-        private void MoveBackgroundUp(ref Control.ControlCollection controlCollection)
-        {
-            //TODO alles nach unten Move
-            //ganz unten die Controls löschen
-            //oben neue Controls hinzufügen
-        }
-        private void MoveBackgroundDown(ref Control.ControlCollection controlCollection)
-        {
-            //TODO alles nach oben Move
-            //ganz oben die Controls löschen
-            //unten neue Controls hinzufügen
-        }
+       
+        
         private void Timer(object sender, EventArgs e)
         {
             int x = 0, y = 0;

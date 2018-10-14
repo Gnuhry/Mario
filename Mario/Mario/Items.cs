@@ -11,7 +11,7 @@ namespace Mario
         private string fireballPath = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9) + "img\\fireball.jpg";
         private List<Control> item_control;
         private List<int> item_value;
-        private bool mushroom_; //TODO
+        private bool mushroom_;
         private int item_, jumpCounter;
         private System.Windows.Forms.Timer invincibleCounter;
 
@@ -34,7 +34,7 @@ namespace Mario
             set => jumpCounter = 0;
         }
 
-        public bool mushroom //TODO
+        public bool mushroom
         {
             get => mushroom_;
             set => mushroom_ = value;
@@ -51,9 +51,13 @@ namespace Mario
         public Rectangle GetRandomItem(Control.ControlCollection controlCollection, Point item_location)
         {
             Random rnd = new Random();
+            int item_rnd = rnd.Next(1, 4);
+            if (!mushroom_)
+            {
+                item_rnd = -1;
+            }
             PictureBox pictureBox = new PictureBox();
             pictureBox.Size = new Size(Settings.width, Settings.hight);
-            int item_rnd = rnd.Next(1, 4);
             pictureBox.Image = Image.FromFile(GetItemPicture(item_rnd));
             item_location.Offset(0, -2 * Settings.speedX);
             pictureBox.Location = item_location;
@@ -66,8 +70,17 @@ namespace Mario
         {
             controlCollection.Remove(item_control[id]);
             item_control.RemoveAt(id);
-            item_ = item_value[id];
-            item_value.RemoveAt(id);
+            if (item_value[id] != -1)
+            {
+                item_ = item_value[id];
+                item_value.RemoveAt(id);
+            }
+            else
+            {
+                mushroom_ = true;
+                item_value.RemoveAt(id);
+                return;
+            }
             if (item_ == 3)
             {
                 invincibleCounter.Interval = 10000;
@@ -112,6 +125,24 @@ namespace Mario
                     thread.Start();
                     break;
             }
+        }
+        public bool Hit()//return ISDead
+        {
+            if (item_ == 3)
+            {
+                return false;
+            }
+            if (item_ != 0)
+            {
+                item = 0;
+                return false;
+            }
+            if (mushroom_)
+            {
+                mushroom_ = false;
+                return false;
+            }
+            return true;
         }
     }
     class FireBall

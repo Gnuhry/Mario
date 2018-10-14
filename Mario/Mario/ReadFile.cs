@@ -8,14 +8,12 @@ namespace Mario
 {
     class ReadFile
     {
-        static string defaultPath = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9);
-        string path,
-        imgStone = defaultPath + "img\\stone.jpg",
-        imgDirt = defaultPath + "img\\dirt.jpg";
+        private static string defaultPath = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9);
+        private string path;
 
         public ReadFile(int Level)
         {
-            path = defaultPath + "Level\\" + Level + ".txt";
+            path = defaultPath + Settings.levelPath + Level + ".txt";
         }
         private string[] ReadTextFile()
         {
@@ -49,10 +47,10 @@ namespace Mario
                     switch (file[row].ToCharArray()[column])
                     {
                         case '1':
-                            erg[column, row] = NewControl(imgStone, "obstacle");
+                            erg[column, row] = NewControl(defaultPath + Settings.imgStone, "obstacle");
                             break;
                         case '2':
-                            erg[column, row] = NewControl(imgDirt, "");
+                            erg[column, row] = NewControl(defaultPath + Settings.imgDirt, "");
                             break;
                     }
                 }

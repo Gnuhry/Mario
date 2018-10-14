@@ -16,6 +16,8 @@ namespace Mario
             hight = 100,
             timerlenght = 50,
             gamehight = 20;
+        public static string imgStone = "img\\stone.jpg", imgDirt = "img\\dirt.jpg", levelPath = "Level\\", imgFireballThrow = "img//firball_throw.jpg",
+            imgMushroom = "img\\mushroom.jpg", imgDoublejump = "img\\doublejump.jpg", imgFireflower = "img\\fireflower.jpg", imgInvincible = "img\\invincible.jpg";
         private char up_, left_, right_, item_;
         private bool music_, sounds_;
         public char up

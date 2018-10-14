@@ -8,7 +8,6 @@ namespace Mario
 {
     public class Items
     {
-        private string fireballPath = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9) + "img\\fireball.jpg";
         private List<Control> item_control;
         private List<int> item_value;
         private bool mushroom_;
@@ -100,17 +99,17 @@ namespace Mario
 
         private string GetItemPicture(int item_)
         {
-            string path = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9) + "img\\";
+            string path = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9);
             switch (item_)
             {
                 case -1:
-                    return path + "mushroom.jpg";//Mushroom
+                    return path + Settings.imgMushroom;
                 case 1:
-                    return path + "doublejump.jpg";//DoubleJump
+                    return path + Settings.imgDoublejump;
                 case 2:
-                    return path + "fireflower.jpg";//FireFlower
+                    return path + Settings.imgFireflower;
                 case 3:
-                    return path + "invincible.jpg";//Invincible
+                    return path + Settings.imgInvincible;
             }
             return null;
         }
@@ -161,7 +160,7 @@ namespace Mario
             fireball = new PictureBox()
             {
                 Size = new Size(Settings.width, Settings.hight),
-                Image = Image.FromFile(Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9) + "img\\fireball_throw.jpg")
+                Image = Image.FromFile(Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9) + Settings.imgFireballThrow)
             };
             Rectangle rectangle = new Rectangle(player_location, new Size(Settings.width, Settings.hight)), down;
             for (int f = 0; f < 3; f++)

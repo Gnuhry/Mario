@@ -34,7 +34,18 @@ namespace Mario
             }
             else if (Convert.ToChar(e.KeyValue) == settings.item)
             {
-                items.UseItem(player.control.Location);
+                if (player.right && player.left)
+                {
+
+                }
+                else if (player.right)
+                {
+                    items.UseItem(player.control.Location, Controls, engine, true);
+                }
+                else if (player.left)
+                {
+                    items.UseItem(player.control.Location, Controls, engine, false);
+                }
             }
         }
 

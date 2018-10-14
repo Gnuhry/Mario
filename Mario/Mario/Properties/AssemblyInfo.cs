@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("Mario")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Jump n‘ Rice")]
+[assembly: AssemblyDescription("Jump and Run Game")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Mario")]
+[assembly: AssemblyCompany("Ricing up Produktion")]
+[assembly: AssemblyProduct("Jump n‘ Rice")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

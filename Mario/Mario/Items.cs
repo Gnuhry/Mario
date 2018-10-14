@@ -87,6 +87,8 @@ namespace Mario
             string path = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9) + "img\\";
             switch (item_)
             {
+                case -1:
+                    return path + "mushroom.jpg";//Mushroom
                 case 1:
                     return path + "doublejump.jpg";//DoubleJump
                 case 2:

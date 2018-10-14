@@ -44,6 +44,9 @@ namespace Mario
 
         public Items()
         {
+            invincibleCounter = new System.Windows.Forms.Timer();
+            item_value = new List<int>();
+            item_control = new List<Control>();
             jumpCounter = 0;
             item_ = 1;
         }

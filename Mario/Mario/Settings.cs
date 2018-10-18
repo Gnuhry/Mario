@@ -12,12 +12,11 @@ namespace Mario
             speedX = 10,
             speedY = 10,
             jumpspeed = 20,
-            width = 100,
-            hight = 100,
+            width = 50,
+            height = 50,
             timerlenght = 50,
-            gamehight = 20;
-        public static string imgStone = "img\\stone.jpg", imgDirt = "img\\dirt.jpg", levelPath = "Level\\", imgFireballThrow = "img//firball_throw.jpg",
-            imgMushroom = "img\\mushroom.jpg", imgDoublejump = "img\\doublejump.jpg", imgFireflower = "img\\fireflower.jpg", imgInvincible = "img\\invincible.jpg";
+            gamehight = 20,
+            fireBallBlockLenght = 3;
         private char up_, left_, right_, item_;
         private bool music_, sounds_;
         public char up

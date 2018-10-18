@@ -193,14 +193,14 @@ namespace Mario
             {
                 if (fireFlowerRight)
                 {
-                    fireBall.Location.Offset(Settings.width / 2, 0);
+                    fireBall.Location.Offset(Settings.width / 4, 0);
 
                 }
                 else
                 {
-                    fireBall.Location.Offset(-Settings.width / 2, 0);
+                    fireBall.Location.Offset(-Settings.width / 4, 0);
                 }
-                fireFlowerCounter -= 0.5;
+                fireFlowerCounter -= 0.1;
                 if (fireFlowerCounter == 0)
                 {
                     Parent.Controls.Remove(fireBall);
@@ -248,19 +248,16 @@ namespace Mario
                                     break;//Mushroom
                                 case "1":
                                     fireFlower = true;
-                                    status = 1;
                                     invincibleCounter = 0;
                                     doubleJump = false;
                                     break;//Fire Flower
                                 case "2":
                                     invincibleCounter = 20;
-                                    status = 1;
                                     fireFlower = false;
                                     doubleJump = false;
                                     break;//Star
                                 case "3":
                                     doubleJump = true;
-                                    status = 1;
                                     fireFlower = false;
                                     invincibleCounter = 0;
                                     break;//Double Jump

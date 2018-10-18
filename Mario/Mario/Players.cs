@@ -13,7 +13,7 @@ namespace Mario
     public partial class Players : UserControl
     {
         private Timer playerTimer;
-        private bool doubleJump, jump, up, right, left, fireFlower, fireFlowerRight;
+        private bool doubleJump, jump, up, right, left, fireFlower, fireFlowerRight, doubleJumping;
         private int jumpCounter, status, invincibleCounter;
         private double fireFlowerCounter;
         private PictureBox fireBall;
@@ -22,7 +22,7 @@ namespace Mario
         {
             InitializeComponent();
             status = 1;
-            Size = new Size(Settings.width, 2*Settings.height);
+            Size = new Size(Settings.width, 2 * Settings.height);
             Tag = "players";
             fireBall = new PictureBox()
             {
@@ -87,83 +87,97 @@ namespace Mario
         {
             if (fireFlower && fireFlowerCounter == 0)
             {
-                fireFlowerRight = right;
+                Console.WriteLine("heyyyyyy");
                 fireFlowerCounter = Settings.fireBallBlockLenght;
             }
         }
-
+        bool upbefore = false;
         private void Player_Move(object sender, EventArgs e)
         {
             BringToFront(); Focus();
             Change();
             Point point = new Point();
+            if (up && doubleJumping && !jump && !upbefore)
+            {
+                Console.WriteLine(doubleJumping);
+
+                jump = true;
+                jumpCounter = Settings.jumpspeed;
+                doubleJumping = false;
+            }
             if (up && jump)
             {
                 if (jumpCounter-- <= 0)
                 {
                     jump = false;
-                    return;
-                }
-                if (CollisionDetect(new Point(0, -Settings.speedY)))
-                {
-                    point.Offset(0, -Settings.speedY);
                 }
                 else
                 {
-                    Point help = Location;
-                    help.Offset(0, -Settings.speedY);
-                    Rectangle rectangle;
-                    switch (status)
+                    if (CollisionDetect(new Point(0, -Settings.speedY)))
                     {
-                        case 1:
-                            help.Offset(0, Settings.height);
-                            rectangle = new Rectangle(help, new Size(Settings.width, Settings.height));
-                            break;
-                        default:
-                            rectangle = new Rectangle(help, new Size(Settings.width, 2*Settings.height));
-                            break;
+                        point.Offset(0, -Settings.speedY);
                     }
-                    foreach (Control control in Parent.Controls)
+                    else
                     {
-                        if (control.GetType().Equals(typeof(Itembox)))
+                        Point help = Location;
+                        help.Offset(0, -Settings.speedY);
+                        Rectangle rectangle;
+                        switch (status)
                         {
-                            if (rectangle.IntersectsWith(new Rectangle(control.Location, control.Size)))
+                            case 1:
+                                help.Offset(0, Settings.height);
+                                rectangle = new Rectangle(help, new Size(Settings.width, Settings.height));
+                                break;
+                            default:
+                                rectangle = new Rectangle(help, new Size(Settings.width, 2 * Settings.height));
+                                break;
+                        }
+                        foreach (Control control in Parent.Controls)
+                        {
+                            if (control.GetType().Equals(typeof(Itembox)))
                             {
-                                PictureBox item = ((Itembox)control).Activate(status == 1);
-                                if (item != null)
+                                if (rectangle.IntersectsWith(new Rectangle(control.Location, control.Size)))
                                 {
-                                    Parent.Controls.Add(item);
-                                    item.BringToFront();
+                                    PictureBox item = ((Itembox)control).Activate(status == 1);
+                                    if (item != null)
+                                    {
+                                        Parent.Controls.Add(item);
+                                        item.BringToFront();
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
+
             else
             {
                 if (CollisionDetect(new Point(0, Settings.speedY)))
                 {
+                    jump = false;
                     point.Offset(0, Settings.speedY);
                 }
                 else
                 {
                     jump = true;
                     jumpCounter = Settings.jumpspeed;
-                    doubleJump = false;
+                    doubleJumping = doubleJump;
                 }
             }
 
             if (right && left)
             {
-                right = left = false;
+                right = left = fireFlowerRight = false;
             }
             else if (right && CollisionDetect(new Point(Settings.speedX, 0)))
             {
+                fireFlowerRight = true;
                 point.Offset(Settings.speedX, 0);
             }
             else if (left && CollisionDetect(new Point(-Settings.speedX, 0)))
             {
+                fireFlowerRight = false;
                 point.Offset(-Settings.speedX, 0);
             }
             Point temp = Location;
@@ -173,40 +187,69 @@ namespace Mario
 
             if (invincibleCounter > 0)
                 invincibleCounter--;
+            FireFlower();
+            upbefore = up;
+        }
+
+        private void FireFlower()
+        {
+            if (!fireFlower) return;
+            Point help, offset;
             if (fireFlowerCounter == Settings.fireBallBlockLenght)
             {
-                fireFlowerCounter--;
-                Point erg = Location;
+                offset = new Point(0,0);
+                help = Location;
                 if (fireFlowerRight)
                 {
-                    erg.Offset(Settings.width, 0);
-
+                    help.Offset(Settings.width,0);
                 }
                 else
                 {
-                    erg.Offset(-Settings.width, 0);
+                    help.Offset(-Settings.width, 0);
                 }
-                fireBall.Location = erg;
-                Parent.Controls.Add(fireBall);
+                if (CollisionDetect(help))
+                {
+                    fireBall.Location = help;
+                    Parent.Controls.Add(fireBall);
+                    fireBall.BringToFront();
+                    fireFlowerCounter--;
+                }
+                else
+                {
+                    fireFlowerCounter = 0;
+                }
             }
             else if (fireFlowerCounter > 0)
             {
+                offset = new Point();
+                help = fireBall.Location;
                 if (fireFlowerRight)
                 {
-                    fireBall.Location.Offset(Settings.width / 4, 0);
-
+                    offset.X = Settings.width;
                 }
                 else
                 {
-                    fireBall.Location.Offset(-Settings.width / 4, 0);
+                    offset.X = -Settings.width;
                 }
-                fireFlowerCounter -= 0.1;
-                if (fireFlowerCounter == 0)
+                help.Offset(offset);
+                Console.WriteLine(help.ToString());
+                if (CollisionDetect(help))
                 {
-                    Parent.Controls.Remove(fireBall);
+                    fireBall.Location = help;
+                    fireBall.BringToFront();
+                    fireFlowerCounter--;
+                }
+                else
+                {
+                    fireFlowerCounter = 0;
                 }
             }
+            if (fireFlowerCounter == 0)
+            {
+                Parent.Controls.Remove(fireBall);
+            }
         }
+
         private bool CollisionDetect(Point Offset)
         {
             Point help = Location;
@@ -230,6 +273,13 @@ namespace Mario
                     {
                         if (rectangle.IntersectsWith(new Rectangle(control.Location, control.Size)))
                         {
+                            Console.WriteLine(rectangle.Location.ToString() + "==" + control.Location.ToString());
+                            /*control.BackgroundImage = Properties.Resources.stone;
+                                                       try
+                                                       {
+                                                           ((PictureBox)control).Image = Properties.Resources.stone;
+                                                       }
+                                                       catch (Exception) { }*/
                             return false;
                         }
                     }
@@ -252,11 +302,12 @@ namespace Mario
                                     doubleJump = false;
                                     break;//Fire Flower
                                 case "2":
-                                    invincibleCounter = 20;
+                                    invincibleCounter = Settings.invincibleCounter;
                                     fireFlower = false;
                                     doubleJump = false;
                                     break;//Star
                                 case "3":
+                                    doubleJumping = true;
                                     doubleJump = true;
                                     fireFlower = false;
                                     invincibleCounter = 0;
@@ -273,10 +324,6 @@ namespace Mario
         {
             if (status == 1)
             {
-               /* Size = new Size(Settings.width, Settings.height * 2);
-                Point help = Location;
-                help.Offset(0, -Settings.height);
-                Location = help;*/
                 if (right)
                 {
                     if (fireFlower)
@@ -337,22 +384,17 @@ namespace Mario
             }
             else if (status == 0)
             {
-                /*Size = new Size(Settings.width, Settings.height);
-                Point help = Location;
-                help.Offset(0, Settings.height);
-                Location = help;
-                Location = help;*/
                 if (right)
                 {
-                        //1 Blöcke nach rechts 
+                    //1 Blöcke nach rechts 
                 }
                 else if (left)
                 {
-                        //1 Blöcke nach links 
+                    //1 Blöcke nach links 
                 }
                 else
                 {
-                        //1 Blöcke 
+                    //1 Blöcke 
                 }
             }
         }
@@ -364,7 +406,7 @@ namespace Mario
             }
             if (fireFlower || doubleJump)
             {
-                fireFlower = doubleJump = false;
+                fireFlower = doubleJump = doubleJumping = false;
                 return;
             }
             if (status != 1)

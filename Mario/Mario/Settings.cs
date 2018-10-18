@@ -16,7 +16,8 @@ namespace Mario
             height = 50,
             timerlenght = 50,
             gamehight = 20,
-            fireBallBlockLenght = 3;
+            fireBallBlockLenght = 4,
+            invincibleCounter=20;
         private char up_, left_, right_, item_;
         private bool music_, sounds_;
         public char up

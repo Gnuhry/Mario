@@ -38,7 +38,7 @@ namespace Mario
             }
             else
             {
-                randomNr = random.Next(0, ItemPicture.Length - 1);
+                randomNr = random.Next(1, ItemPicture.Length);
             }
             return new PictureBox()
             {

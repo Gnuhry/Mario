@@ -13,7 +13,8 @@ namespace Mario
 
         public ReadFile(int Level)
         {
-            path = defaultPath + Settings.levelPath + Level + ".txt";
+            if (-1000 == Level) return;
+            path = defaultPath + "Level\\" + Level + ".txt";
         }
         private string[] ReadTextFile()
         {
@@ -30,7 +31,7 @@ namespace Mario
             reader.Dispose();
             return file.ToArray();
         }
-        public Control[,] InterpretFile()
+        public Control[,] InterpretFile(Settings settings)
         {
 
             string[] file = ReadTextFile();
@@ -46,11 +47,20 @@ namespace Mario
                 {
                     switch (file[row].ToCharArray()[column])
                     {
-                        case '1':
-                            erg[column, row] = NewControl(defaultPath + Settings.imgStone, "obstacle");
+                        case 'S':
+                            erg[column, row] = NewControl(Properties.Resources.stone, "obstacle");
                             break;
-                        case '2':
-                            erg[column, row] = NewControl(defaultPath + Settings.imgDirt, "");
+                        case 'D':
+                            erg[column, row] = NewControl(Properties.Resources.dirt, "obstacle");
+                            break;
+                        case 'A':
+                            erg[column, row] = NewControl(Properties.Resources.air, "");
+                            break;
+                        case 'I':
+                            erg[column, row] = new Itembox();
+                            break;
+                        case 'P':
+                            erg[column, row] = new Players(settings);
                             break;
                     }
                 }
@@ -58,12 +68,15 @@ namespace Mario
 
             return erg;
         }
-        private PictureBox NewControl(string Imagepath, string Tag)
+        public PictureBox NewControl(Image img, string Tag)
         {
-            PictureBox temp = new PictureBox();
-            temp.Size = new Size(Settings.width, Settings.hight);
-            temp.Image = Image.FromFile(Imagepath);
-            temp.Tag = Tag;
+            PictureBox temp = new PictureBox()
+            {
+                Size = new Size(Settings.width, Settings.height),
+                Image = img,
+                Tag = Tag,
+                SizeMode = PictureBoxSizeMode.Zoom
+            };
             return temp;
         }
     }

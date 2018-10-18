@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Mario
+﻿namespace Mario
 {
     public class Settings
     {
@@ -16,8 +10,8 @@ namespace Mario
             height = 50,
             timerlenght = 50,
             gamehight = 20,
-            fireBallBlockLenght = 4,
-            invincibleCounter=20;
+            itemThrowBlockLength = 4,
+            invincibleCounter = 20;
         private char up_, left_, right_, item_;
         private bool music_, sounds_;
         public char up

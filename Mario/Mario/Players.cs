@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mario
@@ -13,10 +7,10 @@ namespace Mario
     public partial class Players : UserControl
     {
         private Timer playerTimer;
-        private bool doubleJump, jump, up, right, left, fireFlower, fireFlowerRight, doubleJumping;
+        private bool doubleJump, jump, up, right, left, fireball, itemThrowRight, doubleJumping, bumarang;
         private int jumpCounter, status, invincibleCounter;
-        private double fireFlowerCounter;
-        private PictureBox fireBall;
+        private double itemThrowCounter;
+        private PictureBox itemFly;
         private Settings settings;
         public Players(Settings settings)
         {
@@ -24,9 +18,8 @@ namespace Mario
             status = 1;
             Size = new Size(Settings.width, 2 * Settings.height);
             Tag = "players";
-            fireBall = new PictureBox()
+            itemFly = new PictureBox()
             {
-                Image = Properties.Resources.fireball,
                 Size = new Size(Settings.width, Settings.height),
                 SizeMode = PictureBoxSizeMode.Zoom
             };
@@ -34,9 +27,18 @@ namespace Mario
             playerTimer = new Timer();
             KeyDown += Players_KeyDown;
             KeyUp += Players_KeyUp;
+            KeyPress += Players_KeyPress;
             playerTimer.Interval = Settings.timerlenght;
             playerTimer.Tick += Player_Move;
             playerTimer.Start();
+        }
+
+        private void Players_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Escape))
+            {
+                (Parent as Form).FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            }
         }
 
         private void Players_KeyUp(object sender, KeyEventArgs e)
@@ -85,10 +87,13 @@ namespace Mario
 
         public void UseItem()
         {
-            if (fireFlower && fireFlowerCounter == 0)
+            if (fireball && itemThrowCounter == 0)
             {
-                Console.WriteLine("heyyyyyy");
-                fireFlowerCounter = Settings.fireBallBlockLenght;
+                itemThrowCounter = Settings.itemThrowBlockLength;
+            }
+            else if (bumarang && itemThrowCounter == 0)
+            {
+                itemThrowCounter = Settings.itemThrowBlockLength;
             }
         }
         bool upbefore = false;
@@ -113,7 +118,7 @@ namespace Mario
                 }
                 else
                 {
-                    if (CollisionDetect(new Point(0, -Settings.speedY)))
+                    if (CollisionDetect(new Point(0, -Settings.speedY), true))
                     {
                         point.Offset(0, -Settings.speedY);
                     }
@@ -153,7 +158,7 @@ namespace Mario
 
             else
             {
-                if (CollisionDetect(new Point(0, Settings.speedY)))
+                if (CollisionDetect(new Point(0, Settings.speedY), true))
                 {
                     jump = false;
                     point.Offset(0, Settings.speedY);
@@ -168,16 +173,16 @@ namespace Mario
 
             if (right && left)
             {
-                right = left = fireFlowerRight = false;
+                right = left = itemThrowRight = false;
             }
-            else if (right && CollisionDetect(new Point(Settings.speedX, 0)))
+            else if (right && CollisionDetect(new Point(Settings.speedX, 0), true))
             {
-                fireFlowerRight = true;
+                itemThrowRight = true;
                 point.Offset(Settings.speedX, 0);
             }
-            else if (left && CollisionDetect(new Point(-Settings.speedX, 0)))
+            else if (left && CollisionDetect(new Point(-Settings.speedX, 0), true))
             {
-                fireFlowerRight = false;
+                itemThrowRight = false;
                 point.Offset(-Settings.speedX, 0);
             }
             Point temp = Location;
@@ -187,43 +192,50 @@ namespace Mario
 
             if (invincibleCounter > 0)
                 invincibleCounter--;
-            FireFlower();
+            ItemThrow();
             upbefore = up;
         }
 
-        private void FireFlower()
+        private void ItemThrow()
         {
-            if (!fireFlower) return;
+            if (!(fireball || bumarang)) return;
             Point help, offset;
-            if (fireFlowerCounter == Settings.fireBallBlockLenght)
+            if (itemThrowCounter == Settings.itemThrowBlockLength)
             {
-                offset = new Point(0,0);
+                itemThrowCounter--;
+                offset = new Point(0, 0);
                 help = Location;
-                if (fireFlowerRight)
+                if (itemThrowRight)
                 {
-                    help.Offset(Settings.width,0);
+                    help.Offset(Settings.width, 0);
                 }
                 else
                 {
                     help.Offset(-Settings.width, 0);
                 }
-                if (CollisionDetect(help))
+                Console.WriteLine(help.ToString());
+                if (CollisionDetect(help, false))
                 {
-                    fireBall.Location = help;
-                    Parent.Controls.Add(fireBall);
-                    fireBall.BringToFront();
-                    fireFlowerCounter--;
+                    itemFly.Location = help;
+                    Parent.Controls.Add(itemFly);
+                    itemFly.BringToFront();
                 }
                 else
                 {
-                    fireFlowerCounter = 0;
+                    itemThrowCounter = 0;
                 }
             }
-            else if (fireFlowerCounter > 0)
+            else if (itemThrowCounter > 0)
             {
                 offset = new Point();
-                help = fireBall.Location;
-                if (fireFlowerRight)
+                help = itemFly.Location;
+                Point temp = itemFly.Location;
+                temp.Offset(0, Settings.height);
+                if (fireball && CollisionDetect(temp, false))
+                {
+                    offset.Y = Settings.height;
+                }
+                if (itemThrowRight)
                 {
                     offset.X = Settings.width;
                 }
@@ -233,37 +245,46 @@ namespace Mario
                 }
                 help.Offset(offset);
                 Console.WriteLine(help.ToString());
-                if (CollisionDetect(help))
+                if (CollisionDetect(help, false))
                 {
-                    fireBall.Location = help;
-                    fireBall.BringToFront();
-                    fireFlowerCounter--;
+                    itemFly.Location = help;
+                    itemFly.BringToFront();
+                    //TODO Gegner/Münzen aufsammeln
+                    itemThrowCounter--;
                 }
                 else
                 {
-                    fireFlowerCounter = 0;
+                    itemThrowCounter = 0;
                 }
             }
-            if (fireFlowerCounter == 0)
+            if (itemThrowCounter == 0)
             {
-                Parent.Controls.Remove(fireBall);
+                Parent.Controls.Remove(itemFly);
             }
         }
 
-        private bool CollisionDetect(Point Offset)
+        private bool CollisionDetect(Point Offset, bool Player)
         {
+            if (Parent == null) return false;
             Point help = Location;
             help.Offset(Offset);
             Rectangle rectangle;
-            switch (status)
+            if (Player)
             {
-                case 1:
-                    help.Offset(0, Settings.height);
-                    rectangle = new Rectangle(help, new Size(Settings.width, Settings.height));
-                    break;
-                default:
-                    rectangle = new Rectangle(help, new Size(Settings.width, 2 * Settings.height));
-                    break;
+                switch (status)
+                {
+                    case 1:
+                        help.Offset(0, Settings.height);
+                        rectangle = new Rectangle(help, new Size(Settings.width, Settings.height));
+                        break;
+                    default:
+                        rectangle = new Rectangle(help, new Size(Settings.width, 2 * Settings.height));
+                        break;
+                }
+            }
+            else
+            {
+                rectangle = new Rectangle(Offset, new Size(Settings.width, Settings.height));
             }
             foreach (Control control in Parent.Controls)
             {
@@ -273,7 +294,6 @@ namespace Mario
                     {
                         if (rectangle.IntersectsWith(new Rectangle(control.Location, control.Size)))
                         {
-                            Console.WriteLine(rectangle.Location.ToString() + "==" + control.Location.ToString());
                             /*control.BackgroundImage = Properties.Resources.stone;
                                                        try
                                                        {
@@ -292,26 +312,39 @@ namespace Mario
                             {
                                 case "0":
                                     status = 0;
-                                    fireFlower = false;
+                                    fireball = false;
                                     invincibleCounter = 0;
                                     doubleJump = false;
+                                    bumarang = false;
                                     break;//Mushroom
                                 case "1":
-                                    fireFlower = true;
+                                    fireball = true;
                                     invincibleCounter = 0;
                                     doubleJump = false;
+                                    bumarang = false;
+                                    itemFly.Image = Properties.Resources.fireball;
                                     break;//Fire Flower
                                 case "2":
                                     invincibleCounter = Settings.invincibleCounter;
-                                    fireFlower = false;
+                                    fireball = false;
                                     doubleJump = false;
+                                    bumarang = false;
                                     break;//Star
                                 case "3":
                                     doubleJumping = true;
                                     doubleJump = true;
-                                    fireFlower = false;
+                                    fireball = false;
                                     invincibleCounter = 0;
+                                    bumarang = false;
                                     break;//Double Jump
+                                case "4":
+                                    doubleJumping = false;
+                                    doubleJump = false;
+                                    fireball = false;
+                                    invincibleCounter = 0;
+                                    bumarang = true;
+                                    itemFly.Image = Properties.Resources.bumarang;
+                                    break;//Bumarang
                             }
                             return true;
                         }
@@ -326,7 +359,7 @@ namespace Mario
             {
                 if (right)
                 {
-                    if (fireFlower)
+                    if (fireball)
                     {
                         //2 Blöcke nach rechts feuerblume
                     }
@@ -338,6 +371,10 @@ namespace Mario
                     {
                         //2 Blöcke nach rechts doublejump
                     }
+                    else if (bumarang)
+                    {
+                        //2 Blöcke nach rechts bumerang
+                    }
                     else
                     {
                         //2 Blöcke nach rechts 
@@ -345,7 +382,7 @@ namespace Mario
                 }
                 else if (left)
                 {
-                    if (fireFlower)
+                    if (fireball)
                     {
                         //2 Blöcke nach links feuerblume
                     }
@@ -357,6 +394,10 @@ namespace Mario
                     {
                         //2 Blöcke nach links doublejump
                     }
+                    else if (bumarang)
+                    {
+                        //2 Blöcke nach links bumerang
+                    }
                     else
                     {
                         //2 Blöcke nach links 
@@ -364,7 +405,7 @@ namespace Mario
                 }
                 else
                 {
-                    if (fireFlower)
+                    if (fireball)
                     {
                         //2 Blöcke feuerblume
                     }
@@ -375,6 +416,10 @@ namespace Mario
                     else if (doubleJump)
                     {
                         //2 Blöcke doublejump
+                    }
+                    else if (bumarang)
+                    {
+                        //2 Blöcke bumerang
                     }
                     else
                     {
@@ -404,9 +449,9 @@ namespace Mario
             {
                 return;
             }
-            if (fireFlower || doubleJump)
+            if (fireball || doubleJump)
             {
-                fireFlower = doubleJump = doubleJumping = false;
+                fireball = doubleJump = doubleJumping = false;
                 return;
             }
             if (status != 1)

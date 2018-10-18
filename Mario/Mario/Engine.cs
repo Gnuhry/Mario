@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -24,7 +23,7 @@ namespace Mario
         {
             for (int row = pointer; row < gameWidth && row < 20; row++)
             {
-                for (int column = 0; column < Settings.gamehight && column < 9; column++)
+                for (int column = 0; column < Settings.gamehight && column < 15; column++)
                 {
                     gameControls.Add(controls[row, column]);
                     controls[row, column].Location = new Point((row - pointer) * Settings.width, column * Settings.height);

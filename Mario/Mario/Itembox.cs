@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mario
@@ -20,8 +14,12 @@ namespace Mario
         public Itembox()
         {
             InitializeComponent();
-            ItemName = new string[] { "Mushroom", "FireFlower", "Star", "DoubleJump" };
-            ItemPicture = new Image[] { Properties.Resources.mushroom, Properties.Resources.fireflower, Properties.Resources.star, Properties.Resources.doubleJump };
+            ItemName = new string[] { "Mushroom", "FireFlower", "Star", "DoubleJump", "Bumarang" };
+            ItemPicture = new Image[] { Properties.Resources.mushroom, Properties.Resources.fireflower, Properties.Resources.star, Properties.Resources.doubleJump, Properties.Resources.bumarangflower };
+            if (ItemName.Length != ItemPicture.Length)
+            {
+                new Exception("Item Name und Picture müssen gleich viele Elemente enthalten");
+            }
             random = new Random();
             Size = new Size(Settings.width, Settings.height);
             Tag = "";

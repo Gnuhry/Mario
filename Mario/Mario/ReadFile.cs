@@ -13,7 +13,7 @@ namespace Mario
 
         public ReadFile(int Level)
         {
-            if (-1000==Level) return;
+            if (-1000 == Level) return;
             path = defaultPath + "Level\\" + Level + ".txt";
         }
         private string[] ReadTextFile()

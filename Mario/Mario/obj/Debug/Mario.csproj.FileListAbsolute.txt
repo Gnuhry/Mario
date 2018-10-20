@@ -31,3 +31,6 @@ C:\Users\Max\Mario\Mario\Mario\obj\Debug\Mario.pdb
 C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\obj\Debug\Mario.Itembox.resources
 C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\obj\Debug\Mario.Play.resources
 C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\obj\Debug\Mario.Setting.resources
+C:\Users\Max\Mario\Mario\Mario\obj\Debug\Mario.Itembox.resources
+C:\Users\Max\Mario\Mario\Mario\obj\Debug\Mario.Play.resources
+C:\Users\Max\Mario\Mario\Mario\obj\Debug\Mario.Setting.resources

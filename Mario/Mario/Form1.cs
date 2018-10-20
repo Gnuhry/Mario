@@ -5,36 +5,37 @@ namespace Mario
 {
     public partial class Form1 : Form
     {
-        private Player player;
-        private Engine engine;
+        private Settings settings;
+        private Play play;
+        private Setting setting;
         public Form1()
         {
             InitializeComponent();
-            player = new Player(label1);
-            engine = new Engine(new ReadFile(1).interpretFile(), player);
-            engine.DisplayBackground(Controls);
+            settings = new Settings();
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(Convert.ToChar(e.KeyValue));
-            switch (Convert.ToChar(e.KeyValue))
-            {
-                case 'W': player.jump = true; break;
-                case 'A': player.left = true; break;
-                case 'D': player.right = true; break;
-            }
+            Visible = false;
+            ShowInTaskbar = false;
+            play = new Play(1, settings);
+            play.Show();
+            play.FormClosed += Forms_FormClosed;
         }
 
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        private void Forms_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Console.WriteLine(Convert.ToChar(e.KeyValue));
-            switch (Convert.ToChar(e.KeyValue))
-            {
-                case 'W': player.jump = false; break;
-                case 'A': player.left = false; break;
-                case 'D': player.right = false; break;
-            }
+            Visible = true;
+            ShowInTaskbar = true; 
+        }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            Visible = false;
+            ShowInTaskbar = false;
+            setting = new Setting(settings);
+            setting.Show();
+            setting.FormClosed += Forms_FormClosed;
         }
     }
 }

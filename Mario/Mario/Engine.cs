@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Mario
@@ -11,20 +13,33 @@ namespace Mario
         private double border;
         List<Control> gameControls = new List<Control>();
         private Control.ControlCollection controlCollection;
+        private System.Windows.Forms.Timer timer;
 
         public Engine(Control[,] controls, Control.ControlCollection controlCollection)
         {
+            timer = new System.Windows.Forms.Timer();
+            timer.Tick += Timer_Tick;
+            timer.Start();
             this.controls = controls;
             this.controlCollection = controlCollection;
             pointer = 0;
             gameWidth = Screen.PrimaryScreen.WorkingArea.Width / Settings.width;
-            border = gameWidth * 0.20;
+            border = gameWidth*Settings.width * 0.1;
             DisplayBackground();
         }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            MoveBackgroundLeft();
+            MoveBackgroundRight();
+            Console.WriteLine("<y");
+        }
+
         private void DisplayBackground()
         {
-            for (int row = pointer; row < gameWidth && row < 20; row++)
+            for (int row = pointer; row < pointer+gameWidth && row < pointer+30; row++)
             {
+                //TODO get length
                 for (int column = 0; column < Settings.gamehight && column < 15; column++)
                 {
                     gameControls.Add(controls[row, column]);
@@ -43,62 +58,81 @@ namespace Mario
             }
 
         }
-        private void MoveBackgroundLeft()
+        private Control GetPlayer()
         {
-            pointer--;
-            Point help = new Point();
-            help.X = 50; // Position des Spielers, die ich nicht finde 
-            if (help.X >= border && pointer > 0)
+            foreach(Control control in controlCollection)
             {
-                for (int row = gameWidth; row < gameWidth - 1; row--)
+                if (control.GetType().Equals((typeof(Players))))
                 {
-                    for (int column = 0; column <= Settings.gamehight; column++)
-                    {
-                        controlCollection.Remove(controls[row, column]); //Entfernen
-                        gameControls.Remove(controls[row, column]);
-                        for (int i = 0; controlCollection.Count >= i; i++) // Verschieben
-                        {
-                            controlCollection[i].Location = new Point(controlCollection[i].Location.X - Settings.width, controlCollection[i].Location.Y - Settings.height);
-                        }
-
-                        gameControls.Add(controls[row, column]);    //Neu hinzufügen
-                        controls[row, column].Location = new Point((row - (pointer - 1)) * Settings.width, column * Settings.height);
-                        controlCollection.Add(controls[row, column]);
-                    }
+                    return control;
                 }
             }
+            throw new Exception("Kein Spieler");
+        }
+        private void MoveBackgroundLeft()
+        {
+            if (pointer <= 1) return;
+            Point help = GetPlayer().Location;
+            if (help.X < border)
+            {
+                pointer--;           
+                foreach (Control control in gameControls)
+                {
+                    for (int f = 0; f < 15; f++)
+                    {
+                        if (control.Equals(controls[pointer + gameWidth, f]))
+                        {
+                            controlCollection.Remove(control);
+                        }
+                    }
+                    Point location = control.Location;
+                    location.Offset(Settings.width, 0);
+                    control.Location = location;
+                }
+                for (int f = 0; f < 15; f++)
+                {
+                    controls[pointer - 1, f].Location = new Point(0, f * Settings.height);
+                    gameControls.Add(controls[pointer - 1, f]);
+                    controlCollection.Add(controls[pointer - 1, f]);
+                }
+                Point temp = GetPlayer().Location;
+                temp.Offset(Settings.width, 0);
+                GetPlayer().Location = temp;
 
-
-            //TODO alles nach rechts Move
-            //ganz rechts die Controls löschen
-            //links neue Controls hinzufügen
+                //TODO alles nach rechts Move
+                //ganz rechts die Controls löschen
+                //links neue Controls hinzufügen
+            }
         }
         private void MoveBackgroundRight()
         {
-            pointer++;
-            Point help = new Point();
-            help.X = 50; // Position des Spielers, die ich nicht finde 
-            if (help.X >= gameWidth - border)
+            Point help = GetPlayer().Location;
+            if (help.X > gameWidth*Settings.width-border)
             {
-                for (int row = gameWidth - (gameWidth - (pointer - 1)); row < row + 1; row++)
+                pointer++;
+                foreach (Control control in gameControls)
                 {
-                    for (int column = 0; column <= Settings.gamehight; column++)
+                    for(int f = 0; f < 15; f++)
                     {
-                        controlCollection.Remove(controls[row, column]);  //Entfernen
-                        gameControls.Remove(controls[row, column]);
-
-                        for (int i = 0; controlCollection.Count >= i; i++) // Verschieben
+                        if (control.Equals(controls[pointer -1, f]))
                         {
-                            controlCollection[i].Location = new Point(controlCollection[i].Location.X + Settings.width, controlCollection[i].Location.Y + Settings.height);
+                            controlCollection.Remove(control);
                         }
-                        gameControls.Add(controls[row, column]);    //Neue Reihe hinzufügen
-                        controls[row, column].Location = new Point((row - (pointer - 1)) * Settings.width, column * Settings.height);
-                        controlCollection.Add(controls[row, column]);
-
                     }
+                    Point location = control.Location;
+                    location.Offset(-Settings.width, 0);
+                    control.Location = location;
                 }
+                for (int f = 0; f < 15; f++)
+                {
+                    controls[pointer + gameWidth, f].Location=new Point((gameWidth-1) * Settings.width, f * Settings.height);
+                    gameControls.Add(controls[pointer + gameWidth, f]);
+                    controlCollection.Add(controls[pointer+gameWidth, f]);
+                }
+                Point temp = GetPlayer().Location;
+                temp.Offset(-Settings.width, 0);
+                GetPlayer().Location = temp;
             }
-
             //TODO alles nach links Move
             //ganz links die Controls löschen
             //rechts neue Controls hinzufügen

@@ -14,20 +14,20 @@ namespace Mario
     {
         private Play play;
         private Settings settings;
-        private Form1 menue;
-        public pause(Play play,Settings settings,Form1 menue)
+        private Worlds worlds;
+        public pause(Play play, Settings settings, Worlds worlds)
         {
             InitializeComponent();
             this.play = play;
             this.settings = settings;
-            this.menue = menue;
+            this.worlds = worlds;
         }
 
         private void btnMenue_Click(object sender, EventArgs e)
         {
             play.Close();
-            menue.Visible = true;
-            menue.ShowInTaskbar = true;
+            worlds.Visible = true;
+            worlds.ShowInTaskbar = true;
         }
 
         private void btnSettings_Click(object sender, EventArgs e)

@@ -51,7 +51,7 @@
             this.btnMenue.Name = "btnMenue";
             this.btnMenue.Size = new System.Drawing.Size(284, 23);
             this.btnMenue.TabIndex = 1;
-            this.btnMenue.Text = "Zum Menü";
+            this.btnMenue.Text = "Zum Weltenmenü";
             this.btnMenue.UseVisualStyleBackColor = true;
             this.btnMenue.Click += new System.EventHandler(this.btnMenue_Click);
             // 

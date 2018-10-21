@@ -39,7 +39,7 @@ namespace Mario
         {
             if (e.KeyChar == Convert.ToChar(Keys.Escape))
             {
-                pause = new pause(Parent as Play,(Parent as Play).GetSettings(), (Parent as Play).GetMenue());
+                pause = new pause(Parent as Play,(Parent as Play).GetSettings(), (Parent as Play).GetWorlds());
                 pause.Show();
                 (Parent as Form).Enabled = false;
                 pause.FormClosed += Pause_FormClosed;

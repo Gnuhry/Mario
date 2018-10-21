@@ -15,23 +15,23 @@ namespace Mario
         private Engine engine;
         private Settings settings;
         private int level;
-        private Form1 menue;
-        public Play(int level, Settings settings, Form1 menue)
+        private Worlds worlds;
+        public Play(int level, Settings settings, Worlds worlds)
         {
             InitializeComponent();
             this.level = level;
-            this.menue = menue;
+            this.worlds = worlds;
             engine = new Engine(new ReadFile(level).InterpretFile(settings), Controls);
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             this.settings = settings;
         }
         public Settings GetSettings() => settings;
-        public Form1 GetMenue() => menue;
+        public Worlds GetWorlds() => worlds;
         public void Restart()
         {
             Label label = label1;
-            Play play = new Play(level, settings, menue);
+            Play play = new Play(level, settings, worlds);
             Dispose();
             play.Show();
         }

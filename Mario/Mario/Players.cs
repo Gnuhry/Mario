@@ -17,6 +17,7 @@ namespace Mario
             InitializeComponent();
             status = 1;
             Size = new Size(Settings.width, 2 * Settings.height);
+            BackColor = Color.Blue;
             Tag = "players";
             itemFly = new PictureBox()
             {

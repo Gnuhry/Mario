@@ -21,7 +21,6 @@ C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\bin\Debug\Mario.pdb
 C:\Users\Max\Mario\Mario\Mario\bin\Debug\Mario.exe.config
 C:\Users\Max\Mario\Mario\Mario\bin\Debug\Mario.exe
 C:\Users\Max\Mario\Mario\Mario\bin\Debug\Mario.pdb
-C:\Users\Max\Mario\Mario\Mario\obj\Debug\Mario.csprojResolveAssemblyReference.cache
 C:\Users\Max\Mario\Mario\Mario\obj\Debug\Mario.Form1.resources
 C:\Users\Max\Mario\Mario\Mario\obj\Debug\Mario.Properties.Resources.resources
 C:\Users\Max\Mario\Mario\Mario\obj\Debug\Mario.csproj.GenerateResource.Cache
@@ -34,3 +33,4 @@ C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\obj\Debug\Mario.Setting.re
 C:\Users\Max\Mario\Mario\Mario\obj\Debug\Mario.Itembox.resources
 C:\Users\Max\Mario\Mario\Mario\obj\Debug\Mario.Play.resources
 C:\Users\Max\Mario\Mario\Mario\obj\Debug\Mario.Setting.resources
+C:\Users\Max\Mario\Mario\Mario\obj\Debug\Mario.csprojAssemblyReference.cache

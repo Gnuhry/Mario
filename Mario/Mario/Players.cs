@@ -12,6 +12,7 @@ namespace Mario
         private double itemThrowCounter;
         private PictureBox itemFly;
         private Settings settings;
+        private pause pause;
         public Players(Settings settings)
         {
             InitializeComponent();
@@ -38,8 +39,18 @@ namespace Mario
         {
             if (e.KeyChar == Convert.ToChar(Keys.Escape))
             {
-                (Parent as Form).FormBorderStyle = FormBorderStyle.FixedToolWindow;
+                pause = new pause(Parent as Play,(Parent as Play).GetSettings(), (Parent as Play).GetMenue());
+                pause.Show();
+                (Parent as Form).Enabled = false;
+                pause.FormClosed += Pause_FormClosed;
+                playerTimer.Stop();
             }
+        }
+
+        private void Pause_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            playerTimer.Start();
+            (Parent as Form).Enabled = true;
         }
 
         private void Players_KeyUp(object sender, KeyEventArgs e)

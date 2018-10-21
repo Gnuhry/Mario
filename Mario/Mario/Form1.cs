@@ -18,9 +18,8 @@ namespace Mario
         {
             Visible = false;
             ShowInTaskbar = false;
-            play = new Play(1, settings);
+            play = new Play(1, settings,this);
             play.Show();
-            play.FormClosed += Forms_FormClosed;
         }
 
         private void Forms_FormClosed(object sender, FormClosedEventArgs e)

@@ -35,11 +35,11 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(640, 9);
+            this.label1.Location = new System.Drawing.Point(688, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 39);
+            this.label1.Size = new System.Drawing.Size(100, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Um zum Menü zu kommen\r\nESC-Taste drücken und dann\r\nFenster schließen";
+            this.label1.Text = "Pause = ESC Taste";
             // 
             // Play
             // 
@@ -48,6 +48,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label1);
             this.Name = "Play";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Play";
             this.ResumeLayout(false);
             this.PerformLayout();

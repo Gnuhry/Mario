@@ -70,7 +70,7 @@
             this.Controls.Add(this.btnSetting);
             this.Controls.Add(this.btnStart);
             this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.ResumeLayout(false);
 

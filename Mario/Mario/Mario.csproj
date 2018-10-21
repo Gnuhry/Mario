@@ -51,6 +51,12 @@
     <Compile Include="Itembox.Designer.cs">
       <DependentUpon>Itembox.cs</DependentUpon>
     </Compile>
+    <Compile Include="pause.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pause.Designer.cs">
+      <DependentUpon>pause.cs</DependentUpon>
+    </Compile>
     <Compile Include="Play.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     <EmbeddedResource Include="Itembox.resx">
       <DependentUpon>Itembox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pause.resx">
+      <DependentUpon>pause.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Play.resx">
       <DependentUpon>Play.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,12 +132,6 @@
     <None Include="Resources\mushroom.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\stone.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\dirt.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\doubleJump.png" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +154,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bumarang_throw.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dirt.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grass_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grass_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grass_up_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grass_up_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenstone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stone_grass.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

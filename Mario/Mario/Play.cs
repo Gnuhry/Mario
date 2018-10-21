@@ -13,12 +13,27 @@ namespace Mario
     public partial class Play : Form
     {
         private Engine engine;
-        public Play(int Level,Settings settings)
+        private Settings settings;
+        private int level;
+        private Form1 menue;
+        public Play(int level, Settings settings, Form1 menue)
         {
             InitializeComponent();
-            engine = new Engine(new ReadFile(Level).InterpretFile(settings), Controls);
+            this.level = level;
+            this.menue = menue;
+            engine = new Engine(new ReadFile(level).InterpretFile(settings), Controls);
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
+            this.settings = settings;
+        }
+        public Settings GetSettings() => settings;
+        public Form1 GetMenue() => menue;
+        public void Restart()
+        {
+            Label label = label1;
+            Play play = new Play(level, settings, menue);
+            Dispose();
+            play.Show();
         }
     }
 }

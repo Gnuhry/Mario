@@ -31,11 +31,16 @@ namespace Mario
             reader.Dispose();
             return file.ToArray();
         }
-        public Control[,] InterpretFile(Settings settings)
+        public Control[][] InterpretFile(Settings settings)
         {
 
             string[] file = ReadTextFile();
-            Control[,] erg = new Control[file[0].Length, file.Length];
+            Control[][] erg = new Control[file[0].Length][];
+            for(int f=0;f<erg.Length;f++)
+            {
+                erg[f]=new Control[file.Length];
+            }
+               
             Console.WriteLine(file.Length + "," + file[0].Length);
             for (int row = 0; row < file.Length; row++)
             {
@@ -48,19 +53,19 @@ namespace Mario
                     switch (file[row].ToCharArray()[column])
                     {
                         case 'S':
-                            erg[column, row] = NewControl(Properties.Resources.stone, "obstacle");
+                            erg[column][row] = NewControl(Properties.Resources.stone, "obstacle");
                             break;
                         case 'D':
-                            erg[column, row] = NewControl(Properties.Resources.dirt, "obstacle");
+                            erg[column][row] = NewControl(Properties.Resources.grass, "obstacle");
                             break;
                         case 'A':
-                            erg[column, row] = null;// NewControl(Properties.Resources.air, "");
+                            erg[column][row] = null;
                             break;
                         case 'I':
-                            erg[column, row] = new Itembox();
+                            erg[column][row] = new Itembox();
                             break;
                         case 'P':
-                            erg[column, row] = new Players(settings);
+                            erg[column][row] = new Players(settings);
                             break;
                     }
                 }

@@ -8,15 +8,16 @@ namespace Mario
 {
     public class Engine
     {
-        private Control[,] controls;
+        private Control[][] controls;
         private int pointer, gameWidth;
         private double border;
-        List<Control> gameControls = new List<Control>();
+        List<Control> gameControls;
         private Control.ControlCollection controlCollection;
         private System.Windows.Forms.Timer timer;
 
-        public Engine(Control[,] controls, Control.ControlCollection controlCollection)
+        public Engine(Control[][] controls, Control.ControlCollection controlCollection)
         {
+            gameControls = new List<Control>();
             timer = new System.Windows.Forms.Timer();
             timer.Tick += Timer_Tick;
             timer.Start();
@@ -37,31 +38,28 @@ namespace Mario
 
         private void DisplayBackground()
         {
-            for (int row = pointer; row < pointer + gameWidth && row < pointer + 50; row++)
+            for (int row = pointer; row < pointer + gameWidth && row < pointer + controls.Length; row++)
             {
                 //TODO get length
-                for (int column = 0; column < Settings.gamehight && column < 15; column++)
+                for (int column = 0; column < Settings.gamehight && column < controls[0].Length; column++)
                 {
-                    if (controls[row, column] != null)
+                    if (controls[row][column] != null)
                     {
-                        gameControls.Add(controls[row, column]);
-                        controls[row, column].Location = new Point((row - pointer) * Settings.width, column * Settings.height);
-                        controlCollection.Add(controls[row, column]);
-                        if (controls[row, column].Tag.Equals("players"))
+                        gameControls.Add(controls[row][column]);
+                        controls[row][column].Location = new Point((row - pointer) * Settings.width, column * Settings.height);
+                        controlCollection.Add(controls[row][column]);
+                        if (controls[row][column].Tag.Equals("players"))
                         {
-                            gameControls.Remove(controls[row, column]);
-                            controls[row, column].Location = new Point((row - pointer) * Settings.width, column * Settings.height - Settings.height);
-                            controls[row, column] = null;// new ReadFile(-1000).NewControl(Properties.Resources.air, "");
-                                                         //   gameControls.Add(controls[row, column]);
-                                                         // controls[row, column].Location = new Point((row - pointer) * Settings.width, column * Settings.height);
-                                                         // controlCollection.Add(controls[row, column]);
+                            gameControls.Remove(controls[row][column]);
+                            controls[row][column].Location = new Point((row - pointer) * Settings.width, column * Settings.height - Settings.height);
+                            controls[row][column] = null;
                         }
                     }
                 }
             }
 
         }
-        private Control GetPlayer()
+        public Control GetPlayer()
         {
             foreach (Control control in controlCollection)
             {
@@ -70,7 +68,7 @@ namespace Mario
                     return control;
                 }
             }
-            throw new Exception("Kein Spieler");
+            return null;
         }
         private void MoveBackgroundLeft()
         {
@@ -81,11 +79,14 @@ namespace Mario
                 pointer--;
                 for (int f = 0; f < 15; f++)
                 {
-                    if (controls[pointer + gameWidth, f] != null)
+                    if (controls[pointer + gameWidth+1][f] != null)
                     {
-                        int index = gameControls.IndexOf(controls[pointer + gameWidth, f]);
-                        controlCollection.Remove(gameControls[index]);
-                        gameControls.RemoveAt(index);
+                        int index = gameControls.IndexOf(controls[pointer + gameWidth+1][f]);
+                        if (index != -1)
+                        {
+                            controlCollection.Remove(gameControls[index]);
+                            gameControls.RemoveAt(index);
+                        }
                     }
                 }
                 foreach (Control control in gameControls)
@@ -97,35 +98,35 @@ namespace Mario
                 }
                 for (int f = 0; f < 15; f++)
                 {
-                    if (controls[pointer - 1, f] != null)
+                    if (controls[pointer - 1][f] != null)
                     {
-                        controls[pointer - 1, f].Location = new Point(0, f * Settings.height);
-                        gameControls.Add(controls[pointer - 1, f]);
-                        controlCollection.Add(controls[pointer - 1, f]);
+                        controls[pointer - 1][f].Location = new Point(0, f * Settings.height);
+                        gameControls.Add(controls[pointer - 1][f]);
+                        controlCollection.Add(controls[pointer - 1][f]);
                     }
                 }
                 Point temp = GetPlayer().Location;
                 temp.Offset(Settings.width, 0);
                 GetPlayer().Location = temp;
-
-                //TODO alles nach rechts Move
-                //ganz rechts die Controls löschen
-                //links neue Controls hinzufügen
             }
         }
         private void MoveBackgroundRight()
         {
+            if (pointer >= controls.Length-1-gameWidth) return;
             Point help = GetPlayer().Location;
             if (help.X > gameWidth * Settings.width - border)
             {
                 pointer++;
                 for (int f = 0; f < 15; f++)
                 {
-                    if (controls[pointer - 1, f] != null)
+                    if (controls[pointer - 1][f] != null)
                     {
-                        int index = gameControls.IndexOf(controls[pointer - 1, f]);
-                        controlCollection.Remove(gameControls[index]);
-                        gameControls.RemoveAt(index);
+                        int index = gameControls.IndexOf(controls[pointer - 1][f]);
+                        if (index != -1)
+                        {
+                            controlCollection.Remove(gameControls[index]);
+                            gameControls.RemoveAt(index);
+                        }
                     }
                 }
                 foreach (Control control in gameControls)
@@ -136,20 +137,17 @@ namespace Mario
                 }
                 for (int f = 0; f < 15; f++)
                 {
-                    if (controls[pointer + gameWidth, f] != null)
+                    if (controls[pointer + gameWidth][f] != null)
                     {
-                        controls[pointer + gameWidth, f].Location = new Point((gameWidth - 1) * Settings.width, f * Settings.height);
-                        gameControls.Add(controls[pointer + gameWidth, f]);
-                        controlCollection.Add(controls[pointer + gameWidth, f]);
+                        controls[pointer + gameWidth][f].Location = new Point((gameWidth - 1) * Settings.width, f * Settings.height);
+                        gameControls.Add(controls[pointer + gameWidth][f]);
+                        controlCollection.Add(controls[pointer + gameWidth][f]);
                     }
                 }
                 Point temp = GetPlayer().Location;
                 temp.Offset(-Settings.width, 0);
                 GetPlayer().Location = temp;
-            }
-            //TODO alles nach links Move
-            //ganz links die Controls löschen
-            //rechts neue Controls hinzufügen
+                }
         }
     }
 }

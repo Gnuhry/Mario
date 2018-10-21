@@ -54,7 +54,7 @@ namespace Mario
                             erg[column, row] = NewControl(Properties.Resources.dirt, "obstacle");
                             break;
                         case 'A':
-                            erg[column, row] = NewControl(Properties.Resources.air, "");
+                            erg[column, row] = null;// NewControl(Properties.Resources.air, "");
                             break;
                         case 'I':
                             erg[column, row] = new Itembox();

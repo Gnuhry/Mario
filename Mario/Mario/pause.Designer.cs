@@ -50,7 +50,7 @@
             this.btnMenue.Location = new System.Drawing.Point(12, 136);
             this.btnMenue.Name = "btnMenue";
             this.btnMenue.Size = new System.Drawing.Size(284, 23);
-            this.btnMenue.TabIndex = 1;
+            this.btnMenue.TabIndex = 3;
             this.btnMenue.Text = "Zum Weltenmenü";
             this.btnMenue.UseVisualStyleBackColor = true;
             this.btnMenue.Click += new System.EventHandler(this.btnMenue_Click);
@@ -60,7 +60,7 @@
             this.btnSettings.Location = new System.Drawing.Point(12, 165);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(284, 23);
-            this.btnSettings.TabIndex = 2;
+            this.btnSettings.TabIndex = 4;
             this.btnSettings.Text = "Einstellungen";
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
@@ -70,7 +70,7 @@
             this.btnRestart.Location = new System.Drawing.Point(12, 107);
             this.btnRestart.Name = "btnRestart";
             this.btnRestart.Size = new System.Drawing.Size(284, 23);
-            this.btnRestart.TabIndex = 3;
+            this.btnRestart.TabIndex = 2;
             this.btnRestart.Text = "Neustart";
             this.btnRestart.UseVisualStyleBackColor = true;
             this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
@@ -80,7 +80,7 @@
             this.btnGoOn.Location = new System.Drawing.Point(12, 78);
             this.btnGoOn.Name = "btnGoOn";
             this.btnGoOn.Size = new System.Drawing.Size(284, 23);
-            this.btnGoOn.TabIndex = 4;
+            this.btnGoOn.TabIndex = 1;
             this.btnGoOn.Text = "Weiter";
             this.btnGoOn.UseVisualStyleBackColor = true;
             this.btnGoOn.Click += new System.EventHandler(this.btnGoOn_Click);

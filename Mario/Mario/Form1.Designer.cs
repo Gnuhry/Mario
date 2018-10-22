@@ -30,7 +30,6 @@
         {
             this.btnStart = new System.Windows.Forms.Button();
             this.btnSetting = new System.Windows.Forms.Button();
-            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
             this.SuspendLayout();
             // 
             // btnStart
@@ -53,20 +52,11 @@
             this.btnSetting.UseVisualStyleBackColor = true;
             this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
-            // domainUpDown1
-            // 
-            this.domainUpDown1.Location = new System.Drawing.Point(300, 219);
-            this.domainUpDown1.Name = "domainUpDown1";
-            this.domainUpDown1.Size = new System.Drawing.Size(197, 20);
-            this.domainUpDown1.TabIndex = 2;
-            this.domainUpDown1.Text = "domainUpDown1";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.domainUpDown1);
             this.Controls.Add(this.btnSetting);
             this.Controls.Add(this.btnStart);
             this.Name = "Form1";
@@ -80,7 +70,6 @@
 
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnSetting;
-        private System.Windows.Forms.DomainUpDown domainUpDown1;
     }
 }
 

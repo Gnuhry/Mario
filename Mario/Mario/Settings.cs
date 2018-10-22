@@ -12,6 +12,7 @@
             gamehight = 20,
             itemThrowBlockLength = 4,
             invincibleCounter = 20;
+        public static double borderFactor=0.1;
         private char up_, left_, right_, item_;
         private bool music_, sounds_;
         public char up

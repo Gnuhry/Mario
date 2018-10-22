@@ -25,7 +25,7 @@ namespace Mario
             this.controlCollection = controlCollection;
             pointer = 0;
             gameWidth = Screen.PrimaryScreen.WorkingArea.Width / Settings.width;
-            border = gameWidth * Settings.width * 0.1;
+            border = gameWidth * Settings.width * Settings.borderFactor;
             DisplayBackground();
         }
 
@@ -33,7 +33,6 @@ namespace Mario
         {
             MoveBackgroundLeft();
             MoveBackgroundRight();
-            Console.WriteLine("<y");
         }
 
         private void DisplayBackground()
@@ -76,12 +75,11 @@ namespace Mario
             Point help = GetPlayer().Location;
             if (help.X < border)
             {
-                pointer--;
                 for (int f = 0; f < 15; f++)
                 {
-                    if (controls[pointer + gameWidth+1][f] != null)
+                    if (controls[pointer + gameWidth-1][f] != null)
                     {
-                        int index = gameControls.IndexOf(controls[pointer + gameWidth+1][f]);
+                        int index = gameControls.IndexOf(controls[pointer + gameWidth-1][f]);
                         if (index != -1)
                         {
                             controlCollection.Remove(gameControls[index]);
@@ -98,13 +96,14 @@ namespace Mario
                 }
                 for (int f = 0; f < 15; f++)
                 {
-                    if (controls[pointer - 1][f] != null)
+                    if (controls[pointer-1][f] != null)
                     {
-                        controls[pointer - 1][f].Location = new Point(0, f * Settings.height);
-                        gameControls.Add(controls[pointer - 1][f]);
-                        controlCollection.Add(controls[pointer - 1][f]);
+                        controls[pointer-1][f].Location = new Point(0, f * Settings.height);
+                        gameControls.Add(controls[pointer-1][f]);
+                        controlCollection.Add(controls[pointer-1][f]);
                     }
                 }
+                pointer--;
                 Point temp = GetPlayer().Location;
                 temp.Offset(Settings.width, 0);
                 GetPlayer().Location = temp;
@@ -112,16 +111,15 @@ namespace Mario
         }
         private void MoveBackgroundRight()
         {
-            if (pointer >= controls.Length-1-gameWidth) return;
+            if (pointer >= controls.Length-gameWidth) return;
             Point help = GetPlayer().Location;
             if (help.X > gameWidth * Settings.width - border)
             {
-                pointer++;
                 for (int f = 0; f < 15; f++)
                 {
-                    if (controls[pointer - 1][f] != null)
+                    if (controls[pointer][f] != null)
                     {
-                        int index = gameControls.IndexOf(controls[pointer - 1][f]);
+                        int index = gameControls.IndexOf(controls[pointer][f]);
                         if (index != -1)
                         {
                             controlCollection.Remove(gameControls[index]);
@@ -139,11 +137,12 @@ namespace Mario
                 {
                     if (controls[pointer + gameWidth][f] != null)
                     {
-                        controls[pointer + gameWidth][f].Location = new Point((gameWidth - 1) * Settings.width, f * Settings.height);
+                        controls[pointer + gameWidth][f].Location = new Point((gameWidth-1) * Settings.width, f * Settings.height);
                         gameControls.Add(controls[pointer + gameWidth][f]);
                         controlCollection.Add(controls[pointer + gameWidth][f]);
                     }
                 }
+                pointer++;
                 Point temp = GetPlayer().Location;
                 temp.Offset(-Settings.width, 0);
                 GetPlayer().Location = temp;

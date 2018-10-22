@@ -34,7 +34,6 @@ namespace Mario
             playerTimer.Tick += Player_Move;
             playerTimer.Start();
         }
-
         private void Players_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Escape))
@@ -44,13 +43,19 @@ namespace Mario
                 (Parent as Form).Enabled = false;
                 pause.FormClosed += Pause_FormClosed;
                 playerTimer.Stop();
+                jump = false;
+                left = false;
+                right = false;
             }
         }
 
         private void Pause_FormClosed(object sender, FormClosedEventArgs e)
         {
-            playerTimer.Start();
-            (Parent as Form).Enabled = true;
+            if (Parent != null)
+            {
+                Parent.Enabled = true;
+                playerTimer.Start();
+            }
         }
 
         private void Players_KeyUp(object sender, KeyEventArgs e)

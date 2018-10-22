@@ -21,6 +21,7 @@ namespace Mario
             this.play = play;
             this.settings = settings;
             this.worlds = worlds;
+            btnGoOn.Focus();
         }
 
         private void btnMenue_Click(object sender, EventArgs e)

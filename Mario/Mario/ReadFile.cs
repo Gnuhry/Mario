@@ -67,6 +67,9 @@ namespace Mario
                         case 'P':
                             erg[column][row] = new Players(settings);
                             break;
+                        case 'E':
+                            erg[column][row] = new Enemy();
+                            break;
                     }
                 }
             }

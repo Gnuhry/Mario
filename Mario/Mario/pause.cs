@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mario
@@ -15,13 +8,13 @@ namespace Mario
         private Play play;
         private Settings settings;
         private Worlds worlds;
-        public pause(Play play, Settings settings, Worlds worlds)
+        public pause(Play play)
         {
             InitializeComponent();
             this.play = play;
-            this.settings = settings;
-            this.worlds = worlds;
-            btnGoOn.Focus();
+            play.Enabled = false;
+            settings = play.GetSettings();
+            worlds = play.GetWorlds();
         }
 
         private void btnMenue_Click(object sender, EventArgs e)
@@ -29,6 +22,7 @@ namespace Mario
             play.Close();
             worlds.Visible = true;
             worlds.ShowInTaskbar = true;
+            Close();
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -52,6 +46,7 @@ namespace Mario
 
         private void btnGoOn_Click(object sender, EventArgs e)
         {
+            play.Enabled = true;
             Close();
         }
     }

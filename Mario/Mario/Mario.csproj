@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enemy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Enemy.Designer.cs">
+      <DependentUpon>Enemy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Itembox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     <Compile Include="Worlds.Designer.cs">
       <DependentUpon>Worlds.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Enemy.resx">
+      <DependentUpon>Enemy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

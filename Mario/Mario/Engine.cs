@@ -11,46 +11,86 @@ namespace Mario
         private Control[][] controls;
         private int pointer, gameWidth;
         private double border;
-        List<Control> gameControls;
+        private Players players;
         private Control.ControlCollection controlCollection;
         private System.Windows.Forms.Timer timer;
 
         public Engine(Control[][] controls, Control.ControlCollection controlCollection)
         {
-            gameControls = new List<Control>();
+            this.controls = controls;
+            this.controlCollection = controlCollection;
+            Init();
+            FindPlayer();
+            DisplayBackground();
+            InitTimer();
+            players.Start();
+        }
+        private void Init()
+        {
+            gameWidth = Screen.PrimaryScreen.WorkingArea.Width / Settings.width;
+            border = gameWidth * Settings.width * Settings.borderFactor;
+        }
+
+
+        //-------------------------Timer-----------------------------------------------
+        private void InitTimer()
+        {
             timer = new System.Windows.Forms.Timer();
             timer.Tick += Timer_Tick;
             timer.Start();
-            this.controls = controls;
-            this.controlCollection = controlCollection;
-            pointer = 0;
-            gameWidth = Screen.PrimaryScreen.WorkingArea.Width / Settings.width;
-            border = gameWidth * Settings.width * Settings.borderFactor;
-            DisplayBackground();
         }
-
         private void Timer_Tick(object sender, EventArgs e)
         {
             MoveBackgroundLeft();
             MoveBackgroundRight();
         }
 
+        //------------------------Player-----------------------------------------
+        private void FindPlayer()
+        {
+            for (int f = 0; f < controls.Length; f++)
+            {
+                for (int g = 0; g < controls[0].Length; g++)
+                {
+                    if (controls[f][g] is Players)
+                    {
+                        players = controls[f][g] as Players;
+                        if (f > gameWidth / 2)
+                        {
+                            pointer = f - (gameWidth / 2);
+                        }
+                        else
+                        {
+                            pointer = 0;
+                        }
+                        return;
+                    }
+                }
+            }
+        }
+
+        //-------------------------Background-------------------------------------
         private void DisplayBackground()
         {
             for (int row = pointer; row < pointer + gameWidth && row < pointer + controls.Length; row++)
             {
-                //TODO get length
                 for (int column = 0; column < Settings.gamehight && column < controls[0].Length; column++)
                 {
                     if (controls[row][column] != null)
                     {
-                        gameControls.Add(controls[row][column]);
+                        players.GameControlAdd(controls[row][column]);
                         controls[row][column].Location = new Point((row - pointer) * Settings.width, column * Settings.height);
                         controlCollection.Add(controls[row][column]);
-                        if (controls[row][column].Tag.Equals("players"))
+                        if (controls[row][column] == players)
                         {
-                            gameControls.Remove(controls[row][column]);
+                            players.GameControlRemove(controls[row][column]);
                             controls[row][column].Location = new Point((row - pointer) * Settings.width, column * Settings.height - Settings.height);
+                            controls[row][column] = null;
+                        }
+                        if (controls[row][column] is Enemy)
+                        {
+                            players.GameControlRemove(controls[row][column]);
+                            players.EnemyAdd(controls[row][column] as Enemy);
                             controls[row][column] = null;
                         }
                     }
@@ -58,36 +98,25 @@ namespace Mario
             }
 
         }
-        public Control GetPlayer()
-        {
-            foreach (Control control in controlCollection)
-            {
-                if (control.GetType().Equals((typeof(Players))))
-                {
-                    return control;
-                }
-            }
-            return null;
-        }
         private void MoveBackgroundLeft()
         {
             if (pointer <= 1) return;
-            Point help = GetPlayer().Location;
+            Point help = players.Location;
             if (help.X < border)
             {
                 for (int f = 0; f < 15; f++)
                 {
-                    if (controls[pointer + gameWidth-1][f] != null)
+                    if (controls[pointer + gameWidth - 1][f] != null)
                     {
-                        int index = gameControls.IndexOf(controls[pointer + gameWidth-1][f]);
+                        int index = players.GetGameControlIndexOf(controls[pointer + gameWidth - 1][f]);
                         if (index != -1)
                         {
-                            controlCollection.Remove(gameControls[index]);
-                            gameControls.RemoveAt(index);
+                            controlCollection.Remove(players.GetGameControlItem(index));
+                            players.GameControlRemoveAt(index);
                         }
                     }
                 }
-                foreach (Control control in gameControls)
+                foreach (Control control in players.GetGameControl())
                 {
 
                     Point location = control.Location;
@@ -96,38 +125,49 @@ namespace Mario
                 }
                 for (int f = 0; f < 15; f++)
                 {
-                    if (controls[pointer-1][f] != null)
+                    if (controls[pointer - 1][f] != null)
                     {
-                        controls[pointer-1][f].Location = new Point(0, f * Settings.height);
-                        gameControls.Add(controls[pointer-1][f]);
-                        controlCollection.Add(controls[pointer-1][f]);
+                        controls[pointer - 1][f].Location = new Point(0, f * Settings.height);
+                        players.GameControlAdd(controls[pointer - 1][f]);
+                        controlCollection.Add(controls[pointer - 1][f]);
+                        players.EnemyAdd(controls[pointer - 1][f] as Enemy);
                     }
                 }
                 pointer--;
-                Point temp = GetPlayer().Location;
+                Point temp = players.Location;
                 temp.Offset(Settings.width, 0);
-                GetPlayer().Location = temp;
+                players.Location = temp;
+                foreach (Enemy enemy in players.GetEnemy())
+                {
+                    Point help2 = enemy.Location;
+                    help2.Offset(Settings.width, 0);
+                    enemy.Location = help2;
+                    if (help.X > Screen.PrimaryScreen.WorkingArea.Width)
+                    {
+                        players.EnemyRemove(enemy);
+                    }
+                }
             }
         }
         private void MoveBackgroundRight()
         {
-            if (pointer >= controls.Length-gameWidth) return;
-            Point help = GetPlayer().Location;
+            if (pointer >= controls.Length - gameWidth) return;
+            Point help = players.Location;
             if (help.X > gameWidth * Settings.width - border)
             {
                 for (int f = 0; f < 15; f++)
                 {
                     if (controls[pointer][f] != null)
                     {
-                        int index = gameControls.IndexOf(controls[pointer][f]);
+                        int index = players.GetGameControlIndexOf(controls[pointer][f]);
                         if (index != -1)
                         {
-                            controlCollection.Remove(gameControls[index]);
-                            gameControls.RemoveAt(index);
+                            controlCollection.Remove(players.GetGameControlItem(index));
+                            players.GameControlRemoveAt(index);
                         }
                     }
                 }
-                foreach (Control control in gameControls)
+                foreach (Control control in players.GetGameControl())
                 {
                     Point location = control.Location;
                     location.Offset(-Settings.width, 0);
@@ -137,16 +177,27 @@ namespace Mario
                 {
                     if (controls[pointer + gameWidth][f] != null)
                     {
-                        controls[pointer + gameWidth][f].Location = new Point((gameWidth-1) * Settings.width, f * Settings.height);
-                        gameControls.Add(controls[pointer + gameWidth][f]);
+                        controls[pointer + gameWidth][f].Location = new Point((gameWidth - 1) * Settings.width, f * Settings.height);
+                        players.GameControlAdd(controls[pointer + gameWidth][f]);
                         controlCollection.Add(controls[pointer + gameWidth][f]);
+                        players.EnemyAdd(controls[pointer + gameWidth][f] as Enemy);
                     }
                 }
                 pointer++;
-                Point temp = GetPlayer().Location;
+                Point temp = players.Location;
                 temp.Offset(-Settings.width, 0);
-                GetPlayer().Location = temp;
+                players.Location = temp;
+                foreach (Enemy enemy in players.GetEnemy())
+                {
+                    Point help2 = enemy.Location;
+                    help2.Offset(-Settings.width, 0);
+                    enemy.Location = help2;
+                    if (help.X < 0)
+                    {
+                        players.EnemyRemove(enemy);
+                    }
                 }
+            }
         }
     }
 }

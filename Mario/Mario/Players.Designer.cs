@@ -46,6 +46,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pcBPlayer);
+            this.DoubleBuffered = true;
             this.Name = "Players";
             this.Size = new System.Drawing.Size(50, 100);
             ((System.ComponentModel.ISupportInitialize)(this.pcBPlayer)).EndInit();

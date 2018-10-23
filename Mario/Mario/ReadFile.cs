@@ -70,8 +70,12 @@ namespace Mario
                         case 'P':
                             erg[column][row] = new Players(settings);
                             break;
+                        case 'e':
+                            erg[column][row] = new Enemy(false);
+                            break;
                         case 'E':
-                            erg[column][row] = new Enemy();
+                            erg[column][row-1] = null;
+                            erg[column][row] = new Enemy(true);
                             break;
                         case 'C':
                             erg[column][row] = NewControl(Properties.Resources.coin, "coin");

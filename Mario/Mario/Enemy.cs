@@ -9,16 +9,29 @@ namespace Mario
         private Timer enemy_timer;
         private bool right;
         private Players players;
-        public Enemy()
+        private bool normal;
+        public Enemy(bool normal)
         {
             InitializeComponent();
-            Tag = "Enemy";
-            Size = new Size(Settings.width, Settings.height);
+            this.normal = normal;
+            if (normal)
+            {
+                Size = new Size(Settings.width, 2*Settings.height);
+                Tag = "Enemy_pointed";
+                //TODO bild
+            }
+            else
+            {
+                Size = new Size(Settings.width, Settings.height);
+                pcBEnemy.Image = Properties.Resources.enemy_right;
+                Tag = "Enemy";
+            }
             right = true;
             enemy_timer = new Timer();
             enemy_timer.Interval = 100;
             enemy_timer.Tick += Enemy_timer_Tick;
         }
+
         public void Start(Players players)
         {
             enemy_timer.Start();
@@ -122,6 +135,7 @@ namespace Mario
             Parent.Controls.Remove(this);
             Dispose();
         }
+
 
 
     }

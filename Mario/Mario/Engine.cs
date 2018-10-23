@@ -88,11 +88,15 @@ namespace Mario
                         if (controls[row][column] == players)
                         {
                             players.GameControlRemove(controls[row][column]);
-                            controls[row][column].Location = new Point((row - pointer) * Settings.width, column * Settings.height - Settings.height);
+                           // controls[row][column].Location = new Point((row - pointer) * Settings.width, column * Settings.height - Settings.height);
                             controls[row][column] = null;
                         }
                         if (controls[row][column] is Enemy)
                         {
+                            if (controls[row][column].Tag.ToString().Split('_').Length > 1)
+                            {
+                                controls[row][column].Location = new Point((row - pointer) * Settings.width, column * Settings.height - Settings.height);
+                            }
                             players.GameControlRemove(controls[row][column]);
                             players.EnemyAdd(controls[row][column] as Enemy);
                             controls[row][column] = null;

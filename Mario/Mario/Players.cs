@@ -18,7 +18,14 @@ namespace Mario
             InitGameControl();
             InitKeyPressEvents();
             InitPlayerTimer();
+            SizeChanged += Players_SizeChanged;
         }
+
+        private void Players_SizeChanged(object sender, EventArgs e)
+        {
+            pcBPlayer.Size = Size;
+        }
+
         public void Start()
         {
             player_timer.Start();
@@ -28,7 +35,7 @@ namespace Mario
         {
             this.settings = settings;
             Tag = "players";
-            Size = new Size(Settings.width, 2 * Settings.height);
+            Size = Settings.size;
         }
 
 
@@ -130,7 +137,7 @@ namespace Mario
             }
             else if (right)
             {
-                Rectangle help = GetBounds();
+                Rectangle help = Bounds;
                 help.Offset(Settings.speedX, offsetY);
                 if (CollisionDetect(help, false, false, true, false, false))
                 {
@@ -143,7 +150,7 @@ namespace Mario
             }
             else if (left)
             {
-                Rectangle help = GetBounds();
+                Rectangle help = Bounds;
                 help.Offset(-Settings.speedX, offsetY);
                 if (CollisionDetect(help, false, false, true, false, false))
                 {
@@ -167,17 +174,9 @@ namespace Mario
                 }
                 else
                 {
-                    if (doubleJumping)
-                    {
-                        doubleJumping = false;
-                        jump = true;
-                    }
-                    else
-                    {
-                        jump = false;
-                    }
+                    CheckDoubleJump();
                 }
-                Rectangle help = GetBounds();
+                Rectangle help = Bounds;
                 help.Offset(0, -Settings.speedY);
                 if (CollisionDetect(help, true, false, true, false, false))
                 {
@@ -185,13 +184,15 @@ namespace Mario
                 }
                 else
                 {
+                    jump = false;
                     //TODO Jump=false? Wenn Kopf wand berührt
                     return 0;
                 }
             }
             else
             {
-                Rectangle help = GetBounds();
+                CheckDoubleJump();
+                Rectangle help = Bounds;
                 help.Offset(0, Settings.speedY);
                 if (CollisionDetect(help, false, true, true, false, false))
                 {
@@ -216,7 +217,7 @@ namespace Mario
                 {
                     if (control.Tag != null)
                     {
-                        if (control.Tag.ToString().Split('_').Length > 1 && player&&(up||pickCoinItem))
+                        if (control.Tag.ToString().Split('_').Length > 1 && player && (up || pickCoinItem))
                         {
                             if (control.Tag.ToString().Split('_')[1].Equals("coin"))
                             {
@@ -244,12 +245,6 @@ namespace Mario
                             coinVisibleCounter = 3; ;
                             return true;
                         }
-                       
-                        else if (control.Tag.ToString().Split('_')[0].Equals("Item") && player)
-                        {
-                            PickItem(control);
-                            return true;
-                        }
                         else if (control is Itembox)
                         {
                             if (up)
@@ -258,15 +253,28 @@ namespace Mario
                             }
                             return false;
                         }
+                        else if (control.Tag.ToString().Split('_')[0].Equals("Item") && player)
+                        {
+                            PickItem(control);
+                        }                      
                         else if (control is Enemy)
                         {
-                            if (down || (invincible && itemCounter > 0) || destroyEnemyItem)
+                            if ((invincible && itemCounter > 0) || destroyEnemyItem)
                             {
-                                if (location.Bottom - control.Top < 20)
+                                (control as Enemy).Hit();
+                            }
+                            else if ((down && location.Bottom - control.Top < 20) )
+                            {
+                                if (control.Tag.ToString().Split('_').Length > 1)
+                                {
+                                    Hit();
+                                }
+                                else
                                 {
                                     (control as Enemy).Hit();
                                 }
                             }
+                            
                             else if (player)
                             {
                                 Hit();
@@ -283,9 +291,22 @@ namespace Mario
 
         //-------------------------------------------Item--------------------------------------------------------------
         private bool riceBall, doubleJump, mushroom, bumerang, invincible, lastRight, currentRight, doubleJumping;
-        private int itemCounter, hitCounter, coinCounter,coinVisibleCounter;
+        private int itemCounter, hitCounter, coinCounter, coinVisibleCounter;
         private PictureBox itemThrow, coin;
 
+        private void CheckDoubleJump()
+        {
+            if (doubleJumping)
+            {
+                jump = true;
+                jumpCounter = Settings.jumpspeed;
+                doubleJumping = false;
+            }
+            else
+            {
+                jump = false;
+            }
+        }
         private void InitItem()
         {
             riceBall = doubleJump = bumerang = invincible = false;
@@ -301,8 +322,8 @@ namespace Mario
                 SizeMode = PictureBoxSizeMode.Zoom,
                 Image = Properties.Resources.coin
             };
-            
-            coinCounter=coinVisibleCounter = 0;
+
+            coinCounter = coinVisibleCounter = 0;
         }
         private void ItemTimer()
         {
@@ -311,6 +332,10 @@ namespace Mario
                 gameControls.Remove(coin);
                 Parent.Controls.Remove(coin);
             }
+            if (hitCounter > 0)
+                {
+                    hitCounter--;
+                }
             if (itemCounter > 0)
             {
                 if (riceBall || bumerang)
@@ -355,10 +380,7 @@ namespace Mario
                     }
                     invincible = false;
                 }
-                if (hitCounter > 0)
-                {
-                    hitCounter--;
-                }
+                
             }
         }
 
@@ -388,16 +410,18 @@ namespace Mario
                 return;
             }
             jumpCounter = 0;
-            hitCounter = 15;
             if (bumerang || riceBall || doubleJump)
             {
                 Parent.Controls.Remove(itemThrow);
                 bumerang = riceBall = doubleJump = false;
+                hitCounter = 30;
                 return;
             }
             if (mushroom)
             {
+                Size = Settings.size;
                 mushroom = false;
+                hitCounter = 30;
                 return;
             }
         }
@@ -407,6 +431,10 @@ namespace Mario
             if (help == 0)
             {
                 mushroom = true;
+                Point x = Location;
+                x.Offset(0, -Settings.height);
+                Location = x;
+                Size = new Size(Settings.width, Settings.height * 2);
                 Parent.Controls.Remove(control);
                 gameControls.Remove(control);
             }
@@ -439,24 +467,10 @@ namespace Mario
         }
 
         //-----------------------------------------Texture/Bounds--------------------------------------------------------
-        public Rectangle GetBounds()
-        {
-            Rectangle erg;
-            if (mushroom)
-            {
-                erg = Bounds;
-            }
-            else
-            {
-                Point help = Location;
-                help.Offset(0, Settings.height);
-                erg = new Rectangle(help, Settings.size);
-            }
-            return erg;
-        }
 
         private void ChangeTexture()
         {
+
             if (mushroom)
             {
                 pcBPlayer.Image = Properties.Resources.player_normal;

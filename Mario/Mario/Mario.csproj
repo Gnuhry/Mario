@@ -213,10 +213,10 @@
     <None Include="Resources\player_normal.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small.gif" />
+    <None Include="Resources\Download.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Download.jpg" />
+    <None Include="Resources\Player_Small.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

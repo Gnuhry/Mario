@@ -53,7 +53,7 @@
             // pcB4
             // 
             this.pcB4.BackColor = System.Drawing.Color.Lime;
-            this.pcB4.Location = new System.Drawing.Point(538, 302);
+            this.pcB4.Location = new System.Drawing.Point(885, 248);
             this.pcB4.Name = "pcB4";
             this.pcB4.Size = new System.Drawing.Size(60, 50);
             this.pcB4.TabIndex = 4;
@@ -62,7 +62,7 @@
             // pcB1
             // 
             this.pcB1.BackColor = System.Drawing.Color.Yellow;
-            this.pcB1.Location = new System.Drawing.Point(184, 46);
+            this.pcB1.Location = new System.Drawing.Point(81, 46);
             this.pcB1.Name = "pcB1";
             this.pcB1.Size = new System.Drawing.Size(60, 50);
             this.pcB1.TabIndex = 5;
@@ -71,7 +71,7 @@
             // pcB3
             // 
             this.pcB3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.pcB3.Location = new System.Drawing.Point(184, 302);
+            this.pcB3.Location = new System.Drawing.Point(149, 342);
             this.pcB3.Name = "pcB3";
             this.pcB3.Size = new System.Drawing.Size(60, 50);
             this.pcB3.TabIndex = 6;
@@ -80,7 +80,7 @@
             // pcB2
             // 
             this.pcB2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.pcB2.Location = new System.Drawing.Point(538, 46);
+            this.pcB2.Location = new System.Drawing.Point(621, 46);
             this.pcB2.Name = "pcB2";
             this.pcB2.Size = new System.Drawing.Size(60, 50);
             this.pcB2.TabIndex = 7;

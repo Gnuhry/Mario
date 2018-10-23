@@ -6,7 +6,6 @@ namespace Mario
     public partial class Form1 : Form
     {
         private Settings settings;
-        private Play play;
         private Setting setting;
         public Form1()
         {
@@ -18,9 +17,8 @@ namespace Mario
         {
             Visible = false;
             ShowInTaskbar = false;
-            play = new Play(1, settings);
-            play.Show();
-            play.FormClosed += Forms_FormClosed;
+            new Worlds(settings,this).Show();
+          
         }
 
         private void Forms_FormClosed(object sender, FormClosedEventArgs e)

@@ -7,22 +7,17 @@ namespace Mario
 
     public partial class Itembox : UserControl
     {
-        private string[] ItemName;
         private Image[] ItemPicture;
         private Random random;
         private bool active;
         public Itembox()
         {
             InitializeComponent();
-            ItemName = new string[] { "Mushroom", "FireFlower", "Star", "DoubleJump", "Bumarang" };
-            ItemPicture = new Image[] { Properties.Resources.mushroom, Properties.Resources.fireflower, Properties.Resources.star, Properties.Resources.doubleJump, Properties.Resources.bumarangflower };
-            if (ItemName.Length != ItemPicture.Length)
-            {
-                new Exception("Item Name und Picture müssen gleich viele Elemente enthalten");
-            }
+            ItemPicture = new Image[] { Properties.Resources.mushroom, Properties.Resources.fireflower,
+                Properties.Resources.star, Properties.Resources.doubleJump, Properties.Resources.bumarangflower };
             random = new Random();
             Size = new Size(Settings.width, Settings.height);
-            Tag = "";
+            Tag = "itembox";
             active = true;
         }
         public PictureBox Activate(bool mushroom)
@@ -38,16 +33,21 @@ namespace Mario
             {
                 randomNr = random.Next(1, ItemPicture.Length);
             }
-            return new PictureBox()
+            PictureBox item = new PictureBox()
             {
                 Tag = "Item_" + randomNr,
                 Image = ItemPicture[randomNr],
-                AccessibleDescription = ItemName[randomNr],
                 Size = Size,
                 SizeMode = PictureBoxSizeMode.Zoom,
                 Location = new Point(Location.X, Location.Y - Settings.height)
             };
-            //Set Picture off
+            Parent.Controls.Add(item);
+            item.BringToFront();
+            return item;
+        }
+        public void Reset()
+        {
+            active = true;
         }
     }
 }

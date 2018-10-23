@@ -35,5 +35,17 @@ namespace Mario
             Dispose();
             play.Show();
         }
+        public void SetCoin(int coin)
+        {
+            lbCoins.Text = coin + "";
+        }
+
+        private void Play_EnabledChanged(object sender, EventArgs e)
+        {
+            if (Enabled)
+            {
+                engine.PlayerStart();
+            }
+        }
     }
 }

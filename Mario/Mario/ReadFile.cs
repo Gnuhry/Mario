@@ -58,6 +58,9 @@ namespace Mario
                         case 'D':
                             erg[column][row] = NewControl(Properties.Resources.grass, "obstacle");
                             break;
+                        case 'c':
+                            erg[column][row] = NewControl(Properties.Resources.stone_grass, "obstacle_coin");
+                            break;
                         case 'A':
                             erg[column][row] = null;
                             break;
@@ -69,6 +72,9 @@ namespace Mario
                             break;
                         case 'E':
                             erg[column][row] = new Enemy();
+                            break;
+                        case 'C':
+                            erg[column][row] = NewControl(Properties.Resources.coin, "coin");
                             break;
                     }
                 }

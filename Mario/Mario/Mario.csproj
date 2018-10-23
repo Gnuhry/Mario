@@ -118,6 +118,9 @@
     <EmbeddedResource Include="Play.resx">
       <DependentUpon>Play.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Players.resx">
+      <DependentUpon>Players.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -199,6 +202,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\stone_grass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EnemyConcept.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EnemyConcept_GIF_Mirrored.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Download.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

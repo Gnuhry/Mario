@@ -29,7 +29,6 @@ namespace Mario
             this.settings = settings;
             Tag = "players";
             Size = new Size(Settings.width, 2 * Settings.height);
-            BackColor = Color.Blue;
         }
 
 
@@ -133,7 +132,7 @@ namespace Mario
             {
                 Rectangle help = GetBounds();
                 help.Offset(Settings.speedX, offsetY);
-                if (CollisionDetect(help, false, false, true, false))
+                if (CollisionDetect(help, false, false, true, false, false))
                 {
                     return Settings.speedY;
                 }
@@ -146,7 +145,7 @@ namespace Mario
             {
                 Rectangle help = GetBounds();
                 help.Offset(-Settings.speedX, offsetY);
-                if (CollisionDetect(help, false, false, true, false))
+                if (CollisionDetect(help, false, false, true, false, false))
                 {
                     return -Settings.speedX;
                 }
@@ -180,7 +179,7 @@ namespace Mario
                 }
                 Rectangle help = GetBounds();
                 help.Offset(0, -Settings.speedY);
-                if (CollisionDetect(help, true, false, true, false))
+                if (CollisionDetect(help, true, false, true, false, false))
                 {
                     return -Settings.speedY;
                 }
@@ -194,7 +193,7 @@ namespace Mario
             {
                 Rectangle help = GetBounds();
                 help.Offset(0, Settings.speedY);
-                if (CollisionDetect(help, false, true, true, false))
+                if (CollisionDetect(help, false, true, true, false, false))
                 {
                     return Settings.speedY;
                 }
@@ -209,7 +208,7 @@ namespace Mario
         }
 
         //--------------------------------------------Collision Detect--------------------------------------------------
-        public bool CollisionDetect(Rectangle location, bool up, bool down, bool player, bool destroyEnemyItem)
+        public bool CollisionDetect(Rectangle location, bool up, bool down, bool player, bool destroyEnemyItem, bool pickCoinItem)
         {
             foreach (Control control in Parent.Controls)
             {
@@ -217,10 +216,35 @@ namespace Mario
                 {
                     if (control.Tag != null)
                     {
-                        if (control.Tag.Equals("obstacle"))
+                        if (control.Tag.ToString().Split('_').Length > 1 && player&&(up||pickCoinItem))
+                        {
+                            if (control.Tag.ToString().Split('_')[1].Equals("coin"))
+                            {
+                                gameControls.Remove(control);
+                                Parent.Controls.Remove(control);
+                                Point help = control.Location;
+                                help.Offset(0, -Settings.height);
+                                coin.Location = help;
+                                gameControls.Add(coin);
+                                Parent.Controls.Add(coin);
+                                coin.BringToFront();
+                                (Parent as Play).SetCoin(++coinCounter);
+                                coinVisibleCounter = 3; ;
+                            }
+                        }
+                        else if (control.Tag.ToString().Split('_')[0].Equals("obstacle"))
                         {
                             return false;
                         }
+                        else if (control.Tag.Equals("coin") && player)
+                        {
+                            gameControls.Remove(control);
+                            Parent.Controls.Remove(control);
+                            (Parent as Play).SetCoin(++coinCounter);
+                            coinVisibleCounter = 3; ;
+                            return true;
+                        }
+                       
                         else if (control.Tag.ToString().Split('_')[0].Equals("Item") && player)
                         {
                             PickItem(control);
@@ -238,7 +262,10 @@ namespace Mario
                         {
                             if (down || (invincible && itemCounter > 0) || destroyEnemyItem)
                             {
-                                (control as Enemy).Hit();
+                                if (location.Bottom - control.Top < 20)
+                                {
+                                    (control as Enemy).Hit();
+                                }
                             }
                             else if (player)
                             {
@@ -256,8 +283,8 @@ namespace Mario
 
         //-------------------------------------------Item--------------------------------------------------------------
         private bool riceBall, doubleJump, mushroom, bumerang, invincible, lastRight, currentRight, doubleJumping;
-        private int itemCounter;
-        private PictureBox itemThrow;
+        private int itemCounter, hitCounter, coinCounter,coinVisibleCounter;
+        private PictureBox itemThrow, coin;
 
         private void InitItem()
         {
@@ -268,9 +295,22 @@ namespace Mario
                 Size = Settings.size,
                 SizeMode = PictureBoxSizeMode.Zoom
             };
+            coin = new PictureBox()
+            {
+                Size = Settings.size,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Image = Properties.Resources.coin
+            };
+            
+            coinCounter=coinVisibleCounter = 0;
         }
         private void ItemTimer()
         {
+            if (coinVisibleCounter-- == 0)
+            {
+                gameControls.Remove(coin);
+                Parent.Controls.Remove(coin);
+            }
             if (itemCounter > 0)
             {
                 if (riceBall || bumerang)
@@ -285,15 +325,19 @@ namespace Mario
                     {
                         help.Offset(-Settings.width, 0);
                     }
-                    if (CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false))
+                    if (CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, false))
                     {
+                        if (bumerang)
+                        {
+                            CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, true);
+                        }
                         if (riceBall)
                         {
                             help.Offset(0, Settings.height);
-                            if (!CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true))
+                            if (!CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true, false))
                             {
                                 help.Offset(0, -Settings.height);
-                                CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true);
+                                CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true, false);
                             }
                         }
                         itemThrow.Location = help;
@@ -311,8 +355,13 @@ namespace Mario
                     }
                     invincible = false;
                 }
+                if (hitCounter > 0)
+                {
+                    hitCounter--;
+                }
             }
         }
+
         private void UseItem()
         {
             if ((riceBall || bumerang) && itemCounter == 0)
@@ -334,7 +383,12 @@ namespace Mario
         }
         private void Hit()
         {
+            if (hitCounter > 0)
+            {
+                return;
+            }
             jumpCounter = 0;
+            hitCounter = 15;
             if (bumerang || riceBall || doubleJump)
             {
                 Parent.Controls.Remove(itemThrow);
@@ -360,7 +414,8 @@ namespace Mario
             {
                 Parent.Controls.Remove(control);
                 gameControls.Remove(control);
-                InitItem();
+                riceBall = doubleJump = bumerang = invincible = false;
+                itemCounter = 0;
                 Parent.Controls.Remove(itemThrow);
                 switch (help)
                 {
@@ -402,6 +457,14 @@ namespace Mario
 
         private void ChangeTexture()
         {
+            if (mushroom)
+            {
+                pcBPlayer.Image = Properties.Resources.player_normal;
+            }
+            else
+            {
+                pcBPlayer.Image = Properties.Resources.player_small;
+            }
             return;
             throw new NotImplementedException();//TODO
         }
@@ -428,7 +491,7 @@ namespace Mario
         {
             foreach (Enemy enemy in enemies)
             {
-                enemy.Start();
+                enemy.Start(this);
             }
         }
         private void StopEnemies()

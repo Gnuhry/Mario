@@ -8,6 +8,7 @@ namespace Mario
     {
         private Timer enemy_timer;
         private bool right;
+        private Players players;
         public Enemy()
         {
             InitializeComponent();
@@ -15,12 +16,13 @@ namespace Mario
             Size = new Size(Settings.width, Settings.height);
             right = true;
             enemy_timer = new Timer();
-            enemy_timer.Interval = 50;
+            enemy_timer.Interval = 100;
             enemy_timer.Tick += Enemy_timer_Tick;
         }
-        public void Start()
+        public void Start(Players players)
         {
             enemy_timer.Start();
+            this.players = players;
         }
         public void Stop()
         {
@@ -30,13 +32,13 @@ namespace Mario
         {
             Point help = Location;
             if (right)
-            {
-                help.Offset(Settings.speedX, 0);
-                if (CollisionDetect(help))
+            {               
+                if (CollisionDetect(new Point(Settings.speedX,0)))
                 {
-                    help.Offset(0, Settings.speedY);
-                    if (CollisionDetect(help))
+                    help.Offset(Settings.speedX, 0);
+                    if (CollisionDetect(new Point(0,Settings.speedY)))
                     {
+                        help.Offset(0, Settings.speedY);
                         Console.WriteLine("Right down");
                         Location = help;
                         return;
@@ -44,7 +46,6 @@ namespace Mario
                     else
                     {
                         Console.WriteLine("Right");
-                        help.Offset(0, -Settings.speedY);
                         Location = help;
                         return;
                     }
@@ -52,16 +53,18 @@ namespace Mario
                 else
                 {
                     right = false;
+                    pcBEnemy.Image = Properties.Resources.enemy_left;
+                    return;
                 }
             }
             else
             {
-                help.Offset(-Settings.speedX, 0);
-                if (CollisionDetect(help))
+                if (CollisionDetect(new Point(-Settings.speedX,0)))
                 {
-                    help.Offset(0, Settings.speedY);
-                    if (CollisionDetect(help))
+                    help.Offset(-Settings.speedX, 0);
+                    if (CollisionDetect(new Point(0,Settings.speedY)))
                     {
+                        help.Offset(0, Settings.speedY);
                         Console.WriteLine("LEft down");
                         Location = help;
                         return;
@@ -69,7 +72,6 @@ namespace Mario
                     else
                     {
                         Console.WriteLine("Left");
-                        help.Offset(0, -Settings.speedY);
                         Location = help;
                         return;
                     }
@@ -77,19 +79,18 @@ namespace Mario
                 else
                 {
                     right = true;
+                    pcBEnemy.Image = Properties.Resources.enemy_right;
+                    return;
                 }
-            }
-            help = Location;
-            help.Offset(0, -Settings.speedY);
-            if (CollisionDetect(help))
-            {
-                Location = help;
             }
         }
 
         private bool CollisionDetect(Point Offset)
         {
-            if (Parent == null) return false;
+            //Rectangle rectangle = Bounds;
+            //rectangle.Offset(Offset);
+            //return players.CollisionDetect(rectangle, false, false, false, false);
+           if (Parent == null) return false;
             Point help = Location;
             help.Offset(Offset);
             Rectangle rectangle = Bounds;
@@ -98,7 +99,7 @@ namespace Mario
             {
                 if (control.Bounds.IntersectsWith(rectangle) && control.Tag != null)
                 {
-                    if (control.Tag.Equals("obstacle") || control.GetType().Equals(typeof(Itembox)))
+                    if (control.Tag.ToString().Split('_')[0].Equals("obstacle") || control is Itembox)
                     {
                         return false;
                     }

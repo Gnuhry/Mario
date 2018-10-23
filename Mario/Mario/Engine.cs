@@ -68,6 +68,10 @@ namespace Mario
                 }
             }
         }
+        public void PlayerStart()
+        {
+            players.Start();
+        }
 
         //-------------------------Background-------------------------------------
         private void DisplayBackground()
@@ -139,12 +143,15 @@ namespace Mario
                 players.Location = temp;
                 foreach (Enemy enemy in players.GetEnemy())
                 {
-                    Point help2 = enemy.Location;
-                    help2.Offset(Settings.width, 0);
-                    enemy.Location = help2;
-                    if (help.X > Screen.PrimaryScreen.WorkingArea.Width)
+                    if (enemy != null)
                     {
-                        players.EnemyRemove(enemy);
+                        Point help2 = enemy.Location;
+                        help2.Offset(Settings.width, 0);
+                        enemy.Location = help2;
+                        if (help.X > Screen.PrimaryScreen.WorkingArea.Width)
+                        {
+                            players.EnemyRemove(enemy);
+                        }
                     }
                 }
             }
@@ -189,12 +196,15 @@ namespace Mario
                 players.Location = temp;
                 foreach (Enemy enemy in players.GetEnemy())
                 {
-                    Point help2 = enemy.Location;
-                    help2.Offset(-Settings.width, 0);
-                    enemy.Location = help2;
-                    if (help.X < 0)
+                    if (enemy != null)
                     {
-                        players.EnemyRemove(enemy);
+                        Point help2 = enemy.Location;
+                        help2.Offset(-Settings.width, 0);
+                        enemy.Location = help2;
+                        if (help.X < 0)
+                        {
+                            players.EnemyRemove(enemy);
+                        }
                     }
                 }
             }

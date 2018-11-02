@@ -256,14 +256,14 @@ namespace Mario
                         else if (control.Tag.ToString().Split('_')[0].Equals("Item") && player)
                         {
                             PickItem(control);
-                        }                      
+                        }
                         else if (control is Enemy)
                         {
                             if ((invincible && itemCounter > 0) || destroyEnemyItem)
                             {
                                 (control as Enemy).Hit();
                             }
-                            else if ((down && location.Bottom - control.Top < 20) )
+                            else if ((down && location.Bottom - control.Top < 20))
                             {
                                 if (control.Tag.ToString().Split('_').Length > 1)
                                 {
@@ -274,7 +274,7 @@ namespace Mario
                                     (control as Enemy).Hit();
                                 }
                             }
-                            
+
                             else if (player)
                             {
                                 Hit();
@@ -333,9 +333,9 @@ namespace Mario
                 Parent.Controls.Remove(coin);
             }
             if (hitCounter > 0)
-                {
-                    hitCounter--;
-                }
+            {
+                hitCounter--;
+            }
             if (itemCounter > 0)
             {
                 if (riceBall || bumerang)
@@ -380,7 +380,7 @@ namespace Mario
                     }
                     invincible = false;
                 }
-                
+
             }
         }
 
@@ -487,7 +487,7 @@ namespace Mario
         {
             pause = new pause(Parent as Play);
             Stop();
-            jump = false;
+            up = jump = false;
             left = false;
             right = false;
             pause.Show();
@@ -505,14 +505,20 @@ namespace Mario
         {
             foreach (Enemy enemy in enemies)
             {
-                enemy.Start(this);
+                if (enemy != null)
+                {
+                    enemy.Start(this);
+                }
             }
         }
         private void StopEnemies()
         {
             foreach (Enemy enemy in enemies)
             {
-                enemy.Stop();
+                if (enemy != null)
+                {
+                    enemy.Stop();
+                }
             }
         }
         public List<Control> GetGameControl()

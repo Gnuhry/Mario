@@ -108,7 +108,7 @@ namespace Mario
         }
         private void MoveBackgroundLeft()
         {
-            if (pointer <= 1) return;
+            if (pointer < 1) return;
             Point help = players.Location;
             if (help.X < border)
             {
@@ -126,10 +126,12 @@ namespace Mario
                 }
                 foreach (Control control in players.GetGameControl())
                 {
-
-                    Point location = control.Location;
-                    location.Offset(Settings.width, 0);
-                    control.Location = location;
+                    if (control != null)
+                    {
+                        Point location = control.Location;
+                        location.Offset(Settings.width, 0);
+                        control.Location = location;
+                    }
                 }
                 for (int f = 0; f < 15; f++)
                 {
@@ -180,9 +182,12 @@ namespace Mario
                 }
                 foreach (Control control in players.GetGameControl())
                 {
-                    Point location = control.Location;
-                    location.Offset(-Settings.width, 0);
-                    control.Location = location;
+                    if (control != null)
+                    {
+                        Point location = control.Location;
+                        location.Offset(-Settings.width, 0);
+                        control.Location = location;
+                    }
                 }
                 for (int f = 0; f < 15; f++)
                 {

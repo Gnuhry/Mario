@@ -1,4 +1,6 @@
-﻿namespace Mario
+﻿using System.Drawing;
+
+namespace Mario
 {
     public class Settings
     {
@@ -10,8 +12,10 @@
             height = 50,
             timerlenght = 50,
             gamehight = 20,
-            itemThrowBlockLength = 4,
-            invincibleCounter = 20;
+            itemThrowBlockLength = 3,
+            invincibleCounter = 100;
+        public static Size size = new Size(width, height);
+        public static double borderFactor=0.1;
         private char up_, left_, right_, item_;
         private bool music_, sounds_;
         public char up

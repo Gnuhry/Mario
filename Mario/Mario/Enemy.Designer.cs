@@ -1,6 +1,6 @@
 ﻿namespace Mario
 {
-    partial class Players
+    partial class Enemy
     {
         /// <summary> 
         /// Erforderliche Designervariable.
@@ -28,34 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pcBPlayer = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pcBPlayer)).BeginInit();
+            this.pcBEnemy = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pcBEnemy)).BeginInit();
             this.SuspendLayout();
             // 
-            // pcBPlayer
+            // pcBEnemy
             // 
-            this.pcBPlayer.Location = new System.Drawing.Point(0, 0);
-            this.pcBPlayer.Name = "pcBPlayer";
-            this.pcBPlayer.Size = new System.Drawing.Size(50, 100);
-            this.pcBPlayer.TabIndex = 0;
-            this.pcBPlayer.TabStop = false;
+            this.pcBEnemy.Image = global::Mario.Properties.Resources.enemy_right;
+            this.pcBEnemy.Location = new System.Drawing.Point(0, 0);
+            this.pcBEnemy.Name = "pcBEnemy";
+            this.pcBEnemy.Size = new System.Drawing.Size(50, 50);
+            this.pcBEnemy.TabIndex = 0;
+            this.pcBEnemy.TabStop = false;
             // 
-            // Players
+            // Enemy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.pcBPlayer);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Controls.Add(this.pcBEnemy);
             this.DoubleBuffered = true;
-            this.Name = "Players";
-            this.Size = new System.Drawing.Size(50, 100);
-            ((System.ComponentModel.ISupportInitialize)(this.pcBPlayer)).EndInit();
+            this.Name = "Enemy";
+            this.Size = new System.Drawing.Size(50, 50);
+            ((System.ComponentModel.ISupportInitialize)(this.pcBEnemy)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pcBPlayer;
+        private System.Windows.Forms.PictureBox pcBEnemy;
     }
 }

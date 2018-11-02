@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,207 +7,391 @@ namespace Mario
 {
     public partial class Players : UserControl
     {
-        private Timer playerTimer;
-        private bool doubleJump, jump, up, right, left, fireball, itemThrowRight, doubleJumping, bumarang;
-        private int jumpCounter, status, invincibleCounter;
-        private double itemThrowCounter;
-        private PictureBox itemFly;
+        private Timer player_timer;
         private Settings settings;
+        private pause pause;
         public Players(Settings settings)
         {
             InitializeComponent();
-            status = 1;
-            Size = new Size(Settings.width, 2 * Settings.height);
-            BackColor = Color.Blue;
-            Tag = "players";
-            itemFly = new PictureBox()
-            {
-                Size = new Size(Settings.width, Settings.height),
-                SizeMode = PictureBoxSizeMode.Zoom
-            };
-            this.settings = settings;
-            playerTimer = new Timer();
-            KeyDown += Players_KeyDown;
-            KeyUp += Players_KeyUp;
-            KeyPress += Players_KeyPress;
-            playerTimer.Interval = Settings.timerlenght;
-            playerTimer.Tick += Player_Move;
-            playerTimer.Start();
+            Init(settings);
+            InitItem();
+            InitGameControl();
+            InitKeyPressEvents();
+            InitPlayerTimer();
+            SizeChanged += Players_SizeChanged;
         }
 
-        private void Players_KeyPress(object sender, KeyPressEventArgs e)
+        private void Players_SizeChanged(object sender, EventArgs e)
         {
-            if (e.KeyChar == Convert.ToChar(Keys.Escape))
-            {
-                (Parent as Form).FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            }
+            pcBPlayer.Size = Size;
+        }
+
+        public void Start()
+        {
+            player_timer.Start();
+            StartEnemies();
+        }
+        private void Init(Settings settings)
+        {
+            this.settings = settings;
+            Tag = "players";
+            Size = Settings.size;
+        }
+
+
+        //---------------------------------------------Keys-------------------------------------------------------
+
+        private bool up, left, right;
+        private void InitKeyPressEvents()
+        {
+            up = left = right = false;
+            KeyDown += Players_KeyDown;
+            KeyUp += Players_KeyUp;
         }
 
         private void Players_KeyUp(object sender, KeyEventArgs e)
         {
-            char equal = Convert.ToChar(e.KeyValue);
-            if (equal.Equals(settings.up))
-            {
-                up = false;
-            }
-            else if (equal.Equals(settings.left))
+            char key = Convert.ToChar(e.KeyValue);
+            if (key.Equals(settings.left))
             {
                 left = false;
             }
-            else if (equal.Equals(settings.right))
+            else if (key.Equals(settings.right))
             {
                 right = false;
+            }
+            else if (key.Equals(settings.up))
+            {
+                up = false;
             }
         }
 
         private void Players_KeyDown(object sender, KeyEventArgs e)
         {
-            char equal = Convert.ToChar(e.KeyValue);
-            if (equal.Equals(settings.up))
+            char key = Convert.ToChar(e.KeyValue);
+            if (key.Equals(settings.left))
+            {
+                left = true;
+                lastRight = false;
+            }
+            else if (key.Equals(settings.right))
+            {
+                right = true;
+                lastRight = true;
+            }
+            else if (key.Equals(settings.up))
             {
                 up = true;
             }
-            else if (equal.Equals(settings.left))
-            {
-                left = true;
-            }
-            else if (equal.Equals(settings.right))
-            {
-                right = true;
-            }
-            else if (equal.Equals(settings.item))
+            else if (key.Equals(settings.item))
             {
                 UseItem();
             }
-        }
-
-        public void SetPlayerTimer(bool on)
-        {
-            if (on) playerTimer.Start();
-            else playerTimer.Stop();
-        }
-
-        public void UseItem()
-        {
-            if (fireball && itemThrowCounter == 0)
+            else if (e.KeyData.Equals(Keys.Escape))
             {
-                itemThrowCounter = Settings.itemThrowBlockLength;
-            }
-            else if (bumarang && itemThrowCounter == 0)
-            {
-                itemThrowCounter = Settings.itemThrowBlockLength;
+                Pause();
             }
         }
-        bool upbefore = false;
-        private void Player_Move(object sender, EventArgs e)
-        {
-            BringToFront(); Focus();
-            Change();
-            Point point = new Point();
-            if (up && doubleJumping && !jump && !upbefore)
-            {
-                Console.WriteLine(doubleJumping);
 
-                jump = true;
-                jumpCounter = Settings.jumpspeed;
-                doubleJumping = false;
-            }
-            if (up && jump)
+
+        //---------------------------------------------Tick/Move-----------------------------------------------------
+        private bool jump;
+        private int jumpCounter;
+        private void InitPlayerTimer()
+        {
+            player_timer = new Timer();
+            player_timer.Interval = 50;
+            player_timer.Tick += Player_timer_Tick;
+        }
+
+        private void Stop()
+        {
+            player_timer.Stop();
+            StopEnemies();
+        }
+
+        private void Player_timer_Tick(object sender, EventArgs e)
+        {
+            Point offset = new Point();
+            Focus();
+            BringToFront();
+            ChangeTexture();
+            offset.Y = CheckY();
+            offset.X = CheckX(offset.Y);
+            ItemTimer();
+            Moving(offset);
+        }
+
+        private void Moving(Point offset)
+        {
+            Point help = Location;
+            help.Offset(offset);
+            Location = help;
+        }
+
+        private int CheckX(int offsetY)
+        {
+            if (right && left)
             {
-                if (jumpCounter-- <= 0)
+                return 0;
+            }
+            else if (right)
+            {
+                Rectangle help = Bounds;
+                help.Offset(Settings.speedX, offsetY);
+                if (CollisionDetect(help, false, false, true, false, false))
                 {
-                    jump = false;
+                    return Settings.speedY;
                 }
                 else
                 {
-                    if (CollisionDetect(new Point(0, -Settings.speedY), true))
-                    {
-                        point.Offset(0, -Settings.speedY);
-                    }
-                    else
-                    {
-                        Point help = Location;
-                        help.Offset(0, -Settings.speedY);
-                        Rectangle rectangle;
-                        switch (status)
-                        {
-                            case 1:
-                                help.Offset(0, Settings.height);
-                                rectangle = new Rectangle(help, new Size(Settings.width, Settings.height));
-                                break;
-                            default:
-                                rectangle = new Rectangle(help, new Size(Settings.width, 2 * Settings.height));
-                                break;
-                        }
-                        foreach (Control control in Parent.Controls)
-                        {
-                            if (control.GetType().Equals(typeof(Itembox)))
-                            {
-                                if (rectangle.IntersectsWith(new Rectangle(control.Location, control.Size)))
-                                {
-                                    PictureBox item = ((Itembox)control).Activate(status == 1);
-                                    if (item != null)
-                                    {
-                                        Parent.Controls.Add(item);
-                                        item.BringToFront();
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    return 0;
                 }
             }
-
-            else
+            else if (left)
             {
-                if (CollisionDetect(new Point(0, Settings.speedY), true))
+                Rectangle help = Bounds;
+                help.Offset(-Settings.speedX, offsetY);
+                if (CollisionDetect(help, false, false, true, false, false))
+                {
+                    return -Settings.speedX;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            return 0;
+        }
+
+        private int CheckY()
+        {
+            if (up && jump)
+            {
+                if (jumpCounter > 0)
+                {
+                    jumpCounter--;
+                }
+                else
+                {
+                    CheckDoubleJump();
+                }
+                Rectangle help = Bounds;
+                help.Offset(0, -Settings.speedY);
+                if (CollisionDetect(help, true, false, true, false, false))
+                {
+                    return -Settings.speedY;
+                }
+                else
                 {
                     jump = false;
-                    point.Offset(0, Settings.speedY);
+                    //TODO Jump=false? Wenn Kopf wand berührt
+                    return 0;
+                }
+            }
+            else
+            {
+                CheckDoubleJump();
+                Rectangle help = Bounds;
+                help.Offset(0, Settings.speedY);
+                if (CollisionDetect(help, false, true, true, false, false))
+                {
+                    return Settings.speedY;
                 }
                 else
                 {
                     jump = true;
                     jumpCounter = Settings.jumpspeed;
                     doubleJumping = doubleJump;
+                    return 0;
                 }
             }
-
-            if (right && left)
-            {
-                right = left = itemThrowRight = false;
-            }
-            else if (right && CollisionDetect(new Point(Settings.speedX, 0), true))
-            {
-                itemThrowRight = true;
-                point.Offset(Settings.speedX, 0);
-            }
-            else if (left && CollisionDetect(new Point(-Settings.speedX, 0), true))
-            {
-                itemThrowRight = false;
-                point.Offset(-Settings.speedX, 0);
-            }
-            Point temp = Location;
-            temp.Offset(point);
-            Location = temp;
-
-
-            if (invincibleCounter > 0)
-                invincibleCounter--;
-            ItemThrow();
-            upbefore = up;
         }
 
-        private void ItemThrow()
+        //--------------------------------------------Collision Detect--------------------------------------------------
+        public bool CollisionDetect(Rectangle location, bool up, bool down, bool player, bool destroyEnemyItem, bool pickCoinItem)
         {
-            if (!(fireball || bumarang)) return;
-            Point help, offset;
-            if (itemThrowCounter == Settings.itemThrowBlockLength)
+            foreach (Control control in Parent.Controls)
             {
-                itemThrowCounter--;
-                offset = new Point(0, 0);
-                help = Location;
-                if (itemThrowRight)
+                if (control.Bounds.IntersectsWith(location))
+                {
+                    if (control.Tag != null)
+                    {
+                        if (control.Tag.ToString().Split('_').Length > 1 && player && (up || pickCoinItem))
+                        {
+                            if (control.Tag.ToString().Split('_')[1].Equals("coin"))
+                            {
+                                gameControls.Remove(control);
+                                Parent.Controls.Remove(control);
+                                Point help = control.Location;
+                                help.Offset(0, -Settings.height);
+                                coin.Location = help;
+                                gameControls.Add(coin);
+                                Parent.Controls.Add(coin);
+                                coin.BringToFront();
+                                (Parent as Play).SetCoin(++coinCounter);
+                                coinVisibleCounter = 3; ;
+                            }
+                        }
+                        else if (control.Tag.ToString().Split('_')[0].Equals("obstacle"))
+                        {
+                            return false;
+                        }
+                        else if (control.Tag.Equals("coin") && player)
+                        {
+                            gameControls.Remove(control);
+                            Parent.Controls.Remove(control);
+                            (Parent as Play).SetCoin(++coinCounter);
+                            coinVisibleCounter = 3; ;
+                            return true;
+                        }
+                        else if (control is Itembox)
+                        {
+                            if (up)
+                            {
+                                gameControls.Add((control as Itembox).Activate(!mushroom));
+                            }
+                            return false;
+                        }
+                        else if (control.Tag.ToString().Split('_')[0].Equals("Item") && player)
+                        {
+                            PickItem(control);
+                        }
+                        else if (control is Enemy)
+                        {
+                            if ((invincible && itemCounter > 0) || destroyEnemyItem)
+                            {
+                                (control as Enemy).Hit();
+                            }
+                            else if ((down && location.Bottom - control.Top < 20))
+                            {
+                                if (control.Tag.ToString().Split('_').Length > 1)
+                                {
+                                    Hit();
+                                }
+                                else
+                                {
+                                    (control as Enemy).Hit();
+                                }
+                            }
+
+                            else if (player)
+                            {
+                                Hit();
+                            }
+                        }
+                    }
+                }
+
+            }
+            return true;
+        }
+
+
+
+        //-------------------------------------------Item--------------------------------------------------------------
+        private bool riceBall, doubleJump, mushroom, bumerang, invincible, lastRight, currentRight, doubleJumping;
+        private int itemCounter, hitCounter, coinCounter, coinVisibleCounter;
+        private PictureBox itemThrow, coin;
+
+        private void CheckDoubleJump()
+        {
+            if (doubleJumping)
+            {
+                jump = true;
+                jumpCounter = Settings.jumpspeed;
+                doubleJumping = false;
+            }
+            else
+            {
+                jump = false;
+            }
+        }
+        private void InitItem()
+        {
+            riceBall = doubleJump = bumerang = invincible = false;
+            itemCounter = 0;
+            itemThrow = new PictureBox()
+            {
+                Size = Settings.size,
+                SizeMode = PictureBoxSizeMode.Zoom
+            };
+            coin = new PictureBox()
+            {
+                Size = Settings.size,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Image = Properties.Resources.coin
+            };
+
+            coinCounter = coinVisibleCounter = 0;
+        }
+        private void ItemTimer()
+        {
+            if (coinVisibleCounter-- == 0)
+            {
+                gameControls.Remove(coin);
+                Parent.Controls.Remove(coin);
+            }
+            if (hitCounter > 0)
+            {
+                hitCounter--;
+            }
+            if (itemCounter > 0)
+            {
+                if (riceBall || bumerang)
+                {
+                    Point help = itemThrow.Location;
+                    if (lastRight)
+                    {
+                        help.Offset(Settings.width, 0);
+
+                    }
+                    else
+                    {
+                        help.Offset(-Settings.width, 0);
+                    }
+                    if (CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, false))
+                    {
+                        if (bumerang)
+                        {
+                            CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, true);
+                        }
+                        if (riceBall)
+                        {
+                            help.Offset(0, Settings.height);
+                            if (!CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true, false))
+                            {
+                                help.Offset(0, -Settings.height);
+                                CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true, false);
+                            }
+                        }
+                        itemThrow.Location = help;
+                    }
+                    else
+                    {
+                        itemCounter = 1;
+                    }
+                }
+                if (--itemCounter == 0)
+                {
+                    if (riceBall || bumerang)
+                    {
+                        Parent.Controls.Remove(itemThrow);
+                    }
+                    invincible = false;
+                }
+
+            }
+        }
+
+        private void UseItem()
+        {
+            if ((riceBall || bumerang) && itemCounter == 0)
+            {
+                currentRight = lastRight;
+                itemCounter = Settings.itemThrowBlockLength;
+                Point help = Location;
+                if (lastRight)
                 {
                     help.Offset(Settings.width, 0);
                 }
@@ -214,253 +399,164 @@ namespace Mario
                 {
                     help.Offset(-Settings.width, 0);
                 }
-                Console.WriteLine(help.ToString());
-                if (CollisionDetect(help, false))
-                {
-                    itemFly.Location = help;
-                    Parent.Controls.Add(itemFly);
-                    itemFly.BringToFront();
-                }
-                else
-                {
-                    itemThrowCounter = 0;
-                }
+                itemThrow.Location = help;
+                Parent.Controls.Add(itemThrow);
             }
-            else if (itemThrowCounter > 0)
+        }
+        private void Hit()
+        {
+            if (hitCounter > 0)
             {
-                offset = new Point();
-                help = itemFly.Location;
-                Point temp = itemFly.Location;
-                temp.Offset(0, Settings.height);
-                if (fireball && CollisionDetect(temp, false))
-                {
-                    offset.Y = Settings.height;
-                }
-                if (itemThrowRight)
-                {
-                    offset.X = Settings.width;
-                }
-                else
-                {
-                    offset.X = -Settings.width;
-                }
-                help.Offset(offset);
-                Console.WriteLine(help.ToString());
-                if (CollisionDetect(help, false))
-                {
-                    itemFly.Location = help;
-                    itemFly.BringToFront();
-                    //TODO Gegner/Münzen aufsammeln
-                    itemThrowCounter--;
-                }
-                else
-                {
-                    itemThrowCounter = 0;
-                }
+                return;
             }
-            if (itemThrowCounter == 0)
+            jumpCounter = 0;
+            if (bumerang || riceBall || doubleJump)
             {
-                Parent.Controls.Remove(itemFly);
+                Parent.Controls.Remove(itemThrow);
+                bumerang = riceBall = doubleJump = false;
+                hitCounter = 30;
+                return;
+            }
+            if (mushroom)
+            {
+                Size = Settings.size;
+                mushroom = false;
+                hitCounter = 30;
+                return;
+            }
+        }
+        private void PickItem(Control control)
+        {
+            int help = Convert.ToInt32(control.Tag.ToString().Split('_')[1]);
+            if (help == 0)
+            {
+                mushroom = true;
+                Point x = Location;
+                x.Offset(0, -Settings.height);
+                Location = x;
+                Size = new Size(Settings.width, Settings.height * 2);
+                Parent.Controls.Remove(control);
+                gameControls.Remove(control);
+            }
+            else if (mushroom)
+            {
+                Parent.Controls.Remove(control);
+                gameControls.Remove(control);
+                riceBall = doubleJump = bumerang = invincible = false;
+                itemCounter = 0;
+                Parent.Controls.Remove(itemThrow);
+                switch (help)
+                {
+                    case 1:
+                        riceBall = true;
+                        itemThrow.Image = Properties.Resources.fireball;
+                        break;
+                    case 2:
+                        invincible = true;
+                        itemCounter = Settings.invincibleCounter;
+                        break;
+                    case 3:
+                        doubleJump = true;
+                        break;
+                    case 4:
+                        itemThrow.Image = Properties.Resources.bumarang;
+                        bumerang = true;
+                        break;
+                }
             }
         }
 
-        private bool CollisionDetect(Point Offset, bool Player)
+        //-----------------------------------------Texture/Bounds--------------------------------------------------------
+
+        private void ChangeTexture()
         {
-            if (Parent == null) return false;
-            Point help = Location;
-            help.Offset(Offset);
-            Rectangle rectangle;
-            if (Player)
+
+            if (mushroom)
             {
-                switch (status)
-                {
-                    case 1:
-                        help.Offset(0, Settings.height);
-                        rectangle = new Rectangle(help, new Size(Settings.width, Settings.height));
-                        break;
-                    default:
-                        rectangle = new Rectangle(help, new Size(Settings.width, 2 * Settings.height));
-                        break;
-                }
+                pcBPlayer.Image = Properties.Resources.player_normal;
             }
             else
             {
-                rectangle = new Rectangle(Offset, new Size(Settings.width, Settings.height));
+                pcBPlayer.Image = Properties.Resources.player_small;
             }
-            foreach (Control control in Parent.Controls)
-            {
-                if (control.Tag != null)
-                {
-                    if (control.Tag.Equals("obstacle") || control.GetType().Equals(typeof(Itembox)))
-                    {
-                        if (rectangle.IntersectsWith(new Rectangle(control.Location, control.Size)))
-                        {
-                            /*control.BackgroundImage = Properties.Resources.stone;
-                                                       try
-                                                       {
-                                                           ((PictureBox)control).Image = Properties.Resources.stone;
-                                                       }
-                                                       catch (Exception) { }*/
-                            return false;
-                        }
-                    }
-                    else if (control.Tag.ToString().Split('_')[0].ToLower().Equals("item"))
-                    {
-                        if (rectangle.IntersectsWith(new Rectangle(control.Location, control.Size)))
-                        {
-                            Parent.Controls.Remove(control);
-                            switch (control.Tag.ToString().Split('_')[1])
-                            {
-                                case "0":
-                                    status = 0;
-                                    fireball = false;
-                                    invincibleCounter = 0;
-                                    doubleJump = false;
-                                    bumarang = false;
-                                    break;//Mushroom
-                                case "1":
-                                    fireball = true;
-                                    invincibleCounter = 0;
-                                    doubleJump = false;
-                                    bumarang = false;
-                                    itemFly.Image = Properties.Resources.fireball;
-                                    break;//Fire Flower
-                                case "2":
-                                    invincibleCounter = Settings.invincibleCounter;
-                                    fireball = false;
-                                    doubleJump = false;
-                                    bumarang = false;
-                                    break;//Star
-                                case "3":
-                                    doubleJumping = true;
-                                    doubleJump = true;
-                                    fireball = false;
-                                    invincibleCounter = 0;
-                                    bumarang = false;
-                                    break;//Double Jump
-                                case "4":
-                                    doubleJumping = false;
-                                    doubleJump = false;
-                                    fireball = false;
-                                    invincibleCounter = 0;
-                                    bumarang = true;
-                                    itemFly.Image = Properties.Resources.bumarang;
-                                    break;//Bumarang
-                            }
-                            return true;
-                        }
-                    }
-                }
-            }
-            return true;
+            return;
+            throw new NotImplementedException();//TODO
         }
-        private void Change() //TODO Grafiken hinzufügen
+        //-----------------------------------------Pause-----------------------------------------------------------------------
+        private void Pause()
         {
-            if (status == 1)
-            {
-                if (right)
-                {
-                    if (fireball)
-                    {
-                        //2 Blöcke nach rechts feuerblume
-                    }
-                    else if (invincibleCounter > 0)
-                    {
-                        //2 Blöcke nach rechts stern
-                    }
-                    else if (doubleJump)
-                    {
-                        //2 Blöcke nach rechts doublejump
-                    }
-                    else if (bumarang)
-                    {
-                        //2 Blöcke nach rechts bumerang
-                    }
-                    else
-                    {
-                        //2 Blöcke nach rechts 
-                    }
-                }
-                else if (left)
-                {
-                    if (fireball)
-                    {
-                        //2 Blöcke nach links feuerblume
-                    }
-                    else if (invincibleCounter > 0)
-                    {
-                        //2 Blöcke nach links stern
-                    }
-                    else if (doubleJump)
-                    {
-                        //2 Blöcke nach links doublejump
-                    }
-                    else if (bumarang)
-                    {
-                        //2 Blöcke nach links bumerang
-                    }
-                    else
-                    {
-                        //2 Blöcke nach links 
-                    }
-                }
-                else
-                {
-                    if (fireball)
-                    {
-                        //2 Blöcke feuerblume
-                    }
-                    else if (invincibleCounter > 0)
-                    {
-                        //2 Blöcke stern
-                    }
-                    else if (doubleJump)
-                    {
-                        //2 Blöcke doublejump
-                    }
-                    else if (bumarang)
-                    {
-                        //2 Blöcke bumerang
-                    }
-                    else
-                    {
-                        //2 Blöcke 
-                    }
-                }
-            }
-            else if (status == 0)
-            {
-                if (right)
-                {
-                    //1 Blöcke nach rechts 
-                }
-                else if (left)
-                {
-                    //1 Blöcke nach links 
-                }
-                else
-                {
-                    //1 Blöcke 
-                }
-            }
+            pause = new pause(Parent as Play);
+            Stop();
+            up = jump = false;
+            left = false;
+            right = false;
+            pause.Show();
         }
-        public void Hit()
+
+        //-----------------------------------------gameControl&Enemies-----------------------------------------------------------------
+        private List<Control> gameControls;
+        private List<Enemy> enemies;
+        private void InitGameControl()
         {
-            if (invincibleCounter > 0)
-            {
-                return;
-            }
-            if (fireball || doubleJump)
-            {
-                fireball = doubleJump = doubleJumping = false;
-                return;
-            }
-            if (status != 1)
-            {
-                status = 1;
-                return;
-            }
-            //Leben abziehen
+            gameControls = new List<Control>();
+            enemies = new List<Enemy>();
         }
+        private void StartEnemies()
+        {
+            foreach (Enemy enemy in enemies)
+            {
+                if (enemy != null)
+                {
+                    enemy.Start(this);
+                }
+            }
+        }
+        private void StopEnemies()
+        {
+            foreach (Enemy enemy in enemies)
+            {
+                if (enemy != null)
+                {
+                    enemy.Stop();
+                }
+            }
+        }
+        public List<Control> GetGameControl()
+        {
+            return gameControls;
+        }
+        public void GameControlAdd(Control control)
+        {
+            gameControls.Add(control);
+        }
+        public void GameControlRemove(Control control)
+        {
+            gameControls.Remove(control);
+        }
+        public void GameControlRemoveAt(int index)
+        {
+            gameControls.RemoveAt(index);
+        }
+        public Control GetGameControlItem(int index)
+        {
+            return gameControls[index];
+        }
+        public int GetGameControlIndexOf(Control control)
+        {
+            return gameControls.IndexOf(control);
+        }
+        public void EnemyAdd(Enemy enemy)
+        {
+            enemies.Add(enemy);
+        }
+        public void EnemyRemove(Enemy enemy)
+        {
+            enemies.Remove(enemy);
+        }
+        public List<Enemy> GetEnemy()
+        {
+            return enemies;
+        }
+
     }
 }

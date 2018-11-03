@@ -95,6 +95,7 @@
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnMenue);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "pause";

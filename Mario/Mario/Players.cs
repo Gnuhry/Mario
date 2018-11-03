@@ -120,6 +120,7 @@ namespace Mario
             offset.X = CheckX(offset.Y);
             ItemTimer();
             Moving(offset);
+            prevup = up;
         }
 
         private void Moving(Point offset)
@@ -185,7 +186,6 @@ namespace Mario
                 else
                 {
                     jump = false;
-                    //TODO Jump=false? Wenn Kopf wand berührt
                     return 0;
                 }
             }
@@ -290,13 +290,13 @@ namespace Mario
 
 
         //-------------------------------------------Item--------------------------------------------------------------
-        private bool riceBall, doubleJump, mushroom, bumerang, invincible, lastRight, currentRight, doubleJumping;
+        private bool riceBall, doubleJump, mushroom, bumerang, invincible, lastRight, currentRight, doubleJumping, prevup;
         private int itemCounter, hitCounter, coinCounter, coinVisibleCounter;
         private PictureBox itemThrow, coin;
 
         private void CheckDoubleJump()
         {
-            if (doubleJumping)
+            if (doubleJumping&&!prevup)
             {
                 jump = true;
                 jumpCounter = Settings.jumpspeed;

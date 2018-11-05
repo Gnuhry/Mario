@@ -198,9 +198,6 @@
     <None Include="Resources\greenstone.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\stone.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\stone_grass.png" />
   </ItemGroup>
   <ItemGroup>
@@ -216,7 +213,37 @@
     <None Include="Resources\Download.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\golden rice grain.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grasblock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ricebowl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\springroll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\test.gif" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\Player_Small.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eventfield .gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eventfield  %282%29.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eventfield  %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eventfield .png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

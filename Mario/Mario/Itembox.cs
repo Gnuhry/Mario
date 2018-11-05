@@ -23,6 +23,7 @@ namespace Mario
         public PictureBox Activate(bool mushroom)
         {
             if (!active) return null;
+            this.BackgroundImage = Properties.Resources.itembox_closed;
             active = false;
             int randomNr;
             if (mushroom)

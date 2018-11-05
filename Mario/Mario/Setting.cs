@@ -128,5 +128,37 @@ namespace Mario
             settings.sounds = !settings.sounds;
             chBsound.Checked = settings.sounds;
         }
+
+        private void btnResetUp_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Reset");
+            settings.up = Settings.upD;
+            SetLabel();
+        }
+
+        private void btnResetRight_Click(object sender, EventArgs e)
+        {
+            settings.right = Settings.rightD;
+            SetLabel();
+        }
+
+        private void btnResetLeft_Click(object sender, EventArgs e)
+        {
+            settings.left = Settings.leftD;
+            SetLabel();
+        }
+
+        private void btnResetItem_Click(object sender, EventArgs e)
+        {
+            settings.item = Settings.itemD;
+
+            SetLabel();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            settings.Default();
+            SetLabel();
+        }
     }
 }

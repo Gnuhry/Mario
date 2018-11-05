@@ -64,6 +64,10 @@ namespace Mario
             {
                 up = false;
             }
+            else if (key.Equals(settings.item))
+            {
+                previtem = false;
+            }
         }
 
         private void Players_KeyDown(object sender, KeyEventArgs e)
@@ -86,6 +90,7 @@ namespace Mario
             else if (key.Equals(settings.item))
             {
                 UseItem();
+                previtem = true;
             }
             else if (e.KeyData.Equals(Keys.Escape))
             {
@@ -217,7 +222,7 @@ namespace Mario
                 {
                     if (control.Tag != null)
                     {
-                        if (control.Tag.ToString().Split('_').Length > 1 && player && (up || pickCoinItem))
+                        if (control.Tag.ToString().Split('_').Length > 1 && player &&( up || pickCoinItem))
                         {
                             if (control.Tag.ToString().Split('_')[1].Equals("coin"))
                             {
@@ -237,7 +242,7 @@ namespace Mario
                         {
                             return false;
                         }
-                        else if (control.Tag.Equals("coin") && player)
+                        else if (control.Tag.Equals("coin") && (player||pickCoinItem))
                         {
                             gameControls.Remove(control);
                             Parent.Controls.Remove(control);
@@ -290,7 +295,7 @@ namespace Mario
 
 
         //-------------------------------------------Item--------------------------------------------------------------
-        private bool riceBall, doubleJump, mushroom, bumerang, invincible, lastRight, currentRight, doubleJumping, prevup;
+        private bool riceBall, doubleJump, mushroom, bumerang, invincible, lastRight, currentRight, doubleJumping, prevup, previtem;
         private int itemCounter, hitCounter, coinCounter, coinVisibleCounter;
         private PictureBox itemThrow, coin;
 
@@ -386,6 +391,10 @@ namespace Mario
 
         private void UseItem()
         {
+            if (previtem)
+            {
+                return;
+            }
             if ((riceBall || bumerang) && itemCounter == 0)
             {
                 currentRight = lastRight;
@@ -501,7 +510,7 @@ namespace Mario
             gameControls = new List<Control>();
             enemies = new List<Enemy>();
         }
-        private void StartEnemies()
+        public void StartEnemies()
         {
             foreach (Enemy enemy in enemies)
             {
@@ -531,10 +540,18 @@ namespace Mario
         }
         public void GameControlRemove(Control control)
         {
+            if (control is Enemy)
+            {
+                (control as Enemy).Stop();
+            }
             gameControls.Remove(control);
         }
         public void GameControlRemoveAt(int index)
         {
+            if(gameControls[index] is Enemy)
+            {
+                (gameControls[index] as Enemy).Stop();
+            }
             gameControls.RemoveAt(index);
         }
         public Control GetGameControlItem(int index)
@@ -547,6 +564,17 @@ namespace Mario
         }
         public void EnemyAdd(Enemy enemy)
         {
+            int counter = 0;
+            foreach(Enemy enemy_ in enemies)
+            {
+                if (enemy_.IsActive)
+                {
+                    if (++counter == 5)
+                    {
+                        return;
+                    }
+                }
+            }
             enemies.Add(enemy);
         }
         public void EnemyRemove(Enemy enemy)

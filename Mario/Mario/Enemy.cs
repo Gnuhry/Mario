@@ -13,6 +13,7 @@ namespace Mario
         public Enemy(bool normal)
         {
             InitializeComponent();
+            Active = false;
             this.normal = normal;
             if (normal)
             {
@@ -34,12 +35,20 @@ namespace Mario
 
         public void Start(Players players)
         {
+            Active = true;
             enemy_timer.Start();
             this.players = players;
         }
         public void Stop()
         {
+            Active = false;
             enemy_timer.Stop();
+        }
+        private bool Active;
+        public bool IsActive
+        {
+            get => Active;
+            set => Active = value;
         }
         private void Enemy_timer_Tick(object sender, EventArgs e)
         {
@@ -122,7 +131,7 @@ namespace Mario
             {
                 return false;
             }
-            if (help.X > Screen.PrimaryScreen.WorkingArea.Width)
+            if (help.X > Screen.PrimaryScreen.WorkingArea.Width-Settings.width)
             {
                 return false;
             }

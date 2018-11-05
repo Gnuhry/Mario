@@ -140,7 +140,21 @@ namespace Mario
                         controls[pointer - 1][f].Location = new Point(0, f * Settings.height);
                         players.GameControlAdd(controls[pointer - 1][f]);
                         controlCollection.Add(controls[pointer - 1][f]);
-                        players.EnemyAdd(controls[pointer - 1][f] as Enemy);
+                        if (controls[pointer - 1][f] is Enemy)
+                        {
+                            players.GameControlRemove(controls[pointer - 1][f]);
+                            players.EnemyAdd(controls[pointer - 1][f] as Enemy);
+                            players.StartEnemies();
+                            controls[pointer - 1][f] = null;
+                        }
+                    }
+                }
+                for(int f = 0; f < players.GetEnemy().Count; f++)
+                {
+                    if (players.GetEnemy()[f].Location.Y == Settings.width * (pointer - 1))
+                    {
+                        controlCollection.Add(players.GetEnemy()[f]);
+                        players.GetEnemy()[f].Start(players);
                     }
                 }
                 pointer--;
@@ -196,7 +210,14 @@ namespace Mario
                         controls[pointer + gameWidth][f].Location = new Point((gameWidth - 1) * Settings.width, f * Settings.height);
                         players.GameControlAdd(controls[pointer + gameWidth][f]);
                         controlCollection.Add(controls[pointer + gameWidth][f]);
-                        players.EnemyAdd(controls[pointer + gameWidth][f] as Enemy);
+                        if (controls[pointer + gameWidth][f] is Enemy)
+                        {
+                            players.GameControlRemove(controls[pointer + gameWidth][f]);
+                            players.EnemyAdd(controls[pointer + gameWidth][f] as Enemy);
+                            players.StartEnemies();
+                            controls[pointer + gameWidth][f] = null;
+                        }
+
                     }
                 }
                 pointer++;

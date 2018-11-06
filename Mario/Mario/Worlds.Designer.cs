@@ -34,6 +34,7 @@
             this.pcB3 = new System.Windows.Forms.PictureBox();
             this.pcB2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcB4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcB1)).BeginInit();
@@ -96,11 +97,22 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Menü = ESC Taste\r\nStart=Enter oder Leerzeichen\r\nBewegen=Links oder Rechts";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(63, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(107, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Tag = "1-1";
+            this.label2.Text = "1-1 Test Level 12sek";
+            // 
             // Worlds
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1076, 511);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pcB2);
             this.Controls.Add(this.pcB3);
@@ -128,5 +140,6 @@
         private System.Windows.Forms.PictureBox pcB3;
         private System.Windows.Forms.PictureBox pcB2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

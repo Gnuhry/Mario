@@ -12,7 +12,7 @@ namespace Mario
 {
     public partial class Worlds : Form
     {
-        private int level;
+        private int level, world;
         private int levelMax = 4;
         private Settings setting;
         private Form1 menue;
@@ -20,8 +20,9 @@ namespace Mario
         {
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
-            level = 1;
+            level = world = 1;
             InitializeComponent();
+            SetText("1-1");
             setting = settings;
             menue = form1;
             MoveToLevel();
@@ -47,12 +48,11 @@ namespace Mario
                 level++;
                 MoveToLevel();
             }
-            if (e.KeyData == Keys.Enter||e.KeyData==Keys.Space)
+            if (e.KeyData == Keys.Enter || e.KeyData == Keys.Space)
             {
                 Visible = false;
                 ShowInTaskbar = false;
-                Play play = new Play(level, setting,this);
-                play.Show();
+                new Play(world + "-" + level, setting, this).Show();
             }
             if (e.KeyData == Keys.Escape)
             {
@@ -75,6 +75,22 @@ namespace Mario
             help.Offset(new Point(pcB.Location.X - help.X, pcB.Location.Y - help.Y));
             player.Location = help;
             player.BringToFront();
+        }
+
+        private void SetText(string level)
+        {
+            for (int f = 0; f < Controls.Count; f++)
+            {
+                if (Controls[f].Tag != null)
+                {
+                    if (Controls[f].Tag.ToString().Equals(level))
+                    {
+                        string[] help = new ReadFile(level).SearchData().Split('|');
+                        Controls[f].Text = level + " " + help[0].Split('#')[1] + " | " + help[1] + "sek";
+                        return;
+                    }
+                }
+            }
         }
     }
 }

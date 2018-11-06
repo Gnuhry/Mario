@@ -57,6 +57,12 @@
     <Compile Include="Itembox.Designer.cs">
       <DependentUpon>Itembox.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoadingLevel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingLevel.Designer.cs">
+      <DependentUpon>LoadingLevel.cs</DependentUpon>
+    </Compile>
     <Compile Include="pause.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,7 @@
       <DependentUpon>Setting.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="sound_music.cs" />
     <Compile Include="Worlds.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Itembox.resx">
       <DependentUpon>Itembox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingLevel.resx">
+      <DependentUpon>LoadingLevel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pause.resx">
       <DependentUpon>pause.cs</DependentUpon>

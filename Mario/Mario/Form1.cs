@@ -11,6 +11,7 @@ namespace Mario
         {
             InitializeComponent();
             settings = new Settings();
+            sound_music.StartMusic(settings);
         }
 
         private void btnStart_Click(object sender, EventArgs e)

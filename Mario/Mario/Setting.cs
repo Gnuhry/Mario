@@ -120,7 +120,14 @@ namespace Mario
         {
             settings.music = !settings.music;
             chBmusic.Checked = settings.music;
-
+            if (settings.music)
+            {
+                sound_music.StartMusic(settings);
+            }
+            else
+            {
+                sound_music.StopMusic();
+            }
         }
 
         private void chBsound_Click(object sender, EventArgs e)

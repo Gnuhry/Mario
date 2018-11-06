@@ -22,8 +22,14 @@ namespace Mario
             Init();
             FindPlayer();
             DisplayBackground();
+            InitTime();
             InitTimer();
+
+        }
+        public void Start()
+        {
             players.Start();
+            StartTime();
         }
         private void Init()
         {
@@ -43,6 +49,7 @@ namespace Mario
         {
             MoveBackgroundLeft();
             MoveBackgroundRight();
+            TimerTime();
         }
 
         //------------------------Player-----------------------------------------
@@ -66,6 +73,11 @@ namespace Mario
                         return;
                     }
                 }
+
+            }
+            if (players == null)
+            {
+                throw new Exception();
             }
         }
         public void PlayerStart()
@@ -88,7 +100,7 @@ namespace Mario
                         if (controls[row][column] == players)
                         {
                             players.GameControlRemove(controls[row][column]);
-                           // controls[row][column].Location = new Point((row - pointer) * Settings.width, column * Settings.height - Settings.height);
+                            // controls[row][column].Location = new Point((row - pointer) * Settings.width, column * Settings.height - Settings.height);
                             controls[row][column] = null;
                         }
                         if (controls[row][column] is Enemy)
@@ -149,7 +161,7 @@ namespace Mario
                         }
                     }
                 }
-                for(int f = 0; f < players.GetEnemy().Count; f++)
+                for (int f = 0; f < players.GetEnemy().Count; f++)
                 {
                     if (players.GetEnemy()[f].Location.Y == Settings.width * (pointer - 1))
                     {
@@ -238,6 +250,46 @@ namespace Mario
                     }
                 }
             }
+        }
+
+        //-----------------------------------------Time------------------------------------------
+        private DateTime start, help;
+        private Label time;
+        private bool active;
+        private void InitTime()
+        {
+            time = new Label
+            {
+                AutoSize = true,
+                Location = new Point(0, 0),
+                BackColor = Color.White
+            };
+            controlCollection.Add(time);
+            time.BringToFront();
+            active = false;
+            help = new DateTime();
+        }
+        private void TimerTime()
+        {
+            if (active)
+            {
+                time.Text = ((DateTime.Now - start).TotalSeconds + (help - new DateTime()).TotalSeconds) + "sek";
+            }
+        }
+        public void StartTime()
+        {
+            active = true;
+            start = DateTime.Now;
+
+        }
+        public void StopTime()
+        {
+            active = false;
+            help += DateTime.Now - start;
+        }
+        public double GetTime()
+        {
+            return (help - new DateTime()).TotalSeconds;
         }
     }
 }

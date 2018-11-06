@@ -6,15 +6,14 @@ using System.Windows.Forms;
 
 namespace Mario
 {
-    class ReadFile
+    public class ReadFile
     {
-        private static string defaultPath = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9);
         private string path;
+        private string data;
 
-        public ReadFile(int Level)
+        public ReadFile(string Level)
         {
-            if (-1000 == Level) return;
-            path = defaultPath + "Level\\" + Level + ".txt";
+            path = Settings.textFilePath + Level + ".txt";
         }
         private string[] ReadTextFile()
         {
@@ -35,52 +34,71 @@ namespace Mario
         {
 
             string[] file = ReadTextFile();
-            Control[][] erg = new Control[file[0].Length][];
-            for(int f=0;f<erg.Length;f++)
+            Control[][] erg = new Control[file[1].Length][];
+            for (int f = 0; f < erg.Length; f++)
             {
-                erg[f]=new Control[file.Length];
+                erg[f] = new Control[file.Length - 1];
             }
-               
+            int row = 0;
             Console.WriteLine(file.Length + "," + file[0].Length);
-            for (int row = 0; row < file.Length; row++)
+            for (int f = 0; f < file.Length; f++)
             {
-                if (file[row].Length != file[0].Length)
+                if (file[f].StartsWith("#"))
                 {
-                    return null;
+                    //data from level
+                    data = file[f];
                 }
-                for (int column = 0; column < file[0].Length; column++)
+                else
                 {
-                    switch (file[row].ToCharArray()[column])
+                    if (file[f].Length != file[1].Length)
                     {
-                        case 'S':
-                            erg[column][row] = NewControl(Properties.Resources.stone, "obstacle");
-                            break;
-                        case 'D':
-                            erg[column][row] = NewControl(Properties.Resources.grass, "obstacle");
-                            break;
-                        case 'c':
-                            erg[column][row] = NewControl(Properties.Resources.stone_grass, "obstacle_coin");
-                            break;
-                        case 'A':
-                            erg[column][row] = null;
-                            break;
-                        case 'I':
-                            erg[column][row] = new Itembox();
-                            break;
-                        case 'P':
-                            erg[column][row] = new Players(settings);
-                            break;
-                        case 'e':
-                            erg[column][row] = new Enemy(false);
-                            break;
-                        case 'E':
-                            erg[column][row-1] = null;
-                            erg[column][row] = new Enemy(true);
-                            break;
-                        case 'C':
-                            erg[column][row] = NewControl(Properties.Resources.coin, "coin");
-                            break;
+                        return null;
                     }
+                    for (int column = 0; column < file[1].Length; column++)
+                    {
+                        switch (file[f].ToCharArray()[column])
+                        {
+                            case 'S':
+                                erg[column][row] = NewControl(Properties.Resources.stone, "obstacle");
+                                break;
+                            case 'D':
+                                erg[column][row] = NewControl(Properties.Resources.grass, "obstacle");
+                                break;
+                            case 'c':
+                                erg[column][row] = NewControl(Properties.Resources.stone_grass, "obstacle_coin");
+                                break;
+                            case 'A':
+                                erg[column][row] = null;
+                                break;
+                            case 'I':
+                                erg[column][row] = new Itembox();
+                                break;
+                            case 'P':
+                                erg[column][row] = new Players(settings, this);
+                                break;
+                            case 'e':
+                                erg[column][row] = new Enemy(false);
+                                break;
+                            case 'E':
+                                erg[column][row - 1] = null;
+                                erg[column][row] = new Enemy(true);
+                                break;
+                            case 'C':
+                                erg[column][row] = NewControl(Properties.Resources.coin, "coin");
+                                break;
+                            case '1':
+                                erg[column][row] = NewControl(Properties.Resources.star, "star_1");
+                                break;
+                            case '2':
+                                erg[column][row] = NewControl(Properties.Resources.star, "star_2");
+                                break;
+                            case '3':
+                                erg[column][row] = NewControl(Properties.Resources.star, "star_3");
+                                break;
+                        }
+
+                    }
+                    row++;
                 }
             }
 
@@ -96,6 +114,33 @@ namespace Mario
                 SizeMode = PictureBoxSizeMode.Zoom
             };
             return temp;
+        }
+        public string GetData() => data;
+        public string SearchData()
+        {
+            foreach (string help in ReadTextFile())
+            {
+                if (help.StartsWith("#"))
+                {
+                    return help;
+                }
+            }
+            return "";
+        }
+
+        //-----------------------Write---------------------------------------
+        public void SetData(string data)
+        {
+            string[] help = ReadTextFile();
+            for (int f = 0; f < help.Length; f++)
+            {
+                if (help[f].StartsWith("#"))
+                {
+                    help[f] = data;
+                }
+            }
+            File.Delete(path);
+            File.WriteAllLines(path, help);
         }
     }
 }

@@ -10,11 +10,12 @@ namespace Mario
         private Timer player_timer;
         private Settings settings;
         private pause pause;
-        public Players(Settings settings)
+        private ReadFile readFile;
+        public Players(Settings settings, ReadFile readFile)
         {
             InitializeComponent();
             Init(settings);
-            InitItem();
+            InitItem(readFile);
             InitGameControl();
             InitKeyPressEvents();
             InitPlayerTimer();
@@ -222,7 +223,7 @@ namespace Mario
                 {
                     if (control.Tag != null)
                     {
-                        if (control.Tag.ToString().Split('_').Length > 1 && player &&( up || pickCoinItem))
+                        if (control.Tag.ToString().Split('_').Length > 1 && player && (up || pickCoinItem))
                         {
                             if (control.Tag.ToString().Split('_')[1].Equals("coin"))
                             {
@@ -242,12 +243,28 @@ namespace Mario
                         {
                             return false;
                         }
-                        else if (control.Tag.Equals("coin") && (player||pickCoinItem))
+                        else if (control.Tag.Equals("coin") && (player || pickCoinItem))
                         {
+                            sound_music.RiceSound(settings);
                             gameControls.Remove(control);
                             Parent.Controls.Remove(control);
                             (Parent as Play).SetCoin(++coinCounter);
-                            coinVisibleCounter = 3; ;
+                            coinVisibleCounter = 3; 
+                            return true;
+                        }
+                        else if (control.Tag.ToString().Split('_')[0].Equals("star") && (player || pickCoinItem))
+                        {
+                            gameControls.Remove(control);
+                            Parent.Controls.Remove(control);
+                            star[Convert.ToInt32(control.Tag.ToString().Split('_')[1])] = true;
+                            return true;
+                        }
+                        else if (control.Tag.Equals("end") && player)
+                        {
+                            (Parent as Play).CheckHighScoore();
+                            (Parent as Play).GetWorlds().Visible = true;
+                            (Parent as Play).GetWorlds().ShowInTaskbar = true;
+                            (Parent as Play).Close();
                             return true;
                         }
                         else if (control is Itembox)
@@ -298,10 +315,11 @@ namespace Mario
         private bool riceBall, doubleJump, mushroom, bumerang, invincible, lastRight, currentRight, doubleJumping, prevup, previtem;
         private int itemCounter, hitCounter, coinCounter, coinVisibleCounter;
         private PictureBox itemThrow, coin;
+        private bool[] star;
 
         private void CheckDoubleJump()
         {
-            if (doubleJumping&&!prevup)
+            if (doubleJumping && !prevup)
             {
                 jump = true;
                 jumpCounter = Settings.jumpspeed;
@@ -312,8 +330,10 @@ namespace Mario
                 jump = false;
             }
         }
-        private void InitItem()
+        private void InitItem(ReadFile readFile)
         {
+            string[] help = readFile.GetData().Split('|')[3].Split(',');
+            star = new bool[] { help[0] == "1", help[1] == "1", help[2] == "1" };
             riceBall = doubleJump = bumerang = invincible = false;
             itemCounter = 0;
             itemThrow = new PictureBox()
@@ -494,7 +514,8 @@ namespace Mario
         //-----------------------------------------Pause-----------------------------------------------------------------------
         private void Pause()
         {
-            pause = new pause(Parent as Play);
+            (Parent as Play).GetEngine().StopTime();
+            pause = new pause(Parent as Play, star);
             Stop();
             up = jump = false;
             left = false;
@@ -548,7 +569,7 @@ namespace Mario
         }
         public void GameControlRemoveAt(int index)
         {
-            if(gameControls[index] is Enemy)
+            if (gameControls[index] is Enemy)
             {
                 (gameControls[index] as Enemy).Stop();
             }
@@ -565,7 +586,7 @@ namespace Mario
         public void EnemyAdd(Enemy enemy)
         {
             int counter = 0;
-            foreach(Enemy enemy_ in enemies)
+            foreach (Enemy enemy_ in enemies)
             {
                 if (enemy_.IsActive)
                 {

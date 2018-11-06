@@ -8,13 +8,42 @@ namespace Mario
         private Play play;
         private Settings settings;
         private Worlds worlds;
-        public pause(Play play)
+        public pause(Play play, bool[] star)
         {
             InitializeComponent();
             this.play = play;
             play.Enabled = false;
             settings = play.GetSettings();
             worlds = play.GetWorlds();
+            InitStar(star);
+        }
+
+        private void InitStar(bool[] star)
+        {
+            if (star[0])
+            {
+                pcBStar1.Image = Properties.Resources.star;
+            }
+            else
+            {
+                pcBStar1.Image = Properties.Resources.star;
+            }
+            if (star[1])
+            {
+                pcBStar1.Image = Properties.Resources.star;
+            }
+            else
+            {
+                pcBStar1.Image = Properties.Resources.star;
+            }
+            if (star[2])
+            {
+                pcBStar1.Image = Properties.Resources.star;
+            }
+            else
+            {
+                pcBStar1.Image = Properties.Resources.star;
+            }//TODO
         }
 
         private void btnMenue_Click(object sender, EventArgs e)

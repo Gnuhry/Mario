@@ -17,7 +17,7 @@ namespace Mario
             this.normal = normal;
             if (normal)
             {
-                Size = new Size(Settings.width, 2*Settings.height);
+                Size = new Size(Settings.width, 2 * Settings.height);
                 Tag = "Enemy_pointed";
                 //TODO bild
             }
@@ -54,11 +54,11 @@ namespace Mario
         {
             Point help = Location;
             if (right)
-            {               
-                if (CollisionDetect(new Point(Settings.speedX,0)))
+            {
+                if (CollisionDetect(new Point(Settings.speedX, 0)))
                 {
                     help.Offset(Settings.speedX, 0);
-                    if (CollisionDetect(new Point(0,Settings.speedY)))
+                    if (CollisionDetect(new Point(0, Settings.speedY)))
                     {
                         help.Offset(0, Settings.speedY);
                         Console.WriteLine("Right down");
@@ -81,10 +81,10 @@ namespace Mario
             }
             else
             {
-                if (CollisionDetect(new Point(-Settings.speedX,0)))
+                if (CollisionDetect(new Point(-Settings.speedX, 0)))
                 {
                     help.Offset(-Settings.speedX, 0);
-                    if (CollisionDetect(new Point(0,Settings.speedY)))
+                    if (CollisionDetect(new Point(0, Settings.speedY)))
                     {
                         help.Offset(0, Settings.speedY);
                         Console.WriteLine("LEft down");
@@ -112,7 +112,7 @@ namespace Mario
             //Rectangle rectangle = Bounds;
             //rectangle.Offset(Offset);
             //return players.CollisionDetect(rectangle, false, false, false, false);
-           if (Parent == null) return false;
+            if (Parent == null) return false;
             Point help = Location;
             help.Offset(Offset);
             Rectangle rectangle = Bounds;
@@ -131,7 +131,7 @@ namespace Mario
             {
                 return false;
             }
-            if (help.X > Screen.PrimaryScreen.WorkingArea.Width-Settings.width)
+            if (help.X > Screen.PrimaryScreen.WorkingArea.Width - Settings.width)
             {
                 return false;
             }

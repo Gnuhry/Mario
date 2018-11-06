@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,20 +15,44 @@ namespace Mario
     {
         private Engine engine;
         private Settings settings;
-        private int level;
+        private string level;
         private Worlds worlds;
-        public Play(int level, Settings settings, Worlds worlds)
+        private ReadFile readFile;
+        private static ManualResetEvent allDone = new ManualResetEvent(false);
+
+        public Play(string level, Settings settings, Worlds worlds)
         {
+            allDone.Reset();
             InitializeComponent();
+            Visible = false;
+            readFile = new ReadFile(level);
+            string[] data = readFile.SearchData().Split('|');
+            LoadingLevel loadingScreen = new LoadingLevel("Level " + level, data[0].Split('#')[1], data[1], data[3]);
+            loadingScreen.Show();
+            new Thread(LoadingScreen).Start();
+
             this.level = level;
             this.worlds = worlds;
-            engine = new Engine(new ReadFile(level).InterpretFile(settings), Controls);
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             this.settings = settings;
+            engine = new Engine(readFile.InterpretFile(settings), Controls);
+
+            allDone.WaitOne();
+            Visible = true;
+            loadingScreen.Close();
+
+            Focus();
+            engine.Start();
+        }
+        private void LoadingScreen()
+        {
+            Thread.Sleep(Settings.loadingScreenLength);
+            allDone.Set();
         }
         public Settings GetSettings() => settings;
         public Worlds GetWorlds() => worlds;
+        public Engine GetEngine() => engine;
         public void Restart()
         {
             Label label = label1;
@@ -45,6 +70,35 @@ namespace Mario
             if (Enabled)
             {
                 engine.PlayerStart();
+                engine.StartTime();
+            }
+        }
+        //---------------------------------Highscore-----------------------------------
+        private void SaveHighscoore(double time)
+        {
+            string data = readFile.GetData();
+            string[] help = data.Split('|');
+            help[1] = time.ToString();
+            string erg = "";
+            for (int f = 0; f < help.Length; f++)
+            {
+                erg += help[f] + "|";
+            }
+            readFile.SetData(erg);
+        }
+        private double GetHigscoore()
+        {
+            string data = readFile.GetData();
+            string time = data.Split('|')[1];
+            return Convert.ToDouble(time);
+        }
+        public void CheckHighScoore()
+        {
+            engine.StopTime();
+            if (GetHigscoore() < engine.GetTime())
+            {
+                //New Highscore
+                SaveHighscoore(engine.GetTime());
             }
         }
     }

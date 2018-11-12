@@ -1,5 +1,4 @@
 ﻿using System.Media;
-
 namespace Mario
 {
 
@@ -14,6 +13,7 @@ namespace Mario
                 StartMusic(settings);
             }
         }
+        //Zerteilen der Musik und nacheinander abspielen
         private static SoundPlayer music;
         public static void StartMusic(Settings settings)
         {

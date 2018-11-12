@@ -255,5 +255,11 @@
   <ItemGroup>
     <None Include="Resources\Eventfield .png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pepper.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Normal_Flame.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

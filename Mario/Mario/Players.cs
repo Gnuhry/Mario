@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Mario
 {
     public partial class Players : UserControl
     {
-        private Timer player_timer;
+        private System.Windows.Forms.Timer player_timer;
         private Settings settings;
         private pause pause;
         private ReadFile readFile;
@@ -38,7 +39,6 @@ namespace Mario
             Tag = "players";
             Size = Settings.size;
         }
-
 
         //---------------------------------------------Keys-------------------------------------------------------
 
@@ -105,7 +105,7 @@ namespace Mario
         private int jumpCounter;
         private void InitPlayerTimer()
         {
-            player_timer = new Timer();
+            player_timer = new System.Windows.Forms.Timer();
             player_timer.Interval = 50;
             player_timer.Tick += Player_timer_Tick;
         }
@@ -499,15 +499,21 @@ namespace Mario
 
         private void ChangeTexture()
         {
-
-            if (mushroom)
-            {
-                pcBPlayer.Image = Properties.Resources.player_normal;
-            }
-            else
-            {
-                pcBPlayer.Image = Properties.Resources.player_small;
-            }
+                if (mushroom)
+                {
+                    pcBPlayer.Image = Properties.Resources.player_normal;
+                }
+                else
+                {
+                    pcBPlayer.Image = Properties.Resources.player_small;
+                }
+                if (riceBall)
+                {
+                    pcBPlayer.Image = Properties.Resources.player_normal_firefower;
+                    if (left)
+                    {
+                    }
+                }
             return;
             throw new NotImplementedException();//TODO
         }

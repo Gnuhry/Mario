@@ -124,9 +124,6 @@
   <data name="fireball" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fireball.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fireflower" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fireflower.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="bumarang" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bumarang_throw.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -168,5 +165,11 @@
   </data>
   <data name="mushroom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ricebowl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fireflower" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pepper.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_firefower" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player_Normal_Flame.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

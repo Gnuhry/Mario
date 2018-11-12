@@ -34,6 +34,7 @@
             // 
             // pcBPlayer
             // 
+            this.pcBPlayer.Image = global::Mario.Properties.Resources.player_normal_firefower;
             this.pcBPlayer.Location = new System.Drawing.Point(0, 0);
             this.pcBPlayer.Name = "pcBPlayer";
             this.pcBPlayer.Size = new System.Drawing.Size(50, 100);

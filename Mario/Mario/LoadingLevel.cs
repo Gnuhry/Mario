@@ -15,27 +15,27 @@ namespace Mario
             string[] stars = star.Split(',');
             if (stars[0].Equals("1"))
             {
-                pcBStar1.Image = Properties.Resources.star;
+                pcBStar1.Image = Properties.Resources.stone;
             }
             else
             {
-                pcBStar1.Image = Properties.Resources.star;
+                pcBStar1.Image = Properties.Resources.stone;
             }
             if (stars[1].Equals("1"))
             {
-                pcBStar1.Image = Properties.Resources.star;
+                pcBStar1.Image = Properties.Resources.stone;
             }
             else
             {
-                pcBStar1.Image = Properties.Resources.star;
+                pcBStar1.Image = Properties.Resources.stone;
             }
             if (stars[2].Equals("1"))
             {
-                pcBStar1.Image = Properties.Resources.star;
+                pcBStar1.Image = Properties.Resources.stone;
             }
             else
             {
-                pcBStar1.Image = Properties.Resources.star;
+                pcBStar1.Image = Properties.Resources.stone;
             }//TODO
         }
     }

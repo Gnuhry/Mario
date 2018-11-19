@@ -63,9 +63,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bumarang {
+        internal static System.Drawing.Bitmap background {
             get {
-                object obj = ResourceManager.GetObject("bumarang", resourceCulture);
+                object obj = ResourceManager.GetObject("background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bumarangflower {
+        internal static System.Drawing.Bitmap big_ben_left {
             get {
-                object obj = ResourceManager.GetObject("bumarangflower", resourceCulture);
+                object obj = ResourceManager.GetObject("big_ben_left", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap coin {
+        internal static System.Drawing.Bitmap big_ben_right {
             get {
-                object obj = ResourceManager.GetObject("coin", resourceCulture);
+                object obj = ResourceManager.GetObject("big_ben_right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap doubleJump {
+        internal static System.Drawing.Bitmap dirt {
             get {
-                object obj = ResourceManager.GetObject("doubleJump", resourceCulture);
+                object obj = ResourceManager.GetObject("dirt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy_left {
+        internal static System.Drawing.Bitmap event_field_close {
             get {
-                object obj = ResourceManager.GetObject("enemy_left", resourceCulture);
+                object obj = ResourceManager.GetObject("event_field_close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy_right {
+        internal static System.Drawing.Bitmap event_field_open {
             get {
-                object obj = ResourceManager.GetObject("enemy_right", resourceCulture);
+                object obj = ResourceManager.GetObject("event_field_open", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fireball {
+        internal static System.Drawing.Bitmap golden_rice_grain {
             get {
-                object obj = ResourceManager.GetObject("fireball", resourceCulture);
+                object obj = ResourceManager.GetObject("golden_rice_grain", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fireflower {
+        internal static System.Drawing.Bitmap grammy_left {
             get {
-                object obj = ResourceManager.GetObject("fireflower", resourceCulture);
+                object obj = ResourceManager.GetObject("grammy_left", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap grass {
+        internal static System.Drawing.Bitmap grammy_right {
             get {
-                object obj = ResourceManager.GetObject("grass", resourceCulture);
+                object obj = ResourceManager.GetObject("grammy_right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap itembox {
+        internal static System.Drawing.Bitmap pepper {
             get {
-                object obj = ResourceManager.GetObject("itembox", resourceCulture);
+                object obj = ResourceManager.GetObject("pepper", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap itembox_closed {
+        internal static System.Drawing.Bitmap player_normal_pepper_0 {
             get {
-                object obj = ResourceManager.GetObject("itembox_closed", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_pepper_0", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +173,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mushroom {
+        internal static System.Drawing.Bitmap player_normal_pepper_1 {
             get {
-                object obj = ResourceManager.GetObject("mushroom", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_pepper_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +183,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap player_normal {
+        internal static System.Drawing.Bitmap player_normal_pepper_2 {
             get {
-                object obj = ResourceManager.GetObject("player_normal", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_pepper_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +193,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap player_normal_firefower {
+        internal static System.Drawing.Bitmap player_normal_pepper_3 {
             get {
-                object obj = ResourceManager.GetObject("player_normal_firefower", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_pepper_3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,9 +203,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap player_small {
+        internal static System.Drawing.Bitmap player_normal_pepper_4 {
             get {
-                object obj = ResourceManager.GetObject("player_small", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_pepper_4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,9 +213,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sprite_00 {
+        internal static System.Drawing.Bitmap player_normal_pepper_5 {
             get {
-                object obj = ResourceManager.GetObject("sprite_00", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_pepper_5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -223,9 +223,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sprite_01 {
+        internal static System.Drawing.Bitmap player_normal_pepper_left_0 {
             get {
-                object obj = ResourceManager.GetObject("sprite_01", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_pepper_left_0", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,9 +233,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sprite_02 {
+        internal static System.Drawing.Bitmap player_normal_pepper_left_1 {
             get {
-                object obj = ResourceManager.GetObject("sprite_02", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_pepper_left_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +243,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sprite_03 {
+        internal static System.Drawing.Bitmap player_normal_pepper_left_2 {
             get {
-                object obj = ResourceManager.GetObject("sprite_03", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_pepper_left_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +253,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sprite_04 {
+        internal static System.Drawing.Bitmap player_normal_pepper_left_3 {
             get {
-                object obj = ResourceManager.GetObject("sprite_04", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_pepper_left_3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -263,9 +263,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sprite_05 {
+        internal static System.Drawing.Bitmap player_normal_pepper_left_4 {
             get {
-                object obj = ResourceManager.GetObject("sprite_05", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_pepper_left_4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,9 +273,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sprite_06 {
+        internal static System.Drawing.Bitmap player_normal_pepper_left_5 {
             get {
-                object obj = ResourceManager.GetObject("sprite_06", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_pepper_left_5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,9 +283,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sprite_07 {
+        internal static System.Drawing.Bitmap player_normal_run_pepper_left_0 {
             get {
-                object obj = ResourceManager.GetObject("sprite_07", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_run_pepper_left_0", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -293,9 +293,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sprite_08 {
+        internal static System.Drawing.Bitmap player_normal_run_pepper_left_1 {
             get {
-                object obj = ResourceManager.GetObject("sprite_08", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_run_pepper_left_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -303,9 +303,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sprite_09 {
+        internal static System.Drawing.Bitmap player_normal_run_pepper_left_2 {
             get {
-                object obj = ResourceManager.GetObject("sprite_09", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_run_pepper_left_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -313,9 +313,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sprite_10 {
+        internal static System.Drawing.Bitmap player_normal_run_pepper_left_3 {
             get {
-                object obj = ResourceManager.GetObject("sprite_10", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_run_pepper_left_3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -323,9 +323,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sprite_11 {
+        internal static System.Drawing.Bitmap player_normal_run_pepper_left_4 {
             get {
-                object obj = ResourceManager.GetObject("sprite_11", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_run_pepper_left_4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -333,9 +333,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sprite_12 {
+        internal static System.Drawing.Bitmap player_normal_run_pepper_left_5 {
             get {
-                object obj = ResourceManager.GetObject("sprite_12", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_run_pepper_left_5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -343,9 +343,479 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap star {
+        internal static System.Drawing.Bitmap player_normal_run_pepper_left_6 {
             get {
-                object obj = ResourceManager.GetObject("star", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_run_pepper_left_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_pepper_left_7 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_pepper_left_7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_stay_left_0 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_stay_left_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_stay_left_1 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_stay_left_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_stay_left_2 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_stay_left_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_stay_right_0 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_stay_right_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_stay_right_1 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_stay_right_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_stay_right_2 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_stay_right_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_run_pepper_right_0 {
+            get {
+                object obj = ResourceManager.GetObject("player_run_pepper_right_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_run_pepper_right_1 {
+            get {
+                object obj = ResourceManager.GetObject("player_run_pepper_right_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_run_pepper_right_2 {
+            get {
+                object obj = ResourceManager.GetObject("player_run_pepper_right_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_run_pepper_right_3 {
+            get {
+                object obj = ResourceManager.GetObject("player_run_pepper_right_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_run_pepper_right_4 {
+            get {
+                object obj = ResourceManager.GetObject("player_run_pepper_right_4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_run_pepper_right_5 {
+            get {
+                object obj = ResourceManager.GetObject("player_run_pepper_right_5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_run_pepper_right_6 {
+            get {
+                object obj = ResourceManager.GetObject("player_run_pepper_right_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_run_pepper_right_7 {
+            get {
+                object obj = ResourceManager.GetObject("player_run_pepper_right_7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_stay_left_0 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_stay_left_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_stay_left_1 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_stay_left_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_stay_right_0 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_stay_right_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_stay_right_1 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_stay_right_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_left_00 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_left_00", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_left_01 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_left_01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_left_02 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_left_02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_left_03 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_left_03", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_left_04 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_left_04", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_left_05 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_left_05", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_left_06 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_left_06", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_left_07 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_left_07", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_left_08 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_left_08", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_left_09 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_left_09", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_left_10 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_left_10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_left_11 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_left_11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_left_12 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_left_12", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_right_00 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_right_00", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_right_01 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_right_01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_right_02 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_right_02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_right_03 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_right_03", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_right_04 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_right_04", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_right_05 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_right_05", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_right_06 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_right_06", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_right_07 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_right_07", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_right_08 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_right_08", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_right_09 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_right_09", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_right_10 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_right_10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_right_11 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_right_11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_walking_right_12 {
+            get {
+                object obj = ResourceManager.GetObject("player_small_walking_right_12", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rice {
+            get {
+                object obj = ResourceManager.GetObject("rice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap springroll {
+            get {
+                object obj = ResourceManager.GetObject("springroll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -356,16 +826,6 @@ namespace Mario.Properties {
         internal static System.Drawing.Bitmap stone {
             get {
                 object obj = ResourceManager.GetObject("stone", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap stone_grass {
-            get {
-                object obj = ResourceManager.GetObject("stone_grass", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -13,8 +13,8 @@ namespace Mario
         public Itembox()
         {
             InitializeComponent();
-            ItemPicture = new Image[] { Properties.Resources.mushroom, Properties.Resources.fireflower,
-                Properties.Resources.star, Properties.Resources.doubleJump, Properties.Resources.bumarangflower };
+            ItemPicture = new Image[] { Properties.Resources.rice, Properties.Resources.pepper,
+                Properties.Resources.stone, Properties.Resources.stone, Properties.Resources.stone };
             random = new Random();
             Size = new Size(Settings.width, Settings.height);
             Tag = "itembox";
@@ -23,7 +23,7 @@ namespace Mario
         public PictureBox Activate(bool mushroom)
         {
             if (!active) return null;
-            this.BackgroundImage = Properties.Resources.itembox_closed;
+            this.BackgroundImage = Properties.Resources.event_field_close;
             active = false;
             int randomNr;
             if (mushroom)

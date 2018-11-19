@@ -19,12 +19,13 @@ namespace Mario
             {
                 Size = new Size(Settings.width, 2 * Settings.height);
                 Tag = "Enemy_pointed";
-                //TODO bild
+                pcBEnemy.Size = new Size(Settings.width, 2 * Settings.height); ;
+                pcBEnemy.Image = Properties.Resources.big_ben_right;
             }
             else
             {
                 Size = new Size(Settings.width, Settings.height);
-                pcBEnemy.Image = Properties.Resources.enemy_right;
+                pcBEnemy.Image = Properties.Resources.grammy_right;
                 Tag = "Enemy";
             }
             right = true;
@@ -75,7 +76,14 @@ namespace Mario
                 else
                 {
                     right = false;
-                    pcBEnemy.Image = Properties.Resources.enemy_left;
+                    if (normal)
+                    {
+                        pcBEnemy.Image = Properties.Resources.big_ben_left;
+                    }
+                    else
+                    {
+                        pcBEnemy.Image = Properties.Resources.grammy_left;
+                    }
                     return;
                 }
             }
@@ -101,7 +109,16 @@ namespace Mario
                 else
                 {
                     right = true;
-                    pcBEnemy.Image = Properties.Resources.enemy_right;
+                    if (normal)
+                    {
+                        pcBEnemy.Image = Properties.Resources.big_ben_right;
+
+                    }
+                    else
+                    {
+                        pcBEnemy.Image = Properties.Resources.grammy_right;
+
+                    }
                     return;
                 }
             }

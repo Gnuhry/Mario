@@ -158,70 +158,43 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ItemBox.bmp" />
+    <None Include="Resources\event_field0.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\mushroom.jpg" />
+    <None Include="Resources\Background.jpeg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\doubleJump.png" />
+    <None Include="Resources\golden_rice_grain_0.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\fireball.jpg" />
+    <None Include="Resources\golden_rice_grain_1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\star.jpg" />
+    <None Include="Resources\golden_rice_grain_2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\fireflower.jpg" />
+    <None Include="Resources\golden_rice_grain_3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\itembox.jpg" />
+    <None Include="Resources\golden_rice_grain_4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\air.png" />
+    <None Include="Resources\golden_rice_grain_5.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bumarang.jpg" />
+    <None Include="Resources\golden_rice_grain_6.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bumarang_throw.jpg" />
+    <None Include="Resources\Big_Ben_Walking.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\dirt.jpg" />
+    <None Include="Resources\Big_Ben_Walking_mirrored.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\grass.png" />
+    <None Include="Resources\enemy_small_left.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\grass_left.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\grass_right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\grass_up_left.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\grass_up_right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\greenstone.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\stone_grass.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\EnemyConcept.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\EnemyConcept_GIF_Mirrored.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\player_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Download.jpg" />
+    <None Include="Resources\enemy_small_right.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\golden rice grain.gif" />
@@ -230,115 +203,211 @@
     <None Include="Resources\grasblock.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Ricebowl.png" />
+    <None Include="Resources\Pepper.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\springroll.png" />
+    <None Include="Resources\Ricebowl.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\springroll.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Stone.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\test.gif" />
+    <None Include="Resources\event_field1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small.gif" />
+    <None Include="Resources\player_normal_stay_left0.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Eventfield .gif" />
+    <None Include="Resources\player_normal_stay_left1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Eventfield  %282%29.gif" />
+    <None Include="Resources\player_normal_stay_left2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Eventfield  %281%29.png" />
+    <None Include="Resources\player_normal_stay_right_0.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Eventfield .png" />
+    <None Include="Resources\player_normal_stay_right_1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Pepper.gif" />
+    <None Include="Resources\player_normal_stay_right_2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Normal_Flame.gif" />
+    <None Include="Resources\player_normal_pepper_left_0.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small_Walking_frame_0001.jpg" />
+    <None Include="Resources\player_normal_pepper_left_1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small_Walking_frame_0002.jpg" />
+    <None Include="Resources\player_normal_pepper_left_2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small_Walking_frame_0003.jpg" />
+    <None Include="Resources\player_normal_pepper_left_3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small_Walking_frame_0004.jpg" />
+    <None Include="Resources\player_normal_pepper_left_4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small_Walking_frame_0005.jpg" />
+    <None Include="Resources\player_normal_pepper_left_5.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small_Walking_frame_0006.jpg" />
+    <None Include="Resources\player_normal_pepper_0.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small_Walking_frame_0007.jpg" />
+    <None Include="Resources\player_normal_pepper_1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small_Walking_frame_0008.jpg" />
+    <None Include="Resources\player_normal_pepper_2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small_Walking_frame_0009.jpg" />
+    <None Include="Resources\player_normal_pepper_3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small_Walking_frame_0010.jpg" />
+    <None Include="Resources\player_normal_pepper_4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small_Walking_frame_0011.jpg" />
+    <None Include="Resources\player_normal_pepper_5.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small_Walking_frame_0012.jpg" />
+    <None Include="Resources\player_normal_run_pepper_left_0.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Player_Small_Walking_frame_0013.jpg" />
+    <None Include="Resources\player_normal_run_pepper_left_1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sprite_00.png" />
+    <None Include="Resources\player_normal_run_pepper_left_2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sprite_01.png" />
+    <None Include="Resources\player_normal_run_pepper_left_3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sprite_02.png" />
+    <None Include="Resources\player_normal_run_pepper_left_4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sprite_03.png" />
+    <None Include="Resources\player_normal_run_pepper_left_5.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sprite_04.png" />
+    <None Include="Resources\player_normal_run_pepper_left_6.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sprite_05.png" />
+    <None Include="Resources\player_normal_run_pepper_left_7.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sprite_06.png" />
+    <None Include="Resources\player_run_pepper_right_0.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sprite_07.png" />
+    <None Include="Resources\player_run_pepper_right_1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sprite_08.png" />
+    <None Include="Resources\player_run_pepper_right_2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sprite_09.png" />
+    <None Include="Resources\player_run_pepper_right_3.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sprite_10.png" />
+    <None Include="Resources\player_run_pepper_right_4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sprite_11.png" />
+    <None Include="Resources\player_run_pepper_right_5.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sprite_12.png" />
+    <None Include="Resources\player_run_pepper_right_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_run_pepper_right_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_right_00.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_right_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_right_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_right_03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_right_04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_right_05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_right_06.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_right_07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_right_08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_right_09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_right_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_right_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_right_12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_left_00.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_left_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_left_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_left_03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_left_04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_left_05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_left_06.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_left_07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_left_08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_left_09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_left_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_left_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_walking_left_12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_stay_left_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_stay_left_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_stay_right_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_small_stay_right_1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

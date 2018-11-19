@@ -62,10 +62,10 @@ namespace Mario
                                 erg[column][row] = NewControl(Properties.Resources.stone, "obstacle");
                                 break;
                             case 'D':
-                                erg[column][row] = NewControl(Properties.Resources.grass, "obstacle");
+                                erg[column][row] = NewControl(Properties.Resources.dirt, "obstacle");
                                 break;
                             case 'c':
-                                erg[column][row] = NewControl(Properties.Resources.stone_grass, "obstacle_coin");
+                                erg[column][row] = NewControl(Properties.Resources.dirt, "obstacle_coin");
                                 break;
                             case 'A':
                                 erg[column][row] = null;
@@ -84,16 +84,16 @@ namespace Mario
                                 erg[column][row] = new Enemy(true);
                                 break;
                             case 'C':
-                                erg[column][row] = NewControl(Properties.Resources.coin, "coin");
+                                erg[column][row] = NewControl(Properties.Resources.golden_rice_grain, "coin");
                                 break;
                             case '1':
-                                erg[column][row] = NewControl(Properties.Resources.star, "star_1");
+                                erg[column][row] = NewControl(Properties.Resources.stone, "star_1");
                                 break;
                             case '2':
-                                erg[column][row] = NewControl(Properties.Resources.star, "star_2");
+                                erg[column][row] = NewControl(Properties.Resources.stone, "star_2");
                                 break;
                             case '3':
-                                erg[column][row] = NewControl(Properties.Resources.star, "star_3");
+                                erg[column][row] = NewControl(Properties.Resources.stone, "star_3");
                                 break;
                         }
 

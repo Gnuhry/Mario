@@ -67,7 +67,7 @@
             // 
             // pcBStar1
             // 
-            this.pcBStar1.Image = global::Mario.Properties.Resources.star;
+            this.pcBStar1.Image = global::Mario.Properties.Resources.stone;
             this.pcBStar1.Location = new System.Drawing.Point(67, 173);
             this.pcBStar1.Name = "pcBStar1";
             this.pcBStar1.Size = new System.Drawing.Size(90, 78);
@@ -77,7 +77,7 @@
             // 
             // pcBStar2
             // 
-            this.pcBStar2.Image = global::Mario.Properties.Resources.star;
+            this.pcBStar2.Image = global::Mario.Properties.Resources.stone;
             this.pcBStar2.Location = new System.Drawing.Point(178, 173);
             this.pcBStar2.Name = "pcBStar2";
             this.pcBStar2.Size = new System.Drawing.Size(90, 78);
@@ -87,7 +87,7 @@
             // 
             // pcBStar3
             // 
-            this.pcBStar3.Image = global::Mario.Properties.Resources.star;
+            this.pcBStar3.Image = global::Mario.Properties.Resources.stone;
             this.pcBStar3.Location = new System.Drawing.Point(296, 173);
             this.pcBStar3.Name = "pcBStar3";
             this.pcBStar3.Size = new System.Drawing.Size(90, 78);

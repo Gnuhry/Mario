@@ -22,27 +22,27 @@ namespace Mario
         {
             if (star[0])
             {
-                pcBStar1.Image = Properties.Resources.star;
+                pcBStar1.Image = Properties.Resources.stone;
             }
             else
             {
-                pcBStar1.Image = Properties.Resources.star;
+                pcBStar1.Image = Properties.Resources.stone;
             }
             if (star[1])
             {
-                pcBStar1.Image = Properties.Resources.star;
+                pcBStar1.Image = Properties.Resources.stone;
             }
             else
             {
-                pcBStar1.Image = Properties.Resources.star;
+                pcBStar1.Image = Properties.Resources.stone;
             }
             if (star[2])
             {
-                pcBStar1.Image = Properties.Resources.star;
+                pcBStar1.Image = Properties.Resources.stone;
             }
             else
             {
-                pcBStar1.Image = Properties.Resources.star;
+                pcBStar1.Image = Properties.Resources.stone;
             }//TODO
         }
 

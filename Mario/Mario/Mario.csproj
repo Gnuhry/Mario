@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation.cs" />
     <Compile Include="Enemy.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -260,6 +261,84 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Player_Normal_Flame.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small_Walking_frame_0001.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small_Walking_frame_0002.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small_Walking_frame_0003.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small_Walking_frame_0004.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small_Walking_frame_0005.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small_Walking_frame_0006.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small_Walking_frame_0007.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small_Walking_frame_0008.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small_Walking_frame_0009.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small_Walking_frame_0010.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small_Walking_frame_0011.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small_Walking_frame_0012.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player_Small_Walking_frame_0013.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sprite_00.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sprite_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sprite_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sprite_03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sprite_04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sprite_05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sprite_06.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sprite_07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sprite_08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sprite_09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sprite_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sprite_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sprite_12.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -20,6 +20,7 @@ namespace Mario
             InitGameControl();
             InitKeyPressEvents();
             InitPlayerTimer();
+            InitTexture();
             SizeChanged += Players_SizeChanged;
         }
 
@@ -106,7 +107,7 @@ namespace Mario
         private void InitPlayerTimer()
         {
             player_timer = new System.Windows.Forms.Timer();
-            player_timer.Interval = 50;
+            player_timer.Interval = 25;//40Hz
             player_timer.Tick += Player_timer_Tick;
         }
 
@@ -115,13 +116,18 @@ namespace Mario
             player_timer.Stop();
             StopEnemies();
         }
-
+        int counter=0;
         private void Player_timer_Tick(object sender, EventArgs e)
         {
-            Point offset = new Point();
             Focus();
             BringToFront();
             ChangeTexture();
+            if (counter++ != 1)
+            {
+                return;
+            }
+            counter = 0;
+            Point offset = new Point();
             offset.Y = CheckY();
             offset.X = CheckX(offset.Y);
             ItemTimer();
@@ -249,7 +255,7 @@ namespace Mario
                             gameControls.Remove(control);
                             Parent.Controls.Remove(control);
                             (Parent as Play).SetCoin(++coinCounter);
-                            coinVisibleCounter = 3; 
+                            coinVisibleCounter = 3;
                             return true;
                         }
                         else if (control.Tag.ToString().Split('_')[0].Equals("star") && (player || pickCoinItem))
@@ -496,24 +502,79 @@ namespace Mario
         }
 
         //-----------------------------------------Texture/Bounds--------------------------------------------------------
+        private Animation walk_left, walk_right,walk_left_mushroom,walk_right_mushroom,walk_right_riceBall,walk_left_riceBall;
+        private void InitTexture()
+        {
+            walk_left = new Animation();
+            walk_right = new Animation();
+            walk_left_mushroom = new Animation();
+            walk_right_mushroom = new Animation();
+            walk_left_riceBall = new Animation();
+            walk_right_riceBall = new Animation();
+            walk_right_mushroom.Add(Properties.Resources.sprite_00);
+            walk_right_mushroom.Add(Properties.Resources.sprite_01);
+            walk_right_mushroom.Add(Properties.Resources.sprite_02);
+            walk_right_mushroom.Add(Properties.Resources.sprite_03);
+            walk_right_mushroom.Add(Properties.Resources.sprite_04);
+            walk_right_mushroom.Add(Properties.Resources.sprite_05);
+            walk_right_mushroom.Add(Properties.Resources.sprite_06);
+            walk_right_mushroom.Add(Properties.Resources.sprite_07);
+            walk_right_mushroom.Add(Properties.Resources.sprite_08);
+            walk_right_mushroom.Add(Properties.Resources.sprite_09);
+            walk_right_mushroom.Add(Properties.Resources.sprite_10);
+            walk_right_mushroom.Add(Properties.Resources.sprite_11);
+            walk_right_mushroom.Add(Properties.Resources.sprite_12);
+            walk_left_mushroom.Add(Properties.Resources.sprite_12);
 
+        }
         private void ChangeTexture()
         {
-                if (mushroom)
+            if (mushroom)
+            {
+                if (left)
                 {
-                    pcBPlayer.Image = Properties.Resources.player_normal;
+                    pcBPlayer.Image = walk_left.Get();
+                }
+                else if (right)
+                {
+                    pcBPlayer.Image = walk_right.Get();
                 }
                 else
                 {
-                    pcBPlayer.Image = Properties.Resources.player_small;
+
                 }
-                if (riceBall)
+            }
+            else
+            {
+                if (left)
                 {
-                    pcBPlayer.Image = Properties.Resources.player_normal_firefower;
-                    if (left)
-                    {
-                    }
+                    pcBPlayer.Image = walk_left_mushroom.Get();
                 }
+                else if (right)
+                {
+                    pcBPlayer.Image = walk_right_mushroom.Get();
+                }
+                else
+                {
+
+                }
+               
+            }
+            if (riceBall)
+            {
+                if (left)
+                {
+                    pcBPlayer.Image = walk_left_riceBall.Get();
+                }
+                else if (right)
+                {
+                    pcBPlayer.Image = walk_right_riceBall.Get();
+                }
+                else
+                {
+
+                }
+            }
             return;
             throw new NotImplementedException();//TODO
         }

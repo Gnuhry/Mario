@@ -90,7 +90,7 @@ namespace Mario
                                 erg[column][row] = new Enemy(true);
                                 break;
                             case 'W':
-                                erg[column][row] = NewControl(Properties.Resources.pepper, "water");
+                                erg[column][row] = NewControl(Properties.Resources.water, "water");
                                 break;
                             case 'C':
                                 erg[column][row] = NewControl(Properties.Resources.golden_rice_grain, "coin");

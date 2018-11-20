@@ -106,6 +106,12 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Settings1.cs" />
     <Compile Include="sound_music.cs" />
+    <Compile Include="Story.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Story.Designer.cs">
+      <DependentUpon>Story.cs</DependentUpon>
+    </Compile>
     <Compile Include="Worlds.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Setting.resx">
       <DependentUpon>Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Story.resx">
+      <DependentUpon>Story.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Worlds.resx">
       <DependentUpon>Worlds.cs</DependentUpon>
@@ -400,6 +409,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\music_sound\level1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blocks\water.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Story\story_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Story\story_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Story\story_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Story\story_4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

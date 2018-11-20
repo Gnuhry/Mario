@@ -358,4 +358,19 @@
   <data name="stone" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Blocks\Stone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="story_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Story\story_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="story_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Story\story_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="story_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Story\story_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="story_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Story\story_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="water" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blocks\water.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

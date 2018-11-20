@@ -36,5 +36,10 @@ namespace Mario
             setting.Show();
             setting.FormClosed += Forms_FormClosed;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Story().Show();
+        }
     }
 }

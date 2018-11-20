@@ -63,16 +63,6 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap background {
-            get {
-                object obj = ResourceManager.GetObject("background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap big_ben_left {
             get {
                 object obj = ResourceManager.GetObject("big_ben_left", resourceCulture);
@@ -87,6 +77,15 @@ namespace Mario.Properties {
             get {
                 object obj = ResourceManager.GetObject("big_ben_right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream coin {
+            get {
+                return ResourceManager.GetStream("coin", resourceCulture);
             }
         }
         
@@ -123,6 +122,16 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fireball {
+            get {
+                object obj = ResourceManager.GetObject("fireball", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap golden_rice_grain {
             get {
                 object obj = ResourceManager.GetObject("golden_rice_grain", resourceCulture);
@@ -147,6 +156,15 @@ namespace Mario.Properties {
             get {
                 object obj = ResourceManager.GetObject("grammy_right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream level1 {
+            get {
+                return ResourceManager.GetStream("level1", resourceCulture);
             }
         }
         
@@ -806,6 +824,16 @@ namespace Mario.Properties {
         internal static System.Drawing.Bitmap rice {
             get {
                 object obj = ResourceManager.GetObject("rice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ricecoin {
+            get {
+                object obj = ResourceManager.GetObject("ricecoin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

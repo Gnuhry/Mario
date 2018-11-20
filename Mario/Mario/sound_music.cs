@@ -4,22 +4,22 @@ namespace Mario
 
     public class sound_music
     {
-        //TODO
+        //TODO set sounds
         public static void RiceSound(Settings settings)
         {
             if (settings.sounds)
             {
-                new SoundPlayer(Settings.music_sound_path + "rice.wav").Play();
+                new SoundPlayer(Properties.Resources.coin).Play();
                 StartMusic(settings);
             }
         }
-        //Zerteilen der Musik und nacheinander abspielen
+        //TODO Zerteilen der Musik und nacheinander abspielen
         private static SoundPlayer music;
         public static void StartMusic(Settings settings)
         {
             if (settings.music)
             {
-                music = new SoundPlayer(Settings.music_sound_path + "level1.wav");
+                music = new SoundPlayer(Properties.Resources.level1);
                 music.PlayLooping();
             }
         }

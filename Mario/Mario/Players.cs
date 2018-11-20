@@ -111,12 +111,12 @@ namespace Mario
             player_timer.Tick += Player_timer_Tick;
         }
 
-        private void Stop()
+        public void Stop()
         {
             player_timer.Stop();
             StopEnemies();
         }
-        int counter=0;
+        int counter = 0;
         private void Player_timer_Tick(object sender, EventArgs e)
         {
             Focus();
@@ -223,6 +223,10 @@ namespace Mario
         //--------------------------------------------Collision Detect--------------------------------------------------
         public bool CollisionDetect(Rectangle location, bool up, bool down, bool player, bool destroyEnemyItem, bool pickCoinItem)
         {
+            if (Parent == null)
+            {
+                return false;
+            }
             foreach (Control control in Parent.Controls)
             {
                 if (control.Bounds.IntersectsWith(location))
@@ -285,6 +289,18 @@ namespace Mario
                         {
                             PickItem(control);
                         }
+                        else if (control.Tag.ToString().Equals("water"))
+                        {
+                            if (invincible && itemCounter > 0)
+                            {
+                                return true;
+                            }
+                            else if (player)
+                            {
+                                jumpCounter = 0;
+                                Hit();
+                            }
+                        }
                         else if (control is Enemy)
                         {
                             if ((invincible && itemCounter > 0) || destroyEnemyItem)
@@ -311,6 +327,14 @@ namespace Mario
                     }
                 }
 
+            }
+            if (Parent == null)
+            {
+                return false;
+            }
+            if (location.Y + location.Height > Parent.Height)
+            {
+                Dead();
             }
             return true;
         }
@@ -459,6 +483,12 @@ namespace Mario
                 hitCounter = 30;
                 return;
             }
+            Dead();
+        }
+        private void Dead()
+        {
+            //TODO set Animation Dead
+            (Parent as Play).Restart();
         }
         private void PickItem(Control control)
         {
@@ -484,7 +514,7 @@ namespace Mario
                 {
                     case 1:
                         fireBall = true;
-                        itemThrow.Image = Properties.Resources.pepper;
+                        itemThrow.Image = Properties.Resources.fireball;
                         break;
                     case 2:
                         invincible = true;
@@ -499,20 +529,33 @@ namespace Mario
                         break;
                 }
             }
+            ChangeTexture();
         }
 
         //-----------------------------------------Texture/Bounds--------------------------------------------------------
-        private Animation normal_stay_left, normal_stay_right, pepper_stay_left,pepper_stay_right,pepper_walk_left,pepper_walk_right,player_small_walk_right,player_small_walk_left,player_small_stay_left,player_small_stay_right;
+        private Animation normal_stay_left, normal_stay_right, pepper_stay_left, pepper_stay_right, pepper_walk_left, pepper_walk_right, player_small_walk_right, player_small_walk_left, player_small_stay_left, player_small_stay_right;
         private bool last_button_right;
         private void InitTexture()
         {
             normal_stay_left = new Animation();
             normal_stay_left.Add(Properties.Resources.player_normal_stay_left_0);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_0);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_0);
             normal_stay_left.Add(Properties.Resources.player_normal_stay_left_1);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_1);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_1);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_2);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_2);
             normal_stay_left.Add(Properties.Resources.player_normal_stay_left_2);
             normal_stay_right = new Animation();
             normal_stay_right.Add(Properties.Resources.player_normal_stay_right_0);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_0);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_0);
             normal_stay_right.Add(Properties.Resources.player_normal_stay_right_1);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_1);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_1);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_2);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_2);
             normal_stay_right.Add(Properties.Resources.player_normal_stay_right_2);
             pepper_stay_left = new Animation();
             pepper_stay_left.Add(Properties.Resources.player_normal_pepper_left_0);
@@ -576,14 +619,25 @@ namespace Mario
             player_small_walk_left.Add(Properties.Resources.player_small_walking_left_12);
             player_small_stay_left = new Animation();
             player_small_stay_left.Add(Properties.Resources.player_small_stay_left_0);
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_0);
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_0);
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_0);
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_1);
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_1);
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_1);
             player_small_stay_left.Add(Properties.Resources.player_small_stay_left_1);
             player_small_stay_right = new Animation();
             player_small_stay_right.Add(Properties.Resources.player_small_stay_right_0);
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_0);
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_0);
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_0);
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_1);
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_1);
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_1);
             player_small_stay_right.Add(Properties.Resources.player_small_stay_right_1);
         }
         private void ChangeTexture()
         {
-            //TODO reset der zeiger der Animationen
             if (!mushroom)
             {
                 if (left)
@@ -652,7 +706,7 @@ namespace Mario
                         }
                     }
                 }
-               
+
             }
             if ((last_button_right || right) && !left)
             {
@@ -663,7 +717,7 @@ namespace Mario
                 last_button_right = false;
             }
             return;
-            throw new NotImplementedException();//TODO
+            throw new NotImplementedException();//TODO Set Animation
         }
         //-----------------------------------------Pause-----------------------------------------------------------------------
         private void Pause()

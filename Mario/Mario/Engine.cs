@@ -84,6 +84,11 @@ namespace Mario
         {
             players.Start();
         }
+        public void PlayerDipose()
+        {
+            players.Stop();
+            players.Dispose();
+        }
 
         //-------------------------Background-------------------------------------
         private void DisplayBackground()

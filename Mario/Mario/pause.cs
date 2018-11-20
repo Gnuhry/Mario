@@ -22,7 +22,7 @@ namespace Mario
         {
             if (star[0])
             {
-                pcBStar1.Image = Properties.Resources.stone;
+                pcBStar1.Image = Properties.Resources.ricecoin;
             }
             else
             {
@@ -30,20 +30,20 @@ namespace Mario
             }
             if (star[1])
             {
-                pcBStar1.Image = Properties.Resources.stone;
+                pcBStar2.Image = Properties.Resources.ricecoin;
             }
             else
             {
-                pcBStar1.Image = Properties.Resources.stone;
+                pcBStar2.Image = Properties.Resources.stone;
             }
             if (star[2])
             {
-                pcBStar1.Image = Properties.Resources.stone;
+                pcBStar3.Image = Properties.Resources.ricecoin;
             }
             else
             {
-                pcBStar1.Image = Properties.Resources.stone;
-            }//TODO
+                pcBStar3.Image = Properties.Resources.stone;
+            }//TODO set ricecoin noch nicht aufgesammelt
         }
 
         private void btnMenue_Click(object sender, EventArgs e)

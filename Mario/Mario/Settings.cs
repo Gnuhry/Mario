@@ -19,13 +19,14 @@ namespace Mario
             maxEnemy = 5,
             loadingScreenLength = 3000;
         public static Size size = new Size(width, height);
-        public static string path = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9), textFilePath = path + "Level\\", music_sound_path = path + "music_sound\\";
+        public static string path = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9), textFilePath = path + "Level\\";
         public static double borderFactor = 0.1;
         public static char upD = 'W', leftD = 'A', rightD = 'D', itemD = 'Q';
         private char up_, left_, right_, item_;
         private bool music_, sounds_;
         public char up
         {
+            
             get => up_;
             set => up_ = value;
         }

@@ -67,6 +67,12 @@ namespace Mario
                             case 'c':
                                 erg[column][row] = NewControl(Properties.Resources.dirt, "obstacle_coin");
                                 break;
+                            case 'Z':
+                                erg[column][row - 1] = NewControl(Properties.Resources.pepper, "end");
+                                erg[column-1][row - 1] = NewControl(Properties.Resources.pepper, "end");
+                                erg[column-1][row] = NewControl(Properties.Resources.pepper, "end");
+                                erg[column][row] = NewControl(Properties.Resources.pepper, "end");
+                                break;
                             case 'A':
                                 erg[column][row] = null;
                                 break;
@@ -83,20 +89,22 @@ namespace Mario
                                 erg[column][row - 1] = null;
                                 erg[column][row] = new Enemy(true);
                                 break;
+                            case 'W':
+                                erg[column][row] = NewControl(Properties.Resources.pepper, "water");
+                                break;
                             case 'C':
                                 erg[column][row] = NewControl(Properties.Resources.golden_rice_grain, "coin");
                                 break;
                             case '1':
-                                erg[column][row] = NewControl(Properties.Resources.stone, "star_1");
+                                erg[column][row] = NewControl(Properties.Resources.ricecoin, "star_1");
                                 break;
                             case '2':
-                                erg[column][row] = NewControl(Properties.Resources.stone, "star_2");
+                                erg[column][row] = NewControl(Properties.Resources.ricecoin, "star_2");
                                 break;
                             case '3':
-                                erg[column][row] = NewControl(Properties.Resources.stone, "star_3");
+                                erg[column][row] = NewControl(Properties.Resources.ricecoin, "star_3");
                                 break;
                         }
-
                     }
                     row++;
                 }
@@ -141,6 +149,37 @@ namespace Mario
             }
             File.Delete(path);
             File.WriteAllLines(path, help);
+        }
+        public static void UnlockLevel(string level)
+        {
+           string path = Settings.textFilePath + level + ".txt";
+            List<string> file = new List<string>();
+            if (!File.Exists(path))
+            {
+                return;
+            }
+            StreamReader reader = new StreamReader(path);
+            while (!reader.EndOfStream)
+            {
+                file.Add(reader.ReadLine());
+            }
+            reader.Dispose();
+            for(int f=0;f<file.Count;f++)
+            {
+                if (file[f].StartsWith("#"))
+                {
+                    string[] erg = file[f].Split('|');
+                    erg[4] = "1";
+                    file[f] = "";
+                    for(int g=0;g<erg.Length-1;g++)
+                    {
+                        file[f] += erg[g] + "|";
+                    }
+                    File.Delete(path);
+                    File.WriteAllLines(path,file);
+                    return;
+                }
+            }
         }
     }
 }

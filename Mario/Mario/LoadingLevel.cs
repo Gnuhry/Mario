@@ -11,11 +11,18 @@ namespace Mario
             panel.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2 - (panel.Width / 2), Screen.PrimaryScreen.WorkingArea.Height / 2 - (panel.Height / 2));
             lbLevel.Text = level;
             lbLevelName.Text = name;
-            lbHigscore.Text = highscore;
+            if (highscore.Equals("-1"))
+            {
+                lbHigscore.Text = "none";
+            }
+            else
+            {
+                lbHigscore.Text = highscore;
+            }
             string[] stars = star.Split(',');
             if (stars[0].Equals("1"))
             {
-                pcBStar1.Image = Properties.Resources.stone;
+                pcBStar1.Image = Properties.Resources.ricecoin;
             }
             else
             {
@@ -23,20 +30,20 @@ namespace Mario
             }
             if (stars[1].Equals("1"))
             {
-                pcBStar1.Image = Properties.Resources.stone;
+                pcBStar2.Image = Properties.Resources.ricecoin;
             }
             else
             {
-                pcBStar1.Image = Properties.Resources.stone;
+                pcBStar2.Image = Properties.Resources.stone;
             }
             if (stars[2].Equals("1"))
             {
-                pcBStar1.Image = Properties.Resources.stone;
+                pcBStar3.Image = Properties.Resources.ricecoin;
             }
             else
             {
-                pcBStar1.Image = Properties.Resources.stone;
-            }//TODO
+                pcBStar3.Image = Properties.Resources.stone;
+            }//TODO set ricecoin noch nicht aufgesammelt
         }
     }
 }

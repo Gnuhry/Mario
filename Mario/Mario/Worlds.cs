@@ -16,6 +16,7 @@ namespace Mario
         private int levelMax = 4;
         private Settings setting;
         private Form1 menue;
+        private bool activated;
         public Worlds(Settings settings, Form1 form1)
         {
             FormBorderStyle = FormBorderStyle.None;
@@ -23,14 +24,27 @@ namespace Mario
             level = world = 1;
             InitializeComponent();
             SetText("1-1");
+            SetText("1-2");
+            SetText("1-3");
+            SetText("1-4");
+            LoadActivated();          
             setting = settings;
             menue = form1;
             MoveToLevel();
         }
 
+        private void LoadActivated()
+        {
+            pcB1.Tag = new ReadFile(world + "-1").SearchData().Split('|')[4];
+            pcB2.Tag = new ReadFile(world + "-2").SearchData().Split('|')[4];
+            pcB3.Tag = new ReadFile(world + "-3").SearchData().Split('|')[4];
+            pcB4.Tag = new ReadFile(world + "-4").SearchData().Split('|')[4];
+
+        }
+
         private void Worlds_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Left)
+            if (Convert.ToChar(e.KeyValue).Equals(setting.left))
             {
                 if (level == 1)
                 {
@@ -39,7 +53,7 @@ namespace Mario
                 level--;
                 MoveToLevel();
             }
-            if (e.KeyData == Keys.Right)
+            if (Convert.ToChar(e.KeyValue).Equals(setting.right))
             {
                 if (level == levelMax)
                 {
@@ -50,9 +64,12 @@ namespace Mario
             }
             if (e.KeyData == Keys.Enter || e.KeyData == Keys.Space)
             {
-                Visible = false;
-                ShowInTaskbar = false;
-                new Play(world + "-" + level, setting, this).Show();
+                if (activated)
+                {
+                    Visible = false;
+                    ShowInTaskbar = false;
+                    new Play(world + "-" + level, setting, this).Show();
+                }
             }
             if (e.KeyData == Keys.Escape)
             {
@@ -75,6 +92,7 @@ namespace Mario
             help.Offset(new Point(pcB.Location.X - help.X, pcB.Location.Y - help.Y));
             player.Location = help;
             player.BringToFront();
+            activated = pcB.Tag.Equals("1");
         }
 
         private void SetText(string level)
@@ -86,7 +104,23 @@ namespace Mario
                     if (Controls[f].Tag.ToString().Equals(level))
                     {
                         string[] help = new ReadFile(level).SearchData().Split('|');
-                        Controls[f].Text = level + " " + help[0].Split('#')[1] + " | " + help[1] + "sek";
+                        if (help[4].Equals("1"))
+                        {
+                            if (!help[1].Equals("-1"))
+                            {
+                                string[] help2 = level.Split('-');
+                                ReadFile.UnlockLevel(help2[0] + "-" + (Convert.ToInt32(help2[1]) + 1));
+                                Controls[f].Text = level + " " + help[0].Split('#')[1] + " | " + help[1] + "sek";
+                            }
+                            else
+                            {
+                                Controls[f].Text = level + " " + help[0].Split('#')[1] + " | no record";
+                            }
+                        }
+                        else
+                        {
+                            Controls[f].Text = "?!?!?!?!?!?!?!?!?!?!?!?!";
+                        }
                         return;
                     }
                 }

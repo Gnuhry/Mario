@@ -57,6 +57,7 @@ namespace Mario
         {
             Label label = label1;
             Play play = new Play(level, settings, worlds);
+            engine.PlayerDipose();
             Dispose();
             play.Show();
         }
@@ -79,6 +80,7 @@ namespace Mario
             string data = readFile.GetData();
             string[] help = data.Split('|');
             help[1] = time.ToString();
+            help[4] = "1";
             string erg = "";
             for (int f = 0; f < help.Length; f++)
             {
@@ -90,6 +92,10 @@ namespace Mario
         {
             string data = readFile.GetData();
             string time = data.Split('|')[1];
+            if (time.Equals("-1"))
+            {
+                return Double.MaxValue;
+            }
             return Convert.ToDouble(time);
         }
         public void CheckHighScoore()

@@ -65,7 +65,10 @@ namespace Mario
                                 erg[column][row] = NewControl(Properties.Resources.dirt, "obstacle");
                                 break;
                             case 'c':
-                                erg[column][row] = NewControl(Properties.Resources.dirt, "obstacle_coin");
+                                erg[column][row] = NewControl(Properties.Resources.coin_block, "obstacle_coin");
+                                break;
+                            case 'd':
+                                erg[column][row] = NewControl(Properties.Resources.destroy_block, "obstacle_destroy");
                                 break;
                             case 'Z':
                                 erg[column][row - 1] = NewControl(Properties.Resources.pepper, "end");

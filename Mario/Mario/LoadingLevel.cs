@@ -26,7 +26,7 @@ namespace Mario
             }
             else
             {
-                pcBStar1.Image = Properties.Resources.stone;
+                pcBStar1.Image = Properties.Resources.ricecoin_not;
             }
             if (stars[1].Equals("1"))
             {
@@ -34,7 +34,7 @@ namespace Mario
             }
             else
             {
-                pcBStar2.Image = Properties.Resources.stone;
+                pcBStar2.Image = Properties.Resources.ricecoin_not;
             }
             if (stars[2].Equals("1"))
             {
@@ -42,8 +42,8 @@ namespace Mario
             }
             else
             {
-                pcBStar3.Image = Properties.Resources.stone;
-            }//TODO set ricecoin noch nicht aufgesammelt
+                pcBStar3.Image = Properties.Resources.ricecoin_not;
+            }
         }
     }
 }

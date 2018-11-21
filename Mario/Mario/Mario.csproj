@@ -32,8 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +45,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
@@ -424,6 +427,90 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Story\story_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_left_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_left_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_left_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_left_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_left_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_left_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_left_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_left_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_left_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_right_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_right_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_right_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_right_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_right_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_right_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_right_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_right_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_walk_right_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\placeholder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\placeholder1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\placeholder2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\placeholder3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\placeholder4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\placeholder5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RG-Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Story\story_3_gif.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Story\story_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

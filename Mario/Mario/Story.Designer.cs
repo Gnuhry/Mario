@@ -38,7 +38,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::Mario.Properties.Resources.story_3;
+            this.pictureBox3.Image = global::Mario.Properties.Resources.story_3_gif;
             this.pictureBox3.Location = new System.Drawing.Point(914, 3);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(451, 589);
@@ -77,6 +77,7 @@
             this.Name = "Story";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Story";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Story_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

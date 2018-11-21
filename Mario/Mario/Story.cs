@@ -26,7 +26,7 @@ namespace Mario
             {
                 pictureBox1.Visible = true;
                 pictureBox2.Visible = false;
-                pictureBox2.Image = Properties.Resources.dirt;
+                pictureBox2.Image = Properties.Resources.story_5;
             }
             else if (click == 4)
             {

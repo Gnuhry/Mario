@@ -248,6 +248,12 @@ namespace Mario
                                 (Parent as Play).SetCoin(++coinCounter);
                                 coinVisibleCounter = 3; ;
                             }
+                            else if (control.Tag.ToString().Split('_')[1].Equals("destroy"))
+                            {
+                                gameControls.Remove(control);
+                                Parent.Controls.Remove(control);
+                            }
+
                         }
                         else if (control.Tag.ToString().Split('_')[0].Equals("obstacle"))
                         {
@@ -524,7 +530,7 @@ namespace Mario
                         doubleJump = true;
                         break;
                     case 4:
-                        itemThrow.Image = Properties.Resources.stone;
+                        itemThrow.Image = Properties.Resources.bumerang_throw;
                         bumerang = true;
                         break;
                 }
@@ -533,7 +539,8 @@ namespace Mario
         }
 
         //-----------------------------------------Texture/Bounds--------------------------------------------------------
-        private Animation normal_stay_left, normal_stay_right, pepper_stay_left, pepper_stay_right, pepper_walk_left, pepper_walk_right, player_small_walk_right, player_small_walk_left, player_small_stay_left, player_small_stay_right;
+        private Animation normal_stay_left, normal_stay_right, pepper_stay_left, pepper_stay_right, pepper_walk_left, pepper_walk_right, 
+            player_small_walk_right, player_small_walk_left, player_small_stay_left, player_small_stay_right, player_normal_walk_left,player_normal_walk_right;
         private bool last_button_right;
         private void InitTexture()
         {
@@ -635,6 +642,26 @@ namespace Mario
             player_small_stay_right.Add(Properties.Resources.player_small_stay_right_1);
             player_small_stay_right.Add(Properties.Resources.player_small_stay_right_1);
             player_small_stay_right.Add(Properties.Resources.player_small_stay_right_1);
+            player_normal_walk_left = new Animation();
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_0);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_1);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_2);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_3);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_4);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_5);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_6);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_7);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_8);
+            player_normal_walk_right = new Animation();
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_0);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_1);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_2);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_3);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_4);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_5);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_6);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_7);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_8);
         }
         private void ChangeTexture()
         {
@@ -688,11 +715,11 @@ namespace Mario
                 {
                     if (left)
                     {
-
+                        pcBPlayer.Image = player_normal_walk_left.Get();
                     }
                     else if (right)
                     {
-
+                        pcBPlayer.Image = player_normal_walk_right.Get();
                     }
                     else
                     {

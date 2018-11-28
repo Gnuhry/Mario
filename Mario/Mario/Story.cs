@@ -32,7 +32,7 @@ namespace Mario
             {
                 pictureBox2.Visible = true;
                 pictureBox3.Visible = false;
-                pictureBox3.Image = Properties.Resources.dirt;
+                pictureBox3.Image = Properties.Resources.grass;
             }
             else if (click == 5)
             {

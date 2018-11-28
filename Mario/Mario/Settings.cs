@@ -17,10 +17,11 @@ namespace Mario
             itemThrowBlockLength = 3,
             invincibleCounter = 100,
             maxEnemy = 5,
-            loadingScreenLength = 3000;
+            loadingScreenLength = 3000,
+            highBlocks=16;
         public static Size size = new Size(width, height);
         public static string path = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9), textFilePath = path + "Level\\";
-        public static double borderFactor = 0.1;
+        public static double borderFactor = 0.3;
         public static char upD = 'W', leftD = 'A', rightD = 'D', itemD = 'Q';
         private char up_, left_, right_, item_;
         private bool music_, sounds_;

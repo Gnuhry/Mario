@@ -105,7 +105,6 @@ namespace Mario
                         if (controls[row][column] == players)
                         {
                             players.GameControlRemove(controls[row][column]);
-                            // controls[row][column].Location = new Point((row - pointer) * Settings.width, column * Settings.height - Settings.height);
                             controls[row][column] = null;
                         }
                         if (controls[row][column] is Enemy)
@@ -129,7 +128,7 @@ namespace Mario
             Point help = players.Location;
             if (help.X < border)
             {
-                for (int f = 0; f < 15; f++)
+                for (int f = 0; f < Settings.highBlocks; f++)
                 {
                     if (controls[pointer + gameWidth - 1][f] != null)
                     {
@@ -150,7 +149,7 @@ namespace Mario
                         control.Location = location;
                     }
                 }
-                for (int f = 0; f < 15; f++)
+                for (int f = 0; f < Settings.highBlocks; f++)
                 {
                     if (controls[pointer - 1][f] != null)
                     {
@@ -199,7 +198,7 @@ namespace Mario
             Point help = players.Location;
             if (help.X > gameWidth * Settings.width - border)
             {
-                for (int f = 0; f < 15; f++)
+                for (int f = 0; f < Settings.highBlocks; f++)
                 {
                     if (controls[pointer][f] != null)
                     {
@@ -220,7 +219,7 @@ namespace Mario
                         control.Location = location;
                     }
                 }
-                for (int f = 0; f < 15; f++)
+                for (int f = 0; f < Settings.highBlocks; f++)
                 {
                     if (controls[pointer + gameWidth][f] != null)
                     {

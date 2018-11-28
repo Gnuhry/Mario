@@ -78,12 +78,12 @@ namespace Mario
             if (key.Equals(settings.left))
             {
                 left = true;
-                lastRight = false;
+                lastpressRight = false;
             }
             else if (key.Equals(settings.right))
             {
                 right = true;
-                lastRight = true;
+                lastpressRight = true;
             }
             else if (key.Equals(settings.up))
             {
@@ -130,9 +130,43 @@ namespace Mario
             Point offset = new Point();
             offset.Y = CheckY();
             offset.X = CheckX(offset.Y);
+            CollisionDetect(Bounds, false, false, true, false, false);
             ItemTimer();
+            EnemyCheckTimer();
             Moving(offset);
             prevup = up;
+        }
+
+        private void EnemyCheckTimer()
+        {
+            for (int f = 0; f < enemies.Count; f++)
+            {
+                if (enemies[f].IsActive)
+                {
+                    enemies[f].Visible = true;
+                    if (enemies[f].Location.X < 0 || enemies[f].Location.X > Parent.Size.Width)
+                    {
+                        enemies[f].Stop();
+                    }
+                    if (enemies[f].Location.Y > Parent.Size.Height)
+                    {
+                        enemies[f].Stop();
+                        GameControlRemove(enemies[f]);
+                        enemies.RemoveAt(f);
+                    }
+                }
+                else
+                {
+                    if (Parent != null)
+                    {
+                        if (enemies[f].Location.X > 0 && enemies[f].Location.X < Parent.Size.Width)
+                        {
+                            enemies[f].Start(this);
+                            enemies[f].Visible = true;
+                        }
+                    }
+                }
+            }
         }
 
         private void Moving(Point offset)
@@ -272,12 +306,13 @@ namespace Mario
                         {
                             gameControls.Remove(control);
                             Parent.Controls.Remove(control);
-                            star[Convert.ToInt32(control.Tag.ToString().Split('_')[1])] = true;
+                            star[Convert.ToInt32(control.Tag.ToString().Split('_')[1]) - 1] = true;
                             return true;
                         }
                         else if (control.Tag.Equals("end") && player)
                         {
                             (Parent as Play).CheckHighScoore();
+                            (Parent as Play).SetRiceCoin(star);
                             (Parent as Play).GetWorlds().Visible = true;
                             (Parent as Play).GetWorlds().ShowInTaskbar = true;
                             (Parent as Play).Close();
@@ -348,7 +383,7 @@ namespace Mario
 
 
         //-------------------------------------------Item--------------------------------------------------------------
-        private bool fireBall, doubleJump, mushroom, bumerang, invincible, lastRight, currentRight, doubleJumping, prevup, previtem;
+        private bool fireBall, doubleJump, mushroom, bumerang, invincible, lastRight, doubleJumping, prevup, previtem, backbumerang, lastpressRight;
         private int itemCounter, hitCounter, coinCounter, coinVisibleCounter;
         private PictureBox itemThrow, coin;
         private bool[] star;
@@ -370,7 +405,7 @@ namespace Mario
         {
             string[] help = readFile.GetData().Split('|')[3].Split(',');
             star = new bool[] { help[0] == "1", help[1] == "1", help[2] == "1" };
-            fireBall = doubleJump = bumerang = invincible = false;
+            fireBall = doubleJump = bumerang = invincible = backbumerang = false;
             itemCounter = 0;
             itemThrow = new PictureBox()
             {
@@ -431,15 +466,31 @@ namespace Mario
                     else
                     {
                         itemCounter = 1;
+                        backbumerang = true;
                     }
                 }
                 if (--itemCounter == 0)
                 {
-                    if (fireBall || bumerang)
+                    if (fireBall || backbumerang)
                     {
                         Parent.Controls.Remove(itemThrow);
                     }
-                    invincible = false;
+                    if (bumerang && !backbumerang)
+                    {
+                        backbumerang = true;
+                        lastRight = !lastRight;
+                        itemCounter = Settings.itemThrowBlockLength;
+                        Point help = itemThrow.Location;
+                        if (lastRight)
+                        {
+                            help.Offset(Settings.width, 0);
+                        }
+                        else
+                        {
+                            help.Offset(-Settings.width, 0);
+                        }
+                        itemThrow.Location = help;
+                    }
                 }
 
             }
@@ -453,7 +504,8 @@ namespace Mario
             }
             if ((fireBall || bumerang) && itemCounter == 0)
             {
-                currentRight = lastRight;
+                backbumerang = false;
+                lastRight = lastpressRight;
                 itemCounter = Settings.itemThrowBlockLength;
                 Point help = Location;
                 if (lastRight)
@@ -539,8 +591,8 @@ namespace Mario
         }
 
         //-----------------------------------------Texture/Bounds--------------------------------------------------------
-        private Animation normal_stay_left, normal_stay_right, pepper_stay_left, pepper_stay_right, pepper_walk_left, pepper_walk_right, 
-            player_small_walk_right, player_small_walk_left, player_small_stay_left, player_small_stay_right, player_normal_walk_left,player_normal_walk_right;
+        private Animation normal_stay_left, normal_stay_right, pepper_stay_left, pepper_stay_right, pepper_walk_left, pepper_walk_right,
+            player_small_walk_right, player_small_walk_left, player_small_stay_left, player_small_stay_right, player_normal_walk_left, player_normal_walk_right;
         private bool last_button_right;
         private void InitTexture()
         {
@@ -725,11 +777,11 @@ namespace Mario
                     {
                         if (last_button_right)
                         {
-                            pcBPlayer.Image = normal_stay_left.Get();
+                            pcBPlayer.Image = normal_stay_right.Get();
                         }
                         else
                         {
-                            pcBPlayer.Image = normal_stay_right.Get();
+                            pcBPlayer.Image = normal_stay_left.Get();
                         }
                     }
                 }
@@ -744,7 +796,6 @@ namespace Mario
                 last_button_right = false;
             }
             return;
-            throw new NotImplementedException();//TODO Set Animation
         }
         //-----------------------------------------Pause-----------------------------------------------------------------------
         private void Pause()
@@ -796,10 +847,6 @@ namespace Mario
         }
         public void GameControlRemove(Control control)
         {
-            if (control is Enemy)
-            {
-                (control as Enemy).Stop();
-            }
             gameControls.Remove(control);
         }
         public void GameControlRemoveAt(int index)
@@ -827,10 +874,12 @@ namespace Mario
                 {
                     if (++counter == 5)
                     {
+                        enemy.Visible = false;
                         return;
                     }
                 }
             }
+            enemy.Start(this);
             enemies.Add(enemy);
         }
         public void EnemyRemove(Enemy enemy)

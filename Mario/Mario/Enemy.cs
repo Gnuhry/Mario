@@ -49,7 +49,6 @@ namespace Mario
         public bool IsActive
         {
             get => Active;
-            set => Active = value;
         }
         private void Enemy_timer_Tick(object sender, EventArgs e)
         {
@@ -76,6 +75,12 @@ namespace Mario
                 else
                 {
                     right = false;
+                    if (CollisionDetect(new Point(0, Settings.speedY)))
+                    {
+                        help.Offset(0, Settings.speedY);
+                        Console.WriteLine("down");
+                        Location = help;
+                    }
                     if (normal)
                     {
                         pcBEnemy.Image = Properties.Resources.big_ben_left;
@@ -109,6 +114,12 @@ namespace Mario
                 else
                 {
                     right = true;
+                    if (CollisionDetect(new Point(0, Settings.speedY)))
+                    {
+                        help.Offset(0, Settings.speedY);
+                        Console.WriteLine("down");
+                        Location = help;
+                    }
                     if (normal)
                     {
                         pcBEnemy.Image = Properties.Resources.big_ben_right;
@@ -121,6 +132,7 @@ namespace Mario
                     }
                     return;
                 }
+
             }
         }
 

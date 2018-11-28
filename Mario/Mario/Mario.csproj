@@ -483,24 +483,6 @@
     <None Include="Resources\Player\player_normal_walk_right_8.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\placeholder.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\placeholder1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\placeholder2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\placeholder3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\placeholder4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\placeholder5.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\RG-Logo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -511,6 +493,36 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blocks\dirt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blocks\box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blocks\wasser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Items\rice.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Items\ricecoin_not_collected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Items\rotating_ricebowl.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Items\star.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blocks\end_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blocks\end_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blocks\end_3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -32,6 +32,18 @@ namespace Mario
             menue = form1;
             MoveToLevel();
         }
+        public void Reload()
+        {
+            FormBorderStyle = FormBorderStyle.None;
+            WindowState = FormWindowState.Maximized;
+            InitializeComponent();
+            SetText("1-1");
+            SetText("1-2");
+            SetText("1-3");
+            SetText("1-4");
+            LoadActivated();
+            MoveToLevel();
+        }
 
         private void LoadActivated()
         {

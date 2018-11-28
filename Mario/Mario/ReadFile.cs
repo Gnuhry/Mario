@@ -41,76 +41,100 @@ namespace Mario
             }
             int row = 0;
             Console.WriteLine(file.Length + "," + file[0].Length);
-            for (int f = 0; f < file.Length; f++)
+            data = file[0];
+            Console.WriteLine(data);
+            if (!data.StartsWith("#") || data.Split('|').Length < 5)
             {
-                if (file[f].StartsWith("#"))
-                {
-                    //data from level
-                    data = file[f];
-                }
-                else
-                {
+                throw new Exception("No Data Line");
+            }
+            for (int f = 1; f < file.Length; f++)
+            {
                     if (file[f].Length != file[1].Length)
                     {
                         return null;
                     }
-                    for (int column = 0; column < file[1].Length; column++)
+                for (int column = 0; column < file[1].Length; column++)
+                {
+                    switch (file[f].ToCharArray()[column])
                     {
-                        switch (file[f].ToCharArray()[column])
-                        {
-                            case 'S':
-                                erg[column][row] = NewControl(Properties.Resources.stone, "obstacle");
-                                break;
-                            case 'D':
-                                erg[column][row] = NewControl(Properties.Resources.dirt, "obstacle");
-                                break;
-                            case 'c':
-                                erg[column][row] = NewControl(Properties.Resources.coin_block, "obstacle_coin");
-                                break;
-                            case 'd':
-                                erg[column][row] = NewControl(Properties.Resources.destroy_block, "obstacle_destroy");
-                                break;
-                            case 'Z':
-                                erg[column][row - 1] = NewControl(Properties.Resources.pepper, "end");
-                                erg[column-1][row - 1] = NewControl(Properties.Resources.pepper, "end");
-                                erg[column-1][row] = NewControl(Properties.Resources.pepper, "end");
-                                erg[column][row] = NewControl(Properties.Resources.pepper, "end");
-                                break;
-                            case 'A':
-                                erg[column][row] = null;
-                                break;
-                            case 'I':
-                                erg[column][row] = new Itembox();
-                                break;
-                            case 'P':
-                                erg[column][row] = new Players(settings, this);
-                                break;
-                            case 'e':
-                                erg[column][row] = new Enemy(false);
-                                break;
-                            case 'E':
-                                erg[column][row - 1] = null;
-                                erg[column][row] = new Enemy(true);
-                                break;
-                            case 'W':
-                                erg[column][row] = NewControl(Properties.Resources.water, "water");
-                                break;
-                            case 'C':
-                                erg[column][row] = NewControl(Properties.Resources.golden_rice_grain, "coin");
-                                break;
-                            case '1':
+                        case 'S':
+                            erg[column][row] = NewControl(Properties.Resources.stone, "obstacle");
+                            break;
+                        case 'D':
+                            erg[column][row] = NewControl(Properties.Resources.dirt, "obstacle");
+                            break;
+                        case 'G':
+                            erg[column][row] = NewControl(Properties.Resources.grass, "obstacle");
+                            break;
+                        case 'c':
+                            erg[column][row] = NewControl(Properties.Resources.box, "obstacle_coin");
+                            break;
+                        case 'd':
+                            erg[column][row] = NewControl(Properties.Resources.box, "obstacle_destroy");
+                            break;
+                        case 'Z':
+                            erg[column - 1][row] = NewControl(Properties.Resources.end_2, "end");
+                            erg[column - 2][row] = NewControl(Properties.Resources.end_1, "end");
+                            erg[column][row] = NewControl(Properties.Resources.end_3, "end");
+                            break;
+                        case 'A':
+                            erg[column][row] = null;
+                            break;
+                        case 'I':
+                            erg[column][row] = new Itembox();
+                            break;
+                        case 'P':
+                            erg[column][row] = new Players(settings, this);
+                            break;
+                        case 'e':
+                            erg[column][row] = new Enemy(false);
+                            break;
+                        case 'E':
+                            erg[column][row - 1] = null;
+                            erg[column][row] = new Enemy(true);
+                            break;
+                        case 'w':
+                            erg[column][row] = NewControl(Properties.Resources.water, "water");
+                            break;
+                        case 'W':
+                            erg[column][row] = NewControl(Properties.Resources.water_full, "water");
+                            break;
+                        case 'C':
+                            erg[column][row] = NewControl(Properties.Resources.golden_rice_grain, "coin");
+                            break;
+                        case '1':
+                            if (data.Split('|')[3].Split(',')[0] == "0")
+                            {
                                 erg[column][row] = NewControl(Properties.Resources.ricecoin, "star_1");
-                                break;
-                            case '2':
+                            }
+                            else
+                            {
+                                erg[column][row] = NewControl(Properties.Resources.ricecoin_not, "star_1");
+                            }
+                            break;
+                        case '2':
+                            if (data.Split('|')[3].Split(',')[1] == "0")
+                            {
                                 erg[column][row] = NewControl(Properties.Resources.ricecoin, "star_2");
-                                break;
-                            case '3':
+                            }
+                            else
+                            {
+                                erg[column][row] = NewControl(Properties.Resources.ricecoin_not, "star_2");
+                            }
+                            break;
+                        case '3':
+                            if (data.Split('|')[3].Split(',')[2] == "0")
+                            {
                                 erg[column][row] = NewControl(Properties.Resources.ricecoin, "star_3");
-                                break;
-                        }
+                            }
+                            else
+                            {
+                                erg[column][row] = NewControl(Properties.Resources.ricecoin_not, "star_3");
+                            }
+                            break;
                     }
-                    row++;
                 }
+                    row++;
             }
 
             return erg;
@@ -143,13 +167,8 @@ namespace Mario
         public void SetData(string data)
         {
             string[] help = ReadTextFile();
-            for (int f = 0; f < help.Length; f++)
-            {
-                if (help[f].StartsWith("#"))
-                {
-                    help[f] = data;
-                }
-            }
+            help[0] = data;
+            Console.WriteLine("delete");
             File.Delete(path);
             File.WriteAllLines(path, help);
         }

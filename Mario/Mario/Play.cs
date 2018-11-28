@@ -82,10 +82,11 @@ namespace Mario
             help[1] = time.ToString();
             help[4] = "1";
             string erg = "";
-            for (int f = 0; f < help.Length; f++)
+            for (int f = 0; f < help.Length-1; f++)
             {
                 erg += help[f] + "|";
             }
+            Console.WriteLine(erg);
             readFile.SetData(erg);
         }
         private double GetHigscoore()
@@ -101,11 +102,38 @@ namespace Mario
         public void CheckHighScoore()
         {
             engine.StopTime();
-            if (GetHigscoore() < engine.GetTime())
+            Console.WriteLine(GetHigscoore() + ">" + engine.GetTime());
+            if (GetHigscoore() > engine.GetTime())
             {
                 //New Highscore
+                Console.WriteLine("Yeah");
                 SaveHighscoore(engine.GetTime());
             }
+        }
+        public void SetRiceCoin(bool[] riceCoin)
+        {
+            string txt = "";
+            foreach (bool rice in riceCoin)
+            {
+                if (rice)
+                {
+                    txt += "1,";
+                }
+                else
+                {
+                    txt += "0,";
+                }
+            }
+            txt=txt.Substring(0, txt.Length - 1);
+            string data = readFile.SearchData();
+            string[] help = data.Split('|');
+            help[3] = txt;
+            string erg = "";
+            for (int f = 0; f < help.Length-1; f++)
+            {
+                erg += help[f] + "|";
+            }
+            readFile.SetData(erg);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Mario
             List<string> file = new List<string>();
             if (!File.Exists(path))
             {
-                return null;
+                throw new Exception(path);
             }
             StreamReader reader = new StreamReader(path);
             while (!reader.EndOfStream)
@@ -202,6 +202,89 @@ namespace Mario
                     return;
                 }
             }
+        }
+
+        //----------------------------------------Resets-------------------------------------
+        public static void ResetAll(Settings settings)
+        {
+            foreach(string filename in GetFileNames())
+            {
+                if (filename == "1-1.txt")
+                {
+                    ResetLevel(new ReadFile(filename.Split('.')[0]), "1");
+                }
+                else if (!filename.ToCharArray()[0].Equals('.'))
+                {
+                    ResetLevel(new ReadFile(filename.Split('.')[0]), "0");
+                }
+            }
+            settings.Default();
+            SetSettings(settings);
+            SetFirst("0");
+
+        }
+        public static void ResetLevel(ReadFile readFile, string four)
+        {
+            string[] help=readFile.SearchData().Split('|');
+            help[3] = "0,0,0";
+            help[4] = four;
+            string setdata="";
+            for(int f=0;f<help.Length-1;f++)
+            {
+                setdata += help[f] + "|";
+            }
+            setdata += help[help.Length-1];
+            readFile.SetData(setdata);
+        }
+        //-----------------------------------Filenames-----------------------------------
+        private static string[] GetFileNames()
+        {
+            DirectoryInfo d = new DirectoryInfo(Settings.textFilePath);
+            FileInfo[] files = d.GetFiles("*.txt");
+            string[] str = new string[files.Length];
+            for (int f = 0; f < files.Length; f++)
+            {
+                str[f] = files[f].Name;
+            }
+            return str;
+        }
+        //---------------------------------------Settings---------------------------------------
+        public static Settings GetSettings()
+        {
+            string[] txt = File.ReadAllLines(Settings.textFilePath + ".global.txt");
+            string[] setting=txt[1].Split(';');
+            Settings settings = new Settings();
+            settings.left = Convert.ToChar(setting[0]);
+            settings.right = Convert.ToChar(setting[1]);
+            settings.up = Convert.ToChar(setting[2]);
+            settings.item = Convert.ToChar(setting[3]);
+            settings.music = setting[4] == "True";
+            settings.sounds = setting[5] == "True";
+            return settings;
+        }
+        public static void SetSettings(Settings settings)
+        {
+            string[] txt=File.ReadAllLines(Settings.textFilePath + ".global.txt");
+            txt[1] = settings.left + ";" + settings.right + ";" + settings.up + ";" + settings.item + ";" + settings.music + ";" + settings.sounds + ";";
+            File.Delete(Settings.textFilePath + ".global.txt");
+            File.WriteAllLines(Settings.textFilePath + ".global.txt", txt);
+        }
+        //------------------------------------------------Is first?-----------------------------------------
+        public static void SetFirst(string first)
+        {
+            string[] txt = File.ReadAllLines(Settings.textFilePath + ".global.txt");
+            txt[0] = first;
+            File.Delete(Settings.textFilePath + ".global.txt");
+            File.WriteAllLines(Settings.textFilePath + ".global.txt", txt);
+        }
+        public static bool IsFirst()
+        {
+            string[] txt = File.ReadAllLines(Settings.textFilePath + ".global.txt");
+            if (txt[0].Equals("0"))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

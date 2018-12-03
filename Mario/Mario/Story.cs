@@ -5,6 +5,8 @@ namespace Mario
     public partial class Story : Form
     {
         private int click;
+        private Form1 form1;
+
         private void Story_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Escape)
@@ -40,13 +42,17 @@ namespace Mario
             }
             else
             {
+                form1.Visible = true;
+                form1.ShowInTaskbar = true;
                 Close();
             }
         }
-
-        public Story()
+        public Story(Form1 form1)
         {
+            this.form1 = form1;
             InitializeComponent();
+            form1.Visible = false;
+            form1.ShowInTaskbar = false;
             click = 0;
         }
     }

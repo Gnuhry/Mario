@@ -107,7 +107,6 @@
       <DependentUpon>Setting.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="Settings1.cs" />
     <Compile Include="sound_music.cs" />
     <Compile Include="Story.cs">
       <SubType>Form</SubType>

@@ -167,5 +167,16 @@ namespace Mario
             settings.Default();
             SetLabel();
         }
+
+        private void btnResetAll_Click(object sender, EventArgs e)
+        {
+            ReadFile.ResetAll(settings);
+            Application.Restart();
+        }
+
+        private void Setting_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ReadFile.SetSettings(settings);
+        }
     }
 }

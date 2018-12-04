@@ -25,6 +25,7 @@ namespace Mario
         public static char upD = 'W', leftD = 'A', rightD = 'D', itemD = 'Q';
         private char up_, left_, right_, item_;
         private bool music_, sounds_;
+        private double volume_;
         public char up
         {
             
@@ -56,7 +57,18 @@ namespace Mario
             get => item_;
             set => item_ = value;
         }
-
+        public double volume
+        {
+            get => volume_;
+            set
+            {
+                if (value < 0 || value > 1)
+                {
+                    return;
+                }
+                volume_ = value;
+            }
+        }
         public Settings()
         {
             Default();
@@ -68,6 +80,7 @@ namespace Mario
             right_ = rightD;
             item_ = itemD;
             music_ = sounds_ = true;
+            volume = 0.5;
         }
     }
 }

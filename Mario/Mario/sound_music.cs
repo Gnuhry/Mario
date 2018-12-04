@@ -1,4 +1,6 @@
 ﻿using System.Media;
+using System.Windows.Media;
+
 namespace Mario
 {
 
@@ -10,25 +12,29 @@ namespace Mario
             if (settings.sounds)
             {
                 new SoundPlayer(Properties.Resources.coin).Play();
-                StartMusic(settings);
             }
         }
-        //TODO Zerteilen der Musik und nacheinander abspielen
-        private static SoundPlayer music;
-        public static void StartMusic(Settings settings)
+        private static MediaPlayer myPlayer;
+        public static void CheckMusic(Settings settings)
         {
             if (settings.music)
             {
-                music = new SoundPlayer(Properties.Resources.level1);
-                music.PlayLooping();
+                myPlayer = new MediaPlayer();
+                myPlayer.Open(new System.Uri(Settings.path+ @"Resources\music_sound\level1.wav"));
+                myPlayer.Play();
+                myPlayer.Volume = settings.volume;
+            }
+            else
+            {
+                if (myPlayer != null)
+                {
+                    myPlayer.Stop();
+                }
             }
         }
-        public static void StopMusic()
+        public static void ChangeVolume(Settings settings)
         {
-            if (music != null)
-            {
-                music.Stop();
-            }
+            myPlayer.Volume = settings.volume;
         }
     }
 }

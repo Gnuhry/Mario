@@ -11,7 +11,7 @@ namespace Mario
         {
             InitializeComponent();
             settings = ReadFile.GetSettings();
-            sound_music.StartMusic(settings);
+            sound_music.CheckMusic(settings);
             if (ReadFile.IsFirst())
             {
                 btnStart.Enabled = false;

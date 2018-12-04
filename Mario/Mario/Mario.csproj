@@ -523,5 +523,146 @@
   <ItemGroup>
     <None Include="Resources\Blocks\end_3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Story\Story_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_bumerang_left_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_bumerang_left_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_bumerang_left_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_bumerang_right_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_bumerang_right_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_bumerang_right_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_left_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_left_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_left_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_left_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_left_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_left_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_left_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_left_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_right_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_right_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_right_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_right_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_right_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_right_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_right_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_bumerang_right_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_left_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_left_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_left_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_left_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_left_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_left_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_left_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_left_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_left_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_right_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_right_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_right_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_right_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_right_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_right_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_right_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_right_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_run_star_right_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_stay_star_left_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_stay_star_left_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_stay_star_left_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_stay_star_right_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_stay_star_right_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Player\player_normal_stay_star_right_2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

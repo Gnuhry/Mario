@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace Mario
@@ -11,7 +10,6 @@ namespace Mario
         private System.Windows.Forms.Timer player_timer;
         private Settings settings;
         private pause pause;
-        private ReadFile readFile;
         public Players(Settings settings, ReadFile readFile)
         {
             InitializeComponent();
@@ -130,7 +128,7 @@ namespace Mario
             Point offset = new Point();
             offset.Y = CheckY();
             offset.X = CheckX(offset.Y);
-            CollisionDetect(Bounds, false, false, true, false, false);
+            CollisionDetect(Bounds, false, false, true, false, false, false);
             ItemTimer();
             EnemyCheckTimer();
             Moving(offset);
@@ -186,7 +184,7 @@ namespace Mario
             {
                 Rectangle help = Bounds;
                 help.Offset(Settings.speedX, offsetY);
-                if (CollisionDetect(help, false, false, true, false, false))
+                if (CollisionDetect(help, false, false, true, false, false, false))
                 {
                     return Settings.speedY;
                 }
@@ -199,7 +197,7 @@ namespace Mario
             {
                 Rectangle help = Bounds;
                 help.Offset(-Settings.speedX, offsetY);
-                if (CollisionDetect(help, false, false, true, false, false))
+                if (CollisionDetect(help, false, false, true, false, false, false))
                 {
                     return -Settings.speedX;
                 }
@@ -225,7 +223,7 @@ namespace Mario
                 }
                 Rectangle help = Bounds;
                 help.Offset(0, -Settings.speedY);
-                if (CollisionDetect(help, true, false, true, false, false))
+                if (CollisionDetect(help, true, false, true, false, false, false))
                 {
                     return -Settings.speedY;
                 }
@@ -240,9 +238,16 @@ namespace Mario
                 CheckDoubleJump();
                 Rectangle help = Bounds;
                 help.Offset(0, Settings.speedY);
-                if (CollisionDetect(help, false, true, true, false, false))
+                if (CollisionDetect(help, false, true, true, false, false, false))
                 {
-                    return Settings.speedY;
+                    if (CollisionDetect(help, false, false, false, false, false, true))
+                    {
+                        return Settings.speedY / 2;
+                    }
+                    else
+                    {
+                        return Settings.speedY;
+                    }
                 }
                 else
                 {
@@ -254,8 +259,9 @@ namespace Mario
             }
         }
 
+
         //--------------------------------------------Collision Detect--------------------------------------------------
-        public bool CollisionDetect(Rectangle location, bool up, bool down, bool player, bool destroyEnemyItem, bool pickCoinItem)
+        public bool CollisionDetect(Rectangle location, bool up, bool down, bool player, bool destroyEnemyItem, bool pickCoinItem, bool cloud)
         {
             if (Parent == null)
             {
@@ -267,108 +273,121 @@ namespace Mario
                 {
                     if (control.Tag != null)
                     {
-                        if (control.Tag.ToString().Split('_').Length > 1 && player && (up || pickCoinItem))
+                        if (cloud)
                         {
-                            if (control.Tag.ToString().Split('_')[1].Equals("coin"))
-                            {
-                                gameControls.Remove(control);
-                                Parent.Controls.Remove(control);
-                                Point help = control.Location;
-                                help.Offset(0, -Settings.height);
-                                coin.Location = help;
-                                gameControls.Add(coin);
-                                Parent.Controls.Add(coin);
-                                coin.BringToFront();
-                                (Parent as Play).SetCoin(++coinCounter);
-                                coinVisibleCounter = 3; ;
-                            }
-                            else if (control.Tag.ToString().Split('_')[1].Equals("destroy"))
-                            {
-                                gameControls.Remove(control);
-                                Parent.Controls.Remove(control);
-                            }
-
-                        }
-                        else if (control.Tag.ToString().Split('_')[0].Equals("obstacle"))
-                        {
-                            return false;
-                        }
-                        else if (control.Tag.Equals("coin") && (player || pickCoinItem))
-                        {
-                            sound_music.RiceSound(settings);
-                            gameControls.Remove(control);
-                            Parent.Controls.Remove(control);
-                            (Parent as Play).SetCoin(++coinCounter);
-                            coinVisibleCounter = 3;
-                            return true;
-                        }
-                        else if (control.Tag.ToString().Split('_')[0].Equals("star") && (player || pickCoinItem))
-                        {
-                            gameControls.Remove(control);
-                            Parent.Controls.Remove(control);
-                            star[Convert.ToInt32(control.Tag.ToString().Split('_')[1]) - 1] = true;
-                            return true;
-                        }
-                        else if (control.Tag.Equals("end") && player)
-                        {
-                            (Parent as Play).CheckHighScoore();
-                            (Parent as Play).SetRiceCoin(star);
-                            (Parent as Play).GetWorlds().Visible = true;
-                            (Parent as Play).GetWorlds().ShowInTaskbar = true;
-                            (Parent as Play).Close();
-                            return true;
-                        }
-                        else if (control is Itembox)
-                        {
-                            if (up)
-                            {
-                                gameControls.Add((control as Itembox).Activate(!mushroom));
-                            }
-                            return false;
-                        }
-                        else if (control.Tag.ToString().Split('_')[0].Equals("Item") && player)
-                        {
-                            PickItem(control);
-                        }
-                        else if (control.Tag.ToString().Equals("water"))
-                        {
-                            if (invincible && itemCounter > 0)
+                            if (control.Tag.ToString().Equals("cloud"))
                             {
                                 return true;
                             }
-                            else if (player)
-                            {
-                                jumpCounter = 0;
-                                Hit();
-                            }
                         }
-                        else if (control is Enemy)
+                        else
                         {
-                            if ((invincible && itemCounter > 0) || destroyEnemyItem)
+
+                            if (control.Tag.ToString().Split('_').Length > 1 && player && (up || pickCoinItem))
                             {
-                                (control as Enemy).Hit();
-                            }
-                            else if ((down && location.Bottom - control.Top < 20))
-                            {
-                                if (control.Tag.ToString().Split('_').Length > 1)
+                                if (control.Tag.ToString().Split('_')[1].Equals("coin"))
                                 {
+                                    gameControls.Remove(control);
+                                    Parent.Controls.Remove(control);
+                                    Point help = control.Location;
+                                    help.Offset(0, -Settings.height);
+                                    coin.Location = help;
+                                    gameControls.Add(coin);
+                                    Parent.Controls.Add(coin);
+                                    coin.BringToFront();
+                                    (Parent as Play).SetCoin(++coinCounter);
+                                    coinVisibleCounter = 3; ;
+                                }
+                                else if (control.Tag.ToString().Split('_')[1].Equals("destroy"))
+                                {
+                                    gameControls.Remove(control);
+                                    Parent.Controls.Remove(control);
+                                }
+
+                            }
+                            else if (control.Tag.ToString().Split('_')[0].Equals("obstacle"))
+                            {
+                                return false;
+                            }
+                            else if (control.Tag.Equals("coin") && (player || pickCoinItem))
+                            {
+                                sound_music.RiceSound(settings);
+                                gameControls.Remove(control);
+                                Parent.Controls.Remove(control);
+                                (Parent as Play).SetCoin(++coinCounter);
+                                coinVisibleCounter = 3;
+                                return true;
+                            }
+                            else if (control.Tag.ToString().Split('_')[0].Equals("star") && (player || pickCoinItem))
+                            {
+                                gameControls.Remove(control);
+                                Parent.Controls.Remove(control);
+                                star[Convert.ToInt32(control.Tag.ToString().Split('_')[1]) - 1] = true;
+                                return true;
+                            }
+                            else if (control.Tag.Equals("end") && player)
+                            {
+                                (Parent as Play).CheckHighScoore();
+                                (Parent as Play).SetRiceCoin(star);
+                                (Parent as Play).GetWorlds().Reload();
+                                (Parent as Play).GetWorlds().Visible = true;
+                                (Parent as Play).GetWorlds().ShowInTaskbar = true;
+                                (Parent as Play).Close();
+                                return true;
+                            }
+                            else if (control is Itembox)
+                            {
+                                if (up)
+                                {
+                                    gameControls.Add((control as Itembox).Activate(!mushroom));
+                                }
+                                return false;
+                            }
+                            else if (control.Tag.ToString().Split('_')[0].Equals("Item") && player)
+                            {
+                                PickItem(control);
+                            }
+                            else if (control.Tag.ToString().Equals("water"))
+                            {
+                                if (invincible && itemCounter > 0)
+                                {
+                                    return true;
+                                }
+                                else if (player)
+                                {
+                                    jumpCounter = 0;
                                     Hit();
                                 }
-                                else
+                            }
+                            else if (control is Enemy)
+                            {
+                                if ((invincible && itemCounter > 0) || destroyEnemyItem)
                                 {
                                     (control as Enemy).Hit();
                                 }
-                            }
+                                else if ((down && location.Bottom - control.Top < 20))
+                                {
+                                    if (control.Tag.ToString().Split('_').Length > 1)
+                                    {
+                                        Hit();
+                                    }
+                                    else
+                                    {
+                                        (control as Enemy).Hit();
+                                    }
+                                }
 
-                            else if (player)
-                            {
-                                Hit();
+                                else if (player)
+                                {
+                                    Hit();
+                                }
                             }
                         }
                     }
                 }
 
             }
+
             if (Parent == null)
             {
                 return false;
@@ -376,6 +395,10 @@ namespace Mario
             if (location.Y + location.Height > Parent.Height)
             {
                 Dead();
+            }
+            if (cloud)
+            {
+                return false;
             }
             return true;
         }
@@ -446,19 +469,19 @@ namespace Mario
                     {
                         help.Offset(-Settings.width, 0);
                     }
-                    if (CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, false))
+                    if (CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, false, false))
                     {
                         if (bumerang)
                         {
-                            CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, true);
+                            CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, true, false);
                         }
                         if (fireBall)
                         {
                             help.Offset(0, Settings.height);
-                            if (!CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true, false))
+                            if (!CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true, false, false))
                             {
                                 help.Offset(0, -Settings.height);
-                                CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true, false);
+                                CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true, false, false);
                             }
                         }
                         itemThrow.Location = help;
@@ -491,6 +514,7 @@ namespace Mario
                         }
                         itemThrow.Location = help;
                     }
+                    invincible = false;
                 }
 
             }
@@ -592,7 +616,8 @@ namespace Mario
 
         //-----------------------------------------Texture/Bounds--------------------------------------------------------
         private Animation normal_stay_left, normal_stay_right, pepper_stay_left, pepper_stay_right, pepper_walk_left, pepper_walk_right,
-            player_small_walk_right, player_small_walk_left, player_small_stay_left, player_small_stay_right, player_normal_walk_left, player_normal_walk_right;
+            player_small_walk_right, player_small_walk_left, player_small_stay_left, player_small_stay_right, player_normal_walk_left, player_normal_walk_right,
+            stay_bumerang_left, stay_bumerang_right, run_bumerang_left, run_bumerang_right, stay_star_left, stay_star_right, run_star_left, run_star_right;
         private bool last_button_right;
         private void InitTexture()
         {
@@ -714,6 +739,72 @@ namespace Mario
             player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_6);
             player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_7);
             player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_8);
+            stay_bumerang_left = new Animation();
+            stay_bumerang_left.Add(Properties.Resources.player_normal_bumerang_left_0);
+            stay_bumerang_left.Add(Properties.Resources.player_normal_bumerang_left_0);
+            stay_bumerang_left.Add(Properties.Resources.player_normal_bumerang_left_1);
+            stay_bumerang_left.Add(Properties.Resources.player_normal_bumerang_left_1);
+            stay_bumerang_left.Add(Properties.Resources.player_normal_bumerang_left_2);
+            stay_bumerang_left.Add(Properties.Resources.player_normal_bumerang_left_2);
+            stay_bumerang_right = new Animation();
+            stay_bumerang_right.Add(Properties.Resources.player_normal_bumerang_right_0);
+            stay_bumerang_right.Add(Properties.Resources.player_normal_bumerang_right_0);
+            stay_bumerang_right.Add(Properties.Resources.player_normal_bumerang_right_1);
+            stay_bumerang_right.Add(Properties.Resources.player_normal_bumerang_right_1);
+            stay_bumerang_right.Add(Properties.Resources.player_normal_bumerang_right_2);
+            stay_bumerang_right.Add(Properties.Resources.player_normal_bumerang_right_2);
+            run_bumerang_left = new Animation();
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_0);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_1);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_2);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_3);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_4);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_5);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_6);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_7);
+            run_bumerang_right = new Animation();
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_0);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_1);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_2);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_3);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_4);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_5);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_6);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_7);
+            stay_star_left = new Animation();
+            stay_star_left.Add(Properties.Resources.player_normal_stay_star_left_0);
+            stay_star_left.Add(Properties.Resources.player_normal_stay_star_left_0);
+            stay_star_left.Add(Properties.Resources.player_normal_stay_star_left_1);
+            stay_star_left.Add(Properties.Resources.player_normal_stay_star_left_1);
+            stay_star_left.Add(Properties.Resources.player_normal_stay_star_left_2);
+            stay_star_left.Add(Properties.Resources.player_normal_stay_star_left_2);
+            stay_star_right = new Animation();
+            stay_star_right.Add(Properties.Resources.player_normal_stay_star_right_0);
+            stay_star_right.Add(Properties.Resources.player_normal_stay_star_right_0);
+            stay_star_right.Add(Properties.Resources.player_normal_stay_star_right_1);
+            stay_star_right.Add(Properties.Resources.player_normal_stay_star_right_1);
+            stay_star_right.Add(Properties.Resources.player_normal_stay_star_right_2);
+            stay_star_right.Add(Properties.Resources.player_normal_stay_star_right_2);
+            run_star_left = new Animation();
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_0);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_1);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_2);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_3);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_4);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_5);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_6);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_7);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_8);
+            run_star_right = new Animation();
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_0);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_1);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_2);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_3);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_4);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_5);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_6);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_7);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_8);
         }
         private void ChangeTexture()
         {
@@ -760,6 +851,50 @@ namespace Mario
                         else
                         {
                             pcBPlayer.Image = pepper_stay_left.Get();
+                        }
+                    }
+                }
+                else if (bumerang)
+                {
+                    if (left)
+                    {
+                        pcBPlayer.Image = run_bumerang_left.Get();
+                    }
+                    else if (right)
+                    {
+                        pcBPlayer.Image = run_bumerang_right.Get();
+                    }
+                    else
+                    {
+                        if (last_button_right)
+                        {
+                            pcBPlayer.Image = stay_bumerang_right.Get();
+                        }
+                        else
+                        {
+                            pcBPlayer.Image = stay_bumerang_left.Get();
+                        }
+                    }
+                }
+                else if (invincible)
+                {
+                    if (left)
+                    {
+                        pcBPlayer.Image = run_star_left.Get();
+                    }
+                    else if (right)
+                    {
+                        pcBPlayer.Image = run_star_right.Get();
+                    }
+                    else
+                    {
+                        if (last_button_right)
+                        {
+                            pcBPlayer.Image = stay_star_right.Get();
+                        }
+                        else
+                        {
+                            pcBPlayer.Image = stay_star_left.Get();
                         }
                     }
                 }

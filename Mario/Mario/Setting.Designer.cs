@@ -51,7 +51,9 @@
             this.chBsound = new System.Windows.Forms.CheckBox();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnResetAll = new System.Windows.Forms.Button();
+            this.tBarMusicValue = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tBarMusicValue)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -272,7 +274,7 @@
             // chBmusic
             // 
             this.chBmusic.AutoSize = true;
-            this.chBmusic.Location = new System.Drawing.Point(80, 24);
+            this.chBmusic.Location = new System.Drawing.Point(141, 21);
             this.chBmusic.Name = "chBmusic";
             this.chBmusic.Size = new System.Drawing.Size(54, 17);
             this.chBmusic.TabIndex = 7;
@@ -283,7 +285,7 @@
             // chBsound
             // 
             this.chBsound.AutoSize = true;
-            this.chBsound.Location = new System.Drawing.Point(151, 24);
+            this.chBsound.Location = new System.Drawing.Point(59, 21);
             this.chBsound.Name = "chBsound";
             this.chBsound.Size = new System.Drawing.Size(57, 17);
             this.chBsound.TabIndex = 8;
@@ -314,11 +316,22 @@
             this.btnResetAll.UseVisualStyleBackColor = false;
             this.btnResetAll.Click += new System.EventHandler(this.btnResetAll_Click);
             // 
+            // tBarMusicValue
+            // 
+            this.tBarMusicValue.Location = new System.Drawing.Point(201, 14);
+            this.tBarMusicValue.Maximum = 100;
+            this.tBarMusicValue.Name = "tBarMusicValue";
+            this.tBarMusicValue.Size = new System.Drawing.Size(194, 45);
+            this.tBarMusicValue.TabIndex = 11;
+            this.tBarMusicValue.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBarMusicValue.Scroll += new System.EventHandler(this.tBarMusicValue_Scroll);
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(664, 275);
+            this.Controls.Add(this.tBarMusicValue);
             this.Controls.Add(this.btnResetAll);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.chBsound);
@@ -333,6 +346,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Setting_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tBarMusicValue)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,5 +376,6 @@
         private System.Windows.Forms.Button btnResetUp;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnResetAll;
+        private System.Windows.Forms.TrackBar tBarMusicValue;
     }
 }

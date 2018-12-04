@@ -226,6 +226,7 @@ namespace Mario
         public static void ResetLevel(ReadFile readFile, string four)
         {
             string[] help=readFile.SearchData().Split('|');
+            help[1] = "-1";
             help[3] = "0,0,0";
             help[4] = four;
             string setdata="";

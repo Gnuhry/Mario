@@ -230,20 +230,71 @@ namespace Mario.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream level1 {
+        internal static System.Drawing.Bitmap pepper {
             get {
-                return ResourceManager.GetStream("level1", resourceCulture);
+                object obj = ResourceManager.GetObject("pepper", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pepper {
+        internal static System.Drawing.Bitmap player_normal_bumerang_left_0 {
             get {
-                object obj = ResourceManager.GetObject("pepper", resourceCulture);
+                object obj = ResourceManager.GetObject("player_normal_bumerang_left_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_bumerang_left_1 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_bumerang_left_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_bumerang_left_2 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_bumerang_left_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_bumerang_right_0 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_bumerang_right_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_bumerang_right_1 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_bumerang_right_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_bumerang_right_2 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_bumerang_right_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -371,6 +422,166 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_left_0 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_left_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_left_1 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_left_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_left_2 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_left_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_left_3 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_left_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_left_4 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_left_4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_left_5 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_left_5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_left_6 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_left_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_left_7 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_left_7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_right_0 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_right_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_right_1 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_right_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_right_2 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_right_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_right_3 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_right_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_right_4 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_right_4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_right_5 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_right_5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_right_6 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_right_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_bumerang_right_7 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_bumerang_right_7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap player_normal_run_pepper_left_0 {
             get {
                 object obj = ResourceManager.GetObject("player_normal_run_pepper_left_0", resourceCulture);
@@ -451,6 +662,186 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_left_0 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_left_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_left_1 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_left_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_left_2 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_left_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_left_3 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_left_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_left_4 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_left_4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_left_5 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_left_5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_left_6 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_left_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_left_7 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_left_7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_left_8 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_left_8", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_right_0 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_right_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_right_1 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_right_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_right_2 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_right_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_right_3 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_right_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_right_4 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_right_4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_right_5 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_right_5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_right_6 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_right_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_right_7 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_right_7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_run_star_right_8 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_run_star_right_8", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap player_normal_stay_left_0 {
             get {
                 object obj = ResourceManager.GetObject("player_normal_stay_left_0", resourceCulture);
@@ -504,6 +895,66 @@ namespace Mario.Properties {
         internal static System.Drawing.Bitmap player_normal_stay_right_2 {
             get {
                 object obj = ResourceManager.GetObject("player_normal_stay_right_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_stay_star_left_0 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_stay_star_left_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_stay_star_left_1 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_stay_star_left_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_stay_star_left_2 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_stay_star_left_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_stay_star_right_0 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_stay_star_right_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_stay_star_right_1 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_stay_star_right_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_normal_stay_star_right_2 {
+            get {
+                object obj = ResourceManager.GetObject("player_normal_stay_star_right_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1161,16 +1612,6 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap story_3 {
-            get {
-                object obj = ResourceManager.GetObject("story_3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap story_3_gif {
             get {
                 object obj = ResourceManager.GetObject("story_3_gif", resourceCulture);
@@ -1194,6 +1635,16 @@ namespace Mario.Properties {
         internal static System.Drawing.Bitmap story_5 {
             get {
                 object obj = ResourceManager.GetObject("story_5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap story_6 {
+            get {
+                object obj = ResourceManager.GetObject("story_6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

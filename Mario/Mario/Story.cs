@@ -11,6 +11,8 @@ namespace Mario
         {
             if (e.KeyData == Keys.Escape)
             {
+                form1.Visible = true;
+                form1.ShowInTaskbar = true;
                 Close();
             }
             click++;
@@ -34,7 +36,7 @@ namespace Mario
             {
                 pictureBox2.Visible = true;
                 pictureBox3.Visible = false;
-                pictureBox3.Image = Properties.Resources.grass;
+                pictureBox3.Image = Properties.Resources.story_6;
             }
             else if (click == 5)
             {

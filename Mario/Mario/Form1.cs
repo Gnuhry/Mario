@@ -10,7 +10,12 @@ namespace Mario
         public Form1()
         {
             InitializeComponent();
-            settings = new Settings();
+            settings = ReadFile.GetSettings();
+            sound_music.CheckMusic(settings);
+            if (ReadFile.IsFirst())
+            {
+                btnStart.Enabled = false;
+            }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -18,7 +23,6 @@ namespace Mario
             Visible = false;
             ShowInTaskbar = false;
             new Worlds(settings,this).Show();
-          
         }
 
         private void Forms_FormClosed(object sender, FormClosedEventArgs e)
@@ -35,5 +39,16 @@ namespace Mario
             setting.Show();
             setting.FormClosed += Forms_FormClosed;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (ReadFile.IsFirst())
+            {
+                ReadFile.SetFirst("1");
+            }
+            new Story(this).Show();
+            btnStart.Enabled = true;
+        }
+
     }
 }

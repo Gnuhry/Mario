@@ -22,8 +22,14 @@ namespace Mario
             Init();
             FindPlayer();
             DisplayBackground();
+            InitTime();
             InitTimer();
+
+        }
+        public void Start()
+        {
             players.Start();
+            StartTime();
         }
         private void Init()
         {
@@ -43,6 +49,7 @@ namespace Mario
         {
             MoveBackgroundLeft();
             MoveBackgroundRight();
+            TimerTime();
         }
 
         //------------------------Player-----------------------------------------
@@ -66,11 +73,21 @@ namespace Mario
                         return;
                     }
                 }
+
+            }
+            if (players == null)
+            {
+                throw new Exception();
             }
         }
         public void PlayerStart()
         {
             players.Start();
+        }
+        public void PlayerDipose()
+        {
+            players.Stop();
+            players.Dispose();
         }
 
         //-------------------------Background-------------------------------------
@@ -88,7 +105,6 @@ namespace Mario
                         if (controls[row][column] == players)
                         {
                             players.GameControlRemove(controls[row][column]);
-                           // controls[row][column].Location = new Point((row - pointer) * Settings.width, column * Settings.height - Settings.height);
                             controls[row][column] = null;
                         }
                         if (controls[row][column] is Enemy)
@@ -112,7 +128,7 @@ namespace Mario
             Point help = players.Location;
             if (help.X < border)
             {
-                for (int f = 0; f < 15; f++)
+                for (int f = 0; f < Settings.highBlocks; f++)
                 {
                     if (controls[pointer + gameWidth - 1][f] != null)
                     {
@@ -133,14 +149,28 @@ namespace Mario
                         control.Location = location;
                     }
                 }
-                for (int f = 0; f < 15; f++)
+                for (int f = 0; f < Settings.highBlocks; f++)
                 {
                     if (controls[pointer - 1][f] != null)
                     {
                         controls[pointer - 1][f].Location = new Point(0, f * Settings.height);
                         players.GameControlAdd(controls[pointer - 1][f]);
                         controlCollection.Add(controls[pointer - 1][f]);
-                        players.EnemyAdd(controls[pointer - 1][f] as Enemy);
+                        if (controls[pointer - 1][f] is Enemy)
+                        {
+                            players.GameControlRemove(controls[pointer - 1][f]);
+                            players.EnemyAdd(controls[pointer - 1][f] as Enemy);
+                            players.StartEnemies();
+                            controls[pointer - 1][f] = null;
+                        }
+                    }
+                }
+                for (int f = 0; f < players.GetEnemy().Count; f++)
+                {
+                    if (players.GetEnemy()[f].Location.Y == Settings.width * (pointer - 1))
+                    {
+                        controlCollection.Add(players.GetEnemy()[f]);
+                        players.GetEnemy()[f].Start(players);
                     }
                 }
                 pointer--;
@@ -168,7 +198,7 @@ namespace Mario
             Point help = players.Location;
             if (help.X > gameWidth * Settings.width - border)
             {
-                for (int f = 0; f < 15; f++)
+                for (int f = 0; f < Settings.highBlocks; f++)
                 {
                     if (controls[pointer][f] != null)
                     {
@@ -189,14 +219,21 @@ namespace Mario
                         control.Location = location;
                     }
                 }
-                for (int f = 0; f < 15; f++)
+                for (int f = 0; f < Settings.highBlocks; f++)
                 {
                     if (controls[pointer + gameWidth][f] != null)
                     {
                         controls[pointer + gameWidth][f].Location = new Point((gameWidth - 1) * Settings.width, f * Settings.height);
                         players.GameControlAdd(controls[pointer + gameWidth][f]);
                         controlCollection.Add(controls[pointer + gameWidth][f]);
-                        players.EnemyAdd(controls[pointer + gameWidth][f] as Enemy);
+                        if (controls[pointer + gameWidth][f] is Enemy)
+                        {
+                            players.GameControlRemove(controls[pointer + gameWidth][f]);
+                            players.EnemyAdd(controls[pointer + gameWidth][f] as Enemy);
+                            players.StartEnemies();
+                            controls[pointer + gameWidth][f] = null;
+                        }
+
                     }
                 }
                 pointer++;
@@ -217,6 +254,46 @@ namespace Mario
                     }
                 }
             }
+        }
+
+        //-----------------------------------------Time------------------------------------------
+        private DateTime start, help;
+        private Label time;
+        private bool active;
+        private void InitTime()
+        {
+            time = new Label
+            {
+                AutoSize = true,
+                Location = new Point(0, 0),
+                BackColor = Color.White
+            };
+            controlCollection.Add(time);
+            time.BringToFront();
+            active = false;
+            help = new DateTime();
+        }
+        private void TimerTime()
+        {
+            if (active)
+            {
+                time.Text = ((DateTime.Now - start).TotalSeconds + (help - new DateTime()).TotalSeconds) + "sek";
+            }
+        }
+        public void StartTime()
+        {
+            active = true;
+            start = DateTime.Now;
+
+        }
+        public void StopTime()
+        {
+            active = false;
+            help += DateTime.Now - start;
+        }
+        public double GetTime()
+        {
+            return (help - new DateTime()).TotalSeconds;
         }
     }
 }

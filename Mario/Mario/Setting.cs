@@ -17,6 +17,15 @@ namespace Mario
             SetLabel();
             chBmusic.Checked = settings.music;
             chBsound.Checked = settings.sounds;
+            tBarMusicValue.Value = Convert.ToInt32(100 * settings.volume);
+            if (chBmusic.Checked)
+            {
+                tBarMusicValue.Enabled = true;
+            }
+            else
+            {
+                tBarMusicValue.Enabled = false;
+            }
         }
         private void SetLabel()
         {
@@ -120,13 +129,70 @@ namespace Mario
         {
             settings.music = !settings.music;
             chBmusic.Checked = settings.music;
-
+            sound_music.CheckMusic(settings);
+            if (chBmusic.Checked)
+            {
+                tBarMusicValue.Enabled = true;
+            }
+            else
+            {
+                tBarMusicValue.Enabled = false;
+            }
         }
 
         private void chBsound_Click(object sender, EventArgs e)
         {
             settings.sounds = !settings.sounds;
             chBsound.Checked = settings.sounds;
+        }
+
+        private void btnResetUp_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Reset");
+            settings.up = Settings.upD;
+            SetLabel();
+        }
+
+        private void btnResetRight_Click(object sender, EventArgs e)
+        {
+            settings.right = Settings.rightD;
+            SetLabel();
+        }
+
+        private void btnResetLeft_Click(object sender, EventArgs e)
+        {
+            settings.left = Settings.leftD;
+            SetLabel();
+        }
+
+        private void btnResetItem_Click(object sender, EventArgs e)
+        {
+            settings.item = Settings.itemD;
+
+            SetLabel();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            settings.Default();
+            SetLabel();
+        }
+
+        private void btnResetAll_Click(object sender, EventArgs e)
+        {
+            ReadFile.ResetAll(settings);
+            Application.Restart();
+        }
+
+        private void Setting_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ReadFile.SetSettings(settings);
+        }
+
+        private void tBarMusicValue_Scroll(object sender, EventArgs e)
+        {
+            settings.volume = tBarMusicValue.Value / 100.0;
+            sound_music.ChangeVolume(settings);
         }
     }
 }

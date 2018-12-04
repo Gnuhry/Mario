@@ -13,17 +13,19 @@ namespace Mario
         public Enemy(bool normal)
         {
             InitializeComponent();
+            Active = false;
             this.normal = normal;
             if (normal)
             {
-                Size = new Size(Settings.width, 2*Settings.height);
+                Size = new Size(Settings.width, 2 * Settings.height);
                 Tag = "Enemy_pointed";
-                //TODO bild
+                pcBEnemy.Size = new Size(Settings.width, 2 * Settings.height); ;
+                pcBEnemy.Image = Properties.Resources.big_ben_right;
             }
             else
             {
                 Size = new Size(Settings.width, Settings.height);
-                pcBEnemy.Image = Properties.Resources.enemy_right;
+                pcBEnemy.Image = Properties.Resources.grammy_right;
                 Tag = "Enemy";
             }
             right = true;
@@ -34,22 +36,29 @@ namespace Mario
 
         public void Start(Players players)
         {
+            Active = true;
             enemy_timer.Start();
             this.players = players;
         }
         public void Stop()
         {
+            Active = false;
             enemy_timer.Stop();
+        }
+        private bool Active;
+        public bool IsActive
+        {
+            get => Active;
         }
         private void Enemy_timer_Tick(object sender, EventArgs e)
         {
             Point help = Location;
             if (right)
-            {               
-                if (CollisionDetect(new Point(Settings.speedX,0)))
+            {
+                if (CollisionDetect(new Point(Settings.speedX, 0)))
                 {
                     help.Offset(Settings.speedX, 0);
-                    if (CollisionDetect(new Point(0,Settings.speedY)))
+                    if (CollisionDetect(new Point(0, Settings.speedY)))
                     {
                         help.Offset(0, Settings.speedY);
                         Console.WriteLine("Right down");
@@ -66,16 +75,29 @@ namespace Mario
                 else
                 {
                     right = false;
-                    pcBEnemy.Image = Properties.Resources.enemy_left;
+                    if (CollisionDetect(new Point(0, Settings.speedY)))
+                    {
+                        help.Offset(0, Settings.speedY);
+                        Console.WriteLine("down");
+                        Location = help;
+                    }
+                    if (normal)
+                    {
+                        pcBEnemy.Image = Properties.Resources.big_ben_left;
+                    }
+                    else
+                    {
+                        pcBEnemy.Image = Properties.Resources.grammy_left;
+                    }
                     return;
                 }
             }
             else
             {
-                if (CollisionDetect(new Point(-Settings.speedX,0)))
+                if (CollisionDetect(new Point(-Settings.speedX, 0)))
                 {
                     help.Offset(-Settings.speedX, 0);
-                    if (CollisionDetect(new Point(0,Settings.speedY)))
+                    if (CollisionDetect(new Point(0, Settings.speedY)))
                     {
                         help.Offset(0, Settings.speedY);
                         Console.WriteLine("LEft down");
@@ -92,9 +114,25 @@ namespace Mario
                 else
                 {
                     right = true;
-                    pcBEnemy.Image = Properties.Resources.enemy_right;
+                    if (CollisionDetect(new Point(0, Settings.speedY)))
+                    {
+                        help.Offset(0, Settings.speedY);
+                        Console.WriteLine("down");
+                        Location = help;
+                    }
+                    if (normal)
+                    {
+                        pcBEnemy.Image = Properties.Resources.big_ben_right;
+
+                    }
+                    else
+                    {
+                        pcBEnemy.Image = Properties.Resources.grammy_right;
+
+                    }
                     return;
                 }
+
             }
         }
 
@@ -103,7 +141,7 @@ namespace Mario
             //Rectangle rectangle = Bounds;
             //rectangle.Offset(Offset);
             //return players.CollisionDetect(rectangle, false, false, false, false);
-           if (Parent == null) return false;
+            if (Parent == null) return false;
             Point help = Location;
             help.Offset(Offset);
             Rectangle rectangle = Bounds;
@@ -122,7 +160,7 @@ namespace Mario
             {
                 return false;
             }
-            if (help.X > Screen.PrimaryScreen.WorkingArea.Width)
+            if (help.X > Screen.PrimaryScreen.WorkingArea.Width - Settings.width)
             {
                 return false;
             }

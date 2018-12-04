@@ -7,17 +7,18 @@ namespace Mario
 {
     public partial class Players : UserControl
     {
-        private Timer player_timer;
+        private System.Windows.Forms.Timer player_timer;
         private Settings settings;
         private pause pause;
-        public Players(Settings settings)
+        public Players(Settings settings, ReadFile readFile)
         {
             InitializeComponent();
             Init(settings);
-            InitItem();
+            InitItem(readFile);
             InitGameControl();
             InitKeyPressEvents();
             InitPlayerTimer();
+            InitTexture();
             SizeChanged += Players_SizeChanged;
         }
 
@@ -37,7 +38,6 @@ namespace Mario
             Tag = "players";
             Size = Settings.size;
         }
-
 
         //---------------------------------------------Keys-------------------------------------------------------
 
@@ -64,6 +64,10 @@ namespace Mario
             {
                 up = false;
             }
+            else if (key.Equals(settings.item))
+            {
+                previtem = false;
+            }
         }
 
         private void Players_KeyDown(object sender, KeyEventArgs e)
@@ -72,12 +76,12 @@ namespace Mario
             if (key.Equals(settings.left))
             {
                 left = true;
-                lastRight = false;
+                lastpressRight = false;
             }
             else if (key.Equals(settings.right))
             {
                 right = true;
-                lastRight = true;
+                lastpressRight = true;
             }
             else if (key.Equals(settings.up))
             {
@@ -86,6 +90,7 @@ namespace Mario
             else if (key.Equals(settings.item))
             {
                 UseItem();
+                previtem = true;
             }
             else if (e.KeyData.Equals(Keys.Escape))
             {
@@ -99,27 +104,67 @@ namespace Mario
         private int jumpCounter;
         private void InitPlayerTimer()
         {
-            player_timer = new Timer();
-            player_timer.Interval = 50;
+            player_timer = new System.Windows.Forms.Timer();
+            player_timer.Interval = 25;//40Hz
             player_timer.Tick += Player_timer_Tick;
         }
 
-        private void Stop()
+        public void Stop()
         {
             player_timer.Stop();
             StopEnemies();
         }
-
+        int counter = 0;
         private void Player_timer_Tick(object sender, EventArgs e)
         {
-            Point offset = new Point();
             Focus();
             BringToFront();
             ChangeTexture();
+            if (counter++ != 1)
+            {
+                return;
+            }
+            counter = 0;
+            Point offset = new Point();
             offset.Y = CheckY();
             offset.X = CheckX(offset.Y);
+            CollisionDetect(Bounds, false, false, true, false, false, false);
             ItemTimer();
+            EnemyCheckTimer();
             Moving(offset);
+            prevup = up;
+        }
+
+        private void EnemyCheckTimer()
+        {
+            for (int f = 0; f < enemies.Count; f++)
+            {
+                if (enemies[f].IsActive)
+                {
+                    enemies[f].Visible = true;
+                    if (enemies[f].Location.X < 0 || enemies[f].Location.X > Parent.Size.Width)
+                    {
+                        enemies[f].Stop();
+                    }
+                    if (enemies[f].Location.Y > Parent.Size.Height)
+                    {
+                        enemies[f].Stop();
+                        GameControlRemove(enemies[f]);
+                        enemies.RemoveAt(f);
+                    }
+                }
+                else
+                {
+                    if (Parent != null)
+                    {
+                        if (enemies[f].Location.X > 0 && enemies[f].Location.X < Parent.Size.Width)
+                        {
+                            enemies[f].Start(this);
+                            enemies[f].Visible = true;
+                        }
+                    }
+                }
+            }
         }
 
         private void Moving(Point offset)
@@ -139,7 +184,7 @@ namespace Mario
             {
                 Rectangle help = Bounds;
                 help.Offset(Settings.speedX, offsetY);
-                if (CollisionDetect(help, false, false, true, false, false))
+                if (CollisionDetect(help, false, false, true, false, false, false))
                 {
                     return Settings.speedY;
                 }
@@ -152,7 +197,7 @@ namespace Mario
             {
                 Rectangle help = Bounds;
                 help.Offset(-Settings.speedX, offsetY);
-                if (CollisionDetect(help, false, false, true, false, false))
+                if (CollisionDetect(help, false, false, true, false, false, false))
                 {
                     return -Settings.speedX;
                 }
@@ -178,14 +223,13 @@ namespace Mario
                 }
                 Rectangle help = Bounds;
                 help.Offset(0, -Settings.speedY);
-                if (CollisionDetect(help, true, false, true, false, false))
+                if (CollisionDetect(help, true, false, true, false, false, false))
                 {
                     return -Settings.speedY;
                 }
                 else
                 {
                     jump = false;
-                    //TODO Jump=false? Wenn Kopf wand berührt
                     return 0;
                 }
             }
@@ -194,9 +238,16 @@ namespace Mario
                 CheckDoubleJump();
                 Rectangle help = Bounds;
                 help.Offset(0, Settings.speedY);
-                if (CollisionDetect(help, false, true, true, false, false))
+                if (CollisionDetect(help, false, true, true, false, false, false))
                 {
-                    return Settings.speedY;
+                    if (CollisionDetect(help, false, false, false, false, false, true))
+                    {
+                        return Settings.speedY / 2;
+                    }
+                    else
+                    {
+                        return Settings.speedY;
+                    }
                 }
                 else
                 {
@@ -208,81 +259,146 @@ namespace Mario
             }
         }
 
+
         //--------------------------------------------Collision Detect--------------------------------------------------
-        public bool CollisionDetect(Rectangle location, bool up, bool down, bool player, bool destroyEnemyItem, bool pickCoinItem)
+        public bool CollisionDetect(Rectangle location, bool up, bool down, bool player, bool destroyEnemyItem, bool pickCoinItem, bool cloud)
         {
+            if (Parent == null)
+            {
+                return false;
+            }
             foreach (Control control in Parent.Controls)
             {
                 if (control.Bounds.IntersectsWith(location))
                 {
                     if (control.Tag != null)
                     {
-                        if (control.Tag.ToString().Split('_').Length > 1 && player && (up || pickCoinItem))
+                        if (cloud)
                         {
-                            if (control.Tag.ToString().Split('_')[1].Equals("coin"))
+                            if (control.Tag.ToString().Equals("cloud"))
+                            {
+                                return true;
+                            }
+                        }
+                        else
+                        {
+
+                            if (control.Tag.ToString().Split('_').Length > 1 && player && (up || pickCoinItem))
+                            {
+                                if (control.Tag.ToString().Split('_')[1].Equals("coin"))
+                                {
+                                    gameControls.Remove(control);
+                                    Parent.Controls.Remove(control);
+                                    Point help = control.Location;
+                                    help.Offset(0, -Settings.height);
+                                    coin.Location = help;
+                                    gameControls.Add(coin);
+                                    Parent.Controls.Add(coin);
+                                    coin.BringToFront();
+                                    (Parent as Play).SetCoin(++coinCounter);
+                                    coinVisibleCounter = 3; ;
+                                }
+                                else if (control.Tag.ToString().Split('_')[1].Equals("destroy"))
+                                {
+                                    gameControls.Remove(control);
+                                    Parent.Controls.Remove(control);
+                                }
+
+                            }
+                            else if (control.Tag.ToString().Split('_')[0].Equals("obstacle"))
+                            {
+                                return false;
+                            }
+                            else if (control.Tag.Equals("coin") && (player || pickCoinItem))
+                            {
+                                sound_music.RiceSound(settings);
+                                gameControls.Remove(control);
+                                Parent.Controls.Remove(control);
+                                (Parent as Play).SetCoin(++coinCounter);
+                                coinVisibleCounter = 3;
+                                return true;
+                            }
+                            else if (control.Tag.ToString().Split('_')[0].Equals("star") && (player || pickCoinItem))
                             {
                                 gameControls.Remove(control);
                                 Parent.Controls.Remove(control);
-                                Point help = control.Location;
-                                help.Offset(0, -Settings.height);
-                                coin.Location = help;
-                                gameControls.Add(coin);
-                                Parent.Controls.Add(coin);
-                                coin.BringToFront();
-                                (Parent as Play).SetCoin(++coinCounter);
-                                coinVisibleCounter = 3; ;
+                                star[Convert.ToInt32(control.Tag.ToString().Split('_')[1]) - 1] = true;
+                                return true;
                             }
-                        }
-                        else if (control.Tag.ToString().Split('_')[0].Equals("obstacle"))
-                        {
-                            return false;
-                        }
-                        else if (control.Tag.Equals("coin") && player)
-                        {
-                            gameControls.Remove(control);
-                            Parent.Controls.Remove(control);
-                            (Parent as Play).SetCoin(++coinCounter);
-                            coinVisibleCounter = 3; ;
-                            return true;
-                        }
-                        else if (control is Itembox)
-                        {
-                            if (up)
+                            else if (control.Tag.Equals("end") && player)
                             {
-                                gameControls.Add((control as Itembox).Activate(!mushroom));
+                                (Parent as Play).CheckHighScoore();
+                                (Parent as Play).SetRiceCoin(star);
+                                (Parent as Play).GetWorlds().Reload();
+                                (Parent as Play).GetWorlds().Visible = true;
+                                (Parent as Play).GetWorlds().ShowInTaskbar = true;
+                                (Parent as Play).Close();
+                                return true;
                             }
-                            return false;
-                        }
-                        else if (control.Tag.ToString().Split('_')[0].Equals("Item") && player)
-                        {
-                            PickItem(control);
-                        }
-                        else if (control is Enemy)
-                        {
-                            if ((invincible && itemCounter > 0) || destroyEnemyItem)
+                            else if (control is Itembox)
                             {
-                                (control as Enemy).Hit();
-                            }
-                            else if ((down && location.Bottom - control.Top < 20))
-                            {
-                                if (control.Tag.ToString().Split('_').Length > 1)
+                                if (up)
                                 {
+                                    gameControls.Add((control as Itembox).Activate(!mushroom));
+                                }
+                                return false;
+                            }
+                            else if (control.Tag.ToString().Split('_')[0].Equals("Item") && player)
+                            {
+                                PickItem(control);
+                            }
+                            else if (control.Tag.ToString().Equals("water"))
+                            {
+                                if (invincible && itemCounter > 0)
+                                {
+                                    return true;
+                                }
+                                else if (player)
+                                {
+                                    jumpCounter = 0;
                                     Hit();
                                 }
-                                else
+                            }
+                            else if (control is Enemy)
+                            {
+                                if ((invincible && itemCounter > 0) || destroyEnemyItem)
                                 {
                                     (control as Enemy).Hit();
                                 }
-                            }
+                                else if ((down && location.Bottom - control.Top < 20))
+                                {
+                                    if (control.Tag.ToString().Split('_').Length > 1)
+                                    {
+                                        Hit();
+                                    }
+                                    else
+                                    {
+                                        (control as Enemy).Hit();
+                                    }
+                                }
 
-                            else if (player)
-                            {
-                                Hit();
+                                else if (player)
+                                {
+                                    Hit();
+                                }
                             }
                         }
                     }
                 }
 
+            }
+
+            if (Parent == null)
+            {
+                return false;
+            }
+            if (location.Y + location.Height > Parent.Height)
+            {
+                Dead();
+            }
+            if (cloud)
+            {
+                return false;
             }
             return true;
         }
@@ -290,13 +406,14 @@ namespace Mario
 
 
         //-------------------------------------------Item--------------------------------------------------------------
-        private bool riceBall, doubleJump, mushroom, bumerang, invincible, lastRight, currentRight, doubleJumping;
+        private bool fireBall, doubleJump, mushroom, bumerang, invincible, lastRight, doubleJumping, prevup, previtem, backbumerang, lastpressRight;
         private int itemCounter, hitCounter, coinCounter, coinVisibleCounter;
         private PictureBox itemThrow, coin;
+        private bool[] star;
 
         private void CheckDoubleJump()
         {
-            if (doubleJumping)
+            if (doubleJumping && !prevup)
             {
                 jump = true;
                 jumpCounter = Settings.jumpspeed;
@@ -307,9 +424,11 @@ namespace Mario
                 jump = false;
             }
         }
-        private void InitItem()
+        private void InitItem(ReadFile readFile)
         {
-            riceBall = doubleJump = bumerang = invincible = false;
+            string[] help = readFile.GetData().Split('|')[3].Split(',');
+            star = new bool[] { help[0] == "1", help[1] == "1", help[2] == "1" };
+            fireBall = doubleJump = bumerang = invincible = backbumerang = false;
             itemCounter = 0;
             itemThrow = new PictureBox()
             {
@@ -320,7 +439,7 @@ namespace Mario
             {
                 Size = Settings.size,
                 SizeMode = PictureBoxSizeMode.Zoom,
-                Image = Properties.Resources.coin
+                Image = Properties.Resources.golden_rice_grain
             };
 
             coinCounter = coinVisibleCounter = 0;
@@ -338,7 +457,7 @@ namespace Mario
             }
             if (itemCounter > 0)
             {
-                if (riceBall || bumerang)
+                if (fireBall || bumerang)
                 {
                     Point help = itemThrow.Location;
                     if (lastRight)
@@ -350,19 +469,19 @@ namespace Mario
                     {
                         help.Offset(-Settings.width, 0);
                     }
-                    if (CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, false))
+                    if (CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, false, false))
                     {
                         if (bumerang)
                         {
-                            CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, true);
+                            CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, true, false);
                         }
-                        if (riceBall)
+                        if (fireBall)
                         {
                             help.Offset(0, Settings.height);
-                            if (!CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true, false))
+                            if (!CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true, false, false))
                             {
                                 help.Offset(0, -Settings.height);
-                                CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true, false);
+                                CollisionDetect(new Rectangle(help, Settings.size), false, false, false, true, false, false);
                             }
                         }
                         itemThrow.Location = help;
@@ -370,13 +489,30 @@ namespace Mario
                     else
                     {
                         itemCounter = 1;
+                        backbumerang = true;
                     }
                 }
                 if (--itemCounter == 0)
                 {
-                    if (riceBall || bumerang)
+                    if (fireBall || backbumerang)
                     {
                         Parent.Controls.Remove(itemThrow);
+                    }
+                    if (bumerang && !backbumerang)
+                    {
+                        backbumerang = true;
+                        lastRight = !lastRight;
+                        itemCounter = Settings.itemThrowBlockLength;
+                        Point help = itemThrow.Location;
+                        if (lastRight)
+                        {
+                            help.Offset(Settings.width, 0);
+                        }
+                        else
+                        {
+                            help.Offset(-Settings.width, 0);
+                        }
+                        itemThrow.Location = help;
                     }
                     invincible = false;
                 }
@@ -386,9 +522,14 @@ namespace Mario
 
         private void UseItem()
         {
-            if ((riceBall || bumerang) && itemCounter == 0)
+            if (previtem)
             {
-                currentRight = lastRight;
+                return;
+            }
+            if ((fireBall || bumerang) && itemCounter == 0)
+            {
+                backbumerang = false;
+                lastRight = lastpressRight;
                 itemCounter = Settings.itemThrowBlockLength;
                 Point help = Location;
                 if (lastRight)
@@ -410,10 +551,10 @@ namespace Mario
                 return;
             }
             jumpCounter = 0;
-            if (bumerang || riceBall || doubleJump)
+            if (bumerang || fireBall || doubleJump)
             {
                 Parent.Controls.Remove(itemThrow);
-                bumerang = riceBall = doubleJump = false;
+                bumerang = fireBall = doubleJump = false;
                 hitCounter = 30;
                 return;
             }
@@ -424,6 +565,12 @@ namespace Mario
                 hitCounter = 30;
                 return;
             }
+            Dead();
+        }
+        private void Dead()
+        {
+            //TODO set Animation Dead
+            (Parent as Play).Restart();
         }
         private void PickItem(Control control)
         {
@@ -442,13 +589,13 @@ namespace Mario
             {
                 Parent.Controls.Remove(control);
                 gameControls.Remove(control);
-                riceBall = doubleJump = bumerang = invincible = false;
+                fireBall = doubleJump = bumerang = invincible = false;
                 itemCounter = 0;
                 Parent.Controls.Remove(itemThrow);
                 switch (help)
                 {
                     case 1:
-                        riceBall = true;
+                        fireBall = true;
                         itemThrow.Image = Properties.Resources.fireball;
                         break;
                     case 2:
@@ -459,33 +606,337 @@ namespace Mario
                         doubleJump = true;
                         break;
                     case 4:
-                        itemThrow.Image = Properties.Resources.bumarang;
+                        itemThrow.Image = Properties.Resources.bumerang_throw;
                         bumerang = true;
                         break;
                 }
             }
+            ChangeTexture();
         }
 
         //-----------------------------------------Texture/Bounds--------------------------------------------------------
-
+        private Animation normal_stay_left, normal_stay_right, pepper_stay_left, pepper_stay_right, pepper_walk_left, pepper_walk_right,
+            player_small_walk_right, player_small_walk_left, player_small_stay_left, player_small_stay_right, player_normal_walk_left, player_normal_walk_right,
+            stay_bumerang_left, stay_bumerang_right, run_bumerang_left, run_bumerang_right, stay_star_left, stay_star_right, run_star_left, run_star_right;
+        private bool last_button_right;
+        private void InitTexture()
+        {
+            normal_stay_left = new Animation();
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_0);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_0);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_0);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_1);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_1);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_1);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_2);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_2);
+            normal_stay_left.Add(Properties.Resources.player_normal_stay_left_2);
+            normal_stay_right = new Animation();
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_0);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_0);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_0);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_1);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_1);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_1);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_2);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_2);
+            normal_stay_right.Add(Properties.Resources.player_normal_stay_right_2);
+            pepper_stay_left = new Animation();
+            pepper_stay_left.Add(Properties.Resources.player_normal_pepper_left_0);
+            pepper_stay_left.Add(Properties.Resources.player_normal_pepper_left_1);
+            pepper_stay_left.Add(Properties.Resources.player_normal_pepper_left_2);
+            pepper_stay_left.Add(Properties.Resources.player_normal_pepper_left_3);
+            pepper_stay_left.Add(Properties.Resources.player_normal_pepper_left_4);
+            pepper_stay_left.Add(Properties.Resources.player_normal_pepper_left_5);
+            pepper_stay_right = new Animation();
+            pepper_stay_right.Add(Properties.Resources.player_normal_pepper_0);
+            pepper_stay_right.Add(Properties.Resources.player_normal_pepper_1);
+            pepper_stay_right.Add(Properties.Resources.player_normal_pepper_2);
+            pepper_stay_right.Add(Properties.Resources.player_normal_pepper_3);
+            pepper_stay_right.Add(Properties.Resources.player_normal_pepper_4);
+            pepper_stay_right.Add(Properties.Resources.player_normal_pepper_5);
+            pepper_walk_left = new Animation();
+            pepper_walk_left.Add(Properties.Resources.player_normal_run_pepper_left_0);
+            pepper_walk_left.Add(Properties.Resources.player_normal_run_pepper_left_1);
+            pepper_walk_left.Add(Properties.Resources.player_normal_run_pepper_left_2);
+            pepper_walk_left.Add(Properties.Resources.player_normal_run_pepper_left_3);
+            pepper_walk_left.Add(Properties.Resources.player_normal_run_pepper_left_4);
+            pepper_walk_left.Add(Properties.Resources.player_normal_run_pepper_left_5);
+            pepper_walk_left.Add(Properties.Resources.player_normal_run_pepper_left_6);
+            pepper_walk_left.Add(Properties.Resources.player_normal_run_pepper_left_7);
+            pepper_walk_right = new Animation();
+            pepper_walk_right.Add(Properties.Resources.player_run_pepper_right_0);
+            pepper_walk_right.Add(Properties.Resources.player_run_pepper_right_1);
+            pepper_walk_right.Add(Properties.Resources.player_run_pepper_right_2);
+            pepper_walk_right.Add(Properties.Resources.player_run_pepper_right_3);
+            pepper_walk_right.Add(Properties.Resources.player_run_pepper_right_4);
+            pepper_walk_right.Add(Properties.Resources.player_run_pepper_right_5);
+            pepper_walk_right.Add(Properties.Resources.player_run_pepper_right_6);
+            pepper_walk_right.Add(Properties.Resources.player_run_pepper_right_7);
+            player_small_walk_right = new Animation();
+            player_small_walk_right.Add(Properties.Resources.player_small_walking_right_00);
+            player_small_walk_right.Add(Properties.Resources.player_small_walking_right_01);
+            player_small_walk_right.Add(Properties.Resources.player_small_walking_right_02);
+            player_small_walk_right.Add(Properties.Resources.player_small_walking_right_03);
+            player_small_walk_right.Add(Properties.Resources.player_small_walking_right_04);
+            player_small_walk_right.Add(Properties.Resources.player_small_walking_right_05);
+            player_small_walk_right.Add(Properties.Resources.player_small_walking_right_06);
+            player_small_walk_right.Add(Properties.Resources.player_small_walking_right_07);
+            player_small_walk_right.Add(Properties.Resources.player_small_walking_right_08);
+            player_small_walk_right.Add(Properties.Resources.player_small_walking_right_09);
+            player_small_walk_right.Add(Properties.Resources.player_small_walking_right_10);
+            player_small_walk_right.Add(Properties.Resources.player_small_walking_right_11);
+            player_small_walk_right.Add(Properties.Resources.player_small_walking_right_12);
+            player_small_walk_left = new Animation();
+            player_small_walk_left.Add(Properties.Resources.player_small_walking_left_00);
+            player_small_walk_left.Add(Properties.Resources.player_small_walking_left_01);
+            player_small_walk_left.Add(Properties.Resources.player_small_walking_left_02);
+            player_small_walk_left.Add(Properties.Resources.player_small_walking_left_03);
+            player_small_walk_left.Add(Properties.Resources.player_small_walking_left_04);
+            player_small_walk_left.Add(Properties.Resources.player_small_walking_left_05);
+            player_small_walk_left.Add(Properties.Resources.player_small_walking_left_06);
+            player_small_walk_left.Add(Properties.Resources.player_small_walking_left_07);
+            player_small_walk_left.Add(Properties.Resources.player_small_walking_left_08);
+            player_small_walk_left.Add(Properties.Resources.player_small_walking_left_09);
+            player_small_walk_left.Add(Properties.Resources.player_small_walking_left_10);
+            player_small_walk_left.Add(Properties.Resources.player_small_walking_left_11);
+            player_small_walk_left.Add(Properties.Resources.player_small_walking_left_12);
+            player_small_stay_left = new Animation();
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_0);
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_0);
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_0);
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_0);
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_1);
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_1);
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_1);
+            player_small_stay_left.Add(Properties.Resources.player_small_stay_left_1);
+            player_small_stay_right = new Animation();
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_0);
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_0);
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_0);
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_0);
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_1);
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_1);
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_1);
+            player_small_stay_right.Add(Properties.Resources.player_small_stay_right_1);
+            player_normal_walk_left = new Animation();
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_0);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_1);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_2);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_3);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_4);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_5);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_6);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_7);
+            player_normal_walk_left.Add(Properties.Resources.player_normal_walk_left_8);
+            player_normal_walk_right = new Animation();
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_0);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_1);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_2);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_3);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_4);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_5);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_6);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_7);
+            player_normal_walk_right.Add(Properties.Resources.player_normal_walk_right_8);
+            stay_bumerang_left = new Animation();
+            stay_bumerang_left.Add(Properties.Resources.player_normal_bumerang_left_0);
+            stay_bumerang_left.Add(Properties.Resources.player_normal_bumerang_left_0);
+            stay_bumerang_left.Add(Properties.Resources.player_normal_bumerang_left_1);
+            stay_bumerang_left.Add(Properties.Resources.player_normal_bumerang_left_1);
+            stay_bumerang_left.Add(Properties.Resources.player_normal_bumerang_left_2);
+            stay_bumerang_left.Add(Properties.Resources.player_normal_bumerang_left_2);
+            stay_bumerang_right = new Animation();
+            stay_bumerang_right.Add(Properties.Resources.player_normal_bumerang_right_0);
+            stay_bumerang_right.Add(Properties.Resources.player_normal_bumerang_right_0);
+            stay_bumerang_right.Add(Properties.Resources.player_normal_bumerang_right_1);
+            stay_bumerang_right.Add(Properties.Resources.player_normal_bumerang_right_1);
+            stay_bumerang_right.Add(Properties.Resources.player_normal_bumerang_right_2);
+            stay_bumerang_right.Add(Properties.Resources.player_normal_bumerang_right_2);
+            run_bumerang_left = new Animation();
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_0);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_1);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_2);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_3);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_4);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_5);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_6);
+            run_bumerang_left.Add(Properties.Resources.player_normal_run_bumerang_left_7);
+            run_bumerang_right = new Animation();
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_0);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_1);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_2);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_3);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_4);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_5);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_6);
+            run_bumerang_right.Add(Properties.Resources.player_normal_run_bumerang_right_7);
+            stay_star_left = new Animation();
+            stay_star_left.Add(Properties.Resources.player_normal_stay_star_left_0);
+            stay_star_left.Add(Properties.Resources.player_normal_stay_star_left_0);
+            stay_star_left.Add(Properties.Resources.player_normal_stay_star_left_1);
+            stay_star_left.Add(Properties.Resources.player_normal_stay_star_left_1);
+            stay_star_left.Add(Properties.Resources.player_normal_stay_star_left_2);
+            stay_star_left.Add(Properties.Resources.player_normal_stay_star_left_2);
+            stay_star_right = new Animation();
+            stay_star_right.Add(Properties.Resources.player_normal_stay_star_right_0);
+            stay_star_right.Add(Properties.Resources.player_normal_stay_star_right_0);
+            stay_star_right.Add(Properties.Resources.player_normal_stay_star_right_1);
+            stay_star_right.Add(Properties.Resources.player_normal_stay_star_right_1);
+            stay_star_right.Add(Properties.Resources.player_normal_stay_star_right_2);
+            stay_star_right.Add(Properties.Resources.player_normal_stay_star_right_2);
+            run_star_left = new Animation();
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_0);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_1);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_2);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_3);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_4);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_5);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_6);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_7);
+            run_star_left.Add(Properties.Resources.player_normal_run_star_left_8);
+            run_star_right = new Animation();
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_0);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_1);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_2);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_3);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_4);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_5);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_6);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_7);
+            run_star_right.Add(Properties.Resources.player_normal_run_star_right_8);
+        }
         private void ChangeTexture()
         {
-
-            if (mushroom)
+            if (!mushroom)
             {
-                pcBPlayer.Image = Properties.Resources.player_normal;
+                if (left)
+                {
+                    pcBPlayer.Image = player_small_walk_left.Get();
+                }
+                else if (right)
+                {
+                    pcBPlayer.Image = player_small_walk_right.Get();
+                }
+                else
+                {
+                    if (last_button_right)
+                    {
+                        pcBPlayer.Image = player_small_stay_right.Get();
+                    }
+                    else
+                    {
+                        pcBPlayer.Image = player_small_stay_left.Get();
+                    }
+                }
             }
             else
             {
-                pcBPlayer.Image = Properties.Resources.player_small;
+                if (fireBall)
+                {
+                    if (left)
+                    {
+                        pcBPlayer.Image = pepper_walk_left.Get();
+                    }
+                    else if (right)
+                    {
+                        pcBPlayer.Image = pepper_walk_right.Get();
+                    }
+                    else
+                    {
+                        if (last_button_right)
+                        {
+                            pcBPlayer.Image = pepper_stay_right.Get();
+                        }
+                        else
+                        {
+                            pcBPlayer.Image = pepper_stay_left.Get();
+                        }
+                    }
+                }
+                else if (bumerang)
+                {
+                    if (left)
+                    {
+                        pcBPlayer.Image = run_bumerang_left.Get();
+                    }
+                    else if (right)
+                    {
+                        pcBPlayer.Image = run_bumerang_right.Get();
+                    }
+                    else
+                    {
+                        if (last_button_right)
+                        {
+                            pcBPlayer.Image = stay_bumerang_right.Get();
+                        }
+                        else
+                        {
+                            pcBPlayer.Image = stay_bumerang_left.Get();
+                        }
+                    }
+                }
+                else if (invincible)
+                {
+                    if (left)
+                    {
+                        pcBPlayer.Image = run_star_left.Get();
+                    }
+                    else if (right)
+                    {
+                        pcBPlayer.Image = run_star_right.Get();
+                    }
+                    else
+                    {
+                        if (last_button_right)
+                        {
+                            pcBPlayer.Image = stay_star_right.Get();
+                        }
+                        else
+                        {
+                            pcBPlayer.Image = stay_star_left.Get();
+                        }
+                    }
+                }
+                else
+                {
+                    if (left)
+                    {
+                        pcBPlayer.Image = player_normal_walk_left.Get();
+                    }
+                    else if (right)
+                    {
+                        pcBPlayer.Image = player_normal_walk_right.Get();
+                    }
+                    else
+                    {
+                        if (last_button_right)
+                        {
+                            pcBPlayer.Image = normal_stay_right.Get();
+                        }
+                        else
+                        {
+                            pcBPlayer.Image = normal_stay_left.Get();
+                        }
+                    }
+                }
+
+            }
+            if ((last_button_right || right) && !left)
+            {
+                last_button_right = true;
+            }
+            else
+            {
+                last_button_right = false;
             }
             return;
-            throw new NotImplementedException();//TODO
         }
         //-----------------------------------------Pause-----------------------------------------------------------------------
         private void Pause()
         {
-            pause = new pause(Parent as Play);
+            (Parent as Play).GetEngine().StopTime();
+            pause = new pause(Parent as Play, star);
             Stop();
             up = jump = false;
             left = false;
@@ -501,7 +952,7 @@ namespace Mario
             gameControls = new List<Control>();
             enemies = new List<Enemy>();
         }
-        private void StartEnemies()
+        public void StartEnemies()
         {
             foreach (Enemy enemy in enemies)
             {
@@ -535,6 +986,10 @@ namespace Mario
         }
         public void GameControlRemoveAt(int index)
         {
+            if (gameControls[index] is Enemy)
+            {
+                (gameControls[index] as Enemy).Stop();
+            }
             gameControls.RemoveAt(index);
         }
         public Control GetGameControlItem(int index)
@@ -547,6 +1002,19 @@ namespace Mario
         }
         public void EnemyAdd(Enemy enemy)
         {
+            int counter = 0;
+            foreach (Enemy enemy_ in enemies)
+            {
+                if (enemy_.IsActive)
+                {
+                    if (++counter == 5)
+                    {
+                        enemy.Visible = false;
+                        return;
+                    }
+                }
+            }
+            enemy.Start(this);
             enemies.Add(enemy);
         }
         public void EnemyRemove(Enemy enemy)

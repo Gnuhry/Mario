@@ -168,8 +168,6 @@ namespace Mario
         {
             string[] help = ReadTextFile();
             help[0] = data;
-            Console.WriteLine("delete");
-            File.Delete(path);
             File.WriteAllLines(path, help);
         }
         public static void UnlockLevel(string level)
@@ -193,11 +191,10 @@ namespace Mario
                     string[] erg = file[f].Split('|');
                     erg[4] = "1";
                     file[f] = "";
-                    for(int g=0;g<erg.Length-1;g++)
+                    for (int g = 0; g < erg.Length - 1; g++)
                     {
                         file[f] += erg[g] + "|";
                     }
-                    File.Delete(path);
                     File.WriteAllLines(path,file);
                     return;
                 }
@@ -261,13 +258,13 @@ namespace Mario
             settings.item = Convert.ToChar(setting[3]);
             settings.music = setting[4] == "True";
             settings.sounds = setting[5] == "True";
+            settings.volume = Convert.ToInt32(setting[6]) / 100.0;
             return settings;
         }
         public static void SetSettings(Settings settings)
         {
             string[] txt=File.ReadAllLines(Settings.textFilePath + ".global.txt");
-            txt[1] = settings.left + ";" + settings.right + ";" + settings.up + ";" + settings.item + ";" + settings.music + ";" + settings.sounds + ";";
-            File.Delete(Settings.textFilePath + ".global.txt");
+            txt[1] = settings.left + ";" + settings.right + ";" + settings.up + ";" + settings.item + ";" + settings.music + ";" + settings.sounds + ";"+(settings.volume*100)+";";
             File.WriteAllLines(Settings.textFilePath + ".global.txt", txt);
         }
         //------------------------------------------------Is first?-----------------------------------------
@@ -275,7 +272,6 @@ namespace Mario
         {
             string[] txt = File.ReadAllLines(Settings.textFilePath + ".global.txt");
             txt[0] = first;
-            File.Delete(Settings.textFilePath + ".global.txt");
             File.WriteAllLines(Settings.textFilePath + ".global.txt", txt);
         }
         public static bool IsFirst()

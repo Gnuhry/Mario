@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadingLevel));
             this.lbLevel = new System.Windows.Forms.Label();
             this.lbLevelName = new System.Windows.Forms.Label();
             this.pcBStar1 = new System.Windows.Forms.PictureBox();
@@ -128,6 +129,7 @@
             this.ClientSize = new System.Drawing.Size(1266, 534);
             this.Controls.Add(this.panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoadingLevel";

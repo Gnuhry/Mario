@@ -10,10 +10,11 @@ namespace Mario
         private System.Windows.Forms.Timer player_timer;
         private Settings settings;
         private pause pause;
+        private ReadFile readFile;
         public Players(Settings settings, ReadFile readFile)
         {
             InitializeComponent();
-            Init(settings);
+            Init(settings,readFile);
             InitItem(readFile);
             InitGameControl();
             InitKeyPressEvents();
@@ -32,9 +33,10 @@ namespace Mario
             player_timer.Start();
             StartEnemies();
         }
-        private void Init(Settings settings)
+        private void Init(Settings settings,ReadFile readFile)
         {
             this.settings = settings;
+            this.readFile = readFile;
             Tag = "players";
             Size = Settings.size;
         }
@@ -117,22 +119,32 @@ namespace Mario
         int counter = 0;
         private void Player_timer_Tick(object sender, EventArgs e)
         {
-            Focus();
-            BringToFront();
-            ChangeTexture();
-            if (counter++ != 1)
+            if (deadanimationcounter > -1)
             {
-                return;
+                if (--deadanimationcounter < 0)
+                {
+                    (Parent as Play).Restart();
+                }
             }
-            counter = 0;
-            Point offset = new Point();
-            offset.Y = CheckY();
-            offset.X = CheckX(offset.Y);
-            CollisionDetect(Bounds, false, false, true, false, false, false);
-            ItemTimer();
-            EnemyCheckTimer();
-            Moving(offset);
-            prevup = up;
+            else
+            {
+                Focus();
+                BringToFront();
+                ChangeTexture();
+                if (counter++ != 1)
+                {
+                    return;
+                }
+                counter = 0;
+                Point offset = new Point();
+                offset.Y = CheckY();
+                offset.X = CheckX(offset.Y);
+                CollisionDetect(Bounds, false, false, true, false, false, false);
+                ItemTimer();
+                EnemyCheckTimer();
+                Moving(offset);
+                prevup = up;
+            }
         }
 
         private void EnemyCheckTimer()
@@ -329,9 +341,8 @@ namespace Mario
                             {
                                 (Parent as Play).CheckHighScoore();
                                 (Parent as Play).SetRiceCoin(star);
-                                (Parent as Play).GetWorlds().Reload();
-                                (Parent as Play).GetWorlds().Visible = true;
-                                (Parent as Play).GetWorlds().ShowInTaskbar = true;
+                                score sc = new score((Parent as Play).GetPlayTime(), (Parent as Play).GetHigscoore(), coinCounter,star, (Parent as Play).GetWorlds(), (Parent as Play).GetRiceCoin());
+                                sc.Show();
                                 (Parent as Play).Close();
                                 return true;
                             }
@@ -373,7 +384,11 @@ namespace Mario
                                     }
                                     else
                                     {
+                                        Point x = Location;
+                                        x.Offset(0, -(Settings.speedY+Height));
+                                        Location = x;
                                         (control as Enemy).Hit();
+                                        return false;
                                     }
                                 }
 
@@ -407,7 +422,7 @@ namespace Mario
 
         //-------------------------------------------Item--------------------------------------------------------------
         private bool fireBall, doubleJump, mushroom, bumerang, invincible, lastRight, doubleJumping, prevup, previtem, backbumerang, lastpressRight;
-        private int itemCounter, hitCounter, coinCounter, coinVisibleCounter;
+        private int itemCounter, hitCounter, coinCounter, coinVisibleCounter, deadanimationcounter;
         private PictureBox itemThrow, coin;
         private bool[] star;
 
@@ -426,6 +441,7 @@ namespace Mario
         }
         private void InitItem(ReadFile readFile)
         {
+            deadanimationcounter = -1;
             string[] help = readFile.GetData().Split('|')[3].Split(',');
             star = new bool[] { help[0] == "1", help[1] == "1", help[2] == "1" };
             fireBall = doubleJump = bumerang = invincible = backbumerang = false;
@@ -569,8 +585,21 @@ namespace Mario
         }
         private void Dead()
         {
-            //TODO set Animation Dead
-            (Parent as Play).Restart();
+            Point x = Location;
+            PictureBox pcB = new PictureBox()
+            {
+                Image = Properties.Resources.player_dead,
+                Location = x
+            };
+            if (left)
+            {
+                pcB.Image = Properties.Resources.dirt;
+                //TODO set animation
+            }
+            (Parent as Play).Controls.Add(pcB);
+            pcB.BringToFront();
+            deadanimationcounter = 50;
+            Visible = false;
         }
         private void PickItem(Control control)
         {

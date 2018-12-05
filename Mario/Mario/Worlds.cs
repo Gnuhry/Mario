@@ -34,6 +34,9 @@ namespace Mario
         }
         public void Reload()
         {
+            Refresh();
+            Visible = true;
+            ShowInTaskbar = true;
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             InitializeComponent();

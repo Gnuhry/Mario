@@ -89,7 +89,7 @@ namespace Mario
             Console.WriteLine(erg);
             readFile.SetData(erg);
         }
-        private double GetHigscoore()
+        public double GetHigscoore()
         {
             string data = readFile.GetData();
             string time = data.Split('|')[1];
@@ -99,6 +99,7 @@ namespace Mario
             }
             return Convert.ToDouble(time);
         }
+        public double GetPlayTime() => engine.GetTime();
         public void CheckHighScoore()
         {
             engine.StopTime();
@@ -134,6 +135,16 @@ namespace Mario
                 erg += help[f] + "|";
             }
             readFile.SetData(erg);
+        }
+        public bool[] GetRiceCoin ()
+        {
+            bool[] ricecoin = new bool[3];
+            string[] help=readFile.SearchData().Split('|')[3].Split(',');
+            for(int f=0;f<help.Length;f++)
+            {
+                ricecoin[f] = help[f].Equals("1");
+            }
+            return ricecoin;
         }
     }
 }

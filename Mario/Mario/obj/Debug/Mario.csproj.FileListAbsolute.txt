@@ -57,3 +57,4 @@ C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\Mario\obj\Debug\Mario.exe
 C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\Mario\obj\Debug\Mario.pdb
 C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\Mario\obj\Debug\Mario.LoadingLevel.resources
 C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\Mario\obj\Debug\Mario.Story.resources
+C:\Users\Win7\Documents\TNTI_Projekt_2018\Mario\Mario\Mario\obj\Debug\Mario.score.resources

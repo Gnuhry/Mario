@@ -242,6 +242,16 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap player_dead {
+            get {
+                object obj = ResourceManager.GetObject("player_dead", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap player_normal_bumerang_left_0 {
             get {
                 object obj = ResourceManager.GetObject("player_normal_bumerang_left_0", resourceCulture);

@@ -261,12 +261,13 @@ namespace Mario
             settings.item = Convert.ToChar(setting[3]);
             settings.music = setting[4] == "True";
             settings.sounds = setting[5] == "True";
+            settings.volume = Convert.ToInt32(setting[6]) / 100.0;
             return settings;
         }
         public static void SetSettings(Settings settings)
         {
             string[] txt=File.ReadAllLines(Settings.textFilePath + ".global.txt");
-            txt[1] = settings.left + ";" + settings.right + ";" + settings.up + ";" + settings.item + ";" + settings.music + ";" + settings.sounds + ";";
+            txt[1] = settings.left + ";" + settings.right + ";" + settings.up + ";" + settings.item + ";" + settings.music + ";" + settings.sounds + ";"+(settings.volume*100)+";";
             File.Delete(Settings.textFilePath + ".global.txt");
             File.WriteAllLines(Settings.textFilePath + ".global.txt", txt);
         }

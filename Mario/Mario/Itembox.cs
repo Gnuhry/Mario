@@ -8,14 +8,12 @@ namespace Mario
     public partial class Itembox : UserControl
     {
         private Image[] ItemPicture;
-        private Random random;
         private bool active;
         public Itembox()
         {
             InitializeComponent();
-            ItemPicture = new Image[] { Properties.Resources.mushroom, Properties.Resources.fireflower,
-                Properties.Resources.star, Properties.Resources.doubleJump, Properties.Resources.bumarangflower };
-            random = new Random();
+            ItemPicture = new Image[] { Properties.Resources.rice, Properties.Resources.pepper,
+                Properties.Resources.star, Properties.Resources.springroll, Properties.Resources.bumerang };
             Size = new Size(Settings.width, Settings.height);
             Tag = "itembox";
             active = true;
@@ -23,7 +21,7 @@ namespace Mario
         public PictureBox Activate(bool mushroom)
         {
             if (!active) return null;
-            this.BackgroundImage = Properties.Resources.itembox_closed;
+            this.BackgroundImage = Properties.Resources.event_field_close;
             active = false;
             int randomNr;
             if (mushroom)
@@ -32,7 +30,15 @@ namespace Mario
             }
             else
             {
-                randomNr = random.Next(1, ItemPicture.Length);
+                randomNr = DateTime.Now.Millisecond;
+                randomNr = (new Random().Next(1, ItemPicture.Length)* new Random().Next(1, ItemPicture.Length) + DateTime.Now.Millisecond);
+                randomNr = randomNr % 4 + 1;
+                if (randomNr == 2)
+                {
+                    randomNr += DateTime.Now.Millisecond;
+                }
+                randomNr = randomNr % 4 + 1;
+
             }
             PictureBox item = new PictureBox()
             {

@@ -17,6 +17,15 @@ namespace Mario
             SetLabel();
             chBmusic.Checked = settings.music;
             chBsound.Checked = settings.sounds;
+            tBarMusicValue.Value = Convert.ToInt32(100 * settings.volume);
+            if (chBmusic.Checked)
+            {
+                tBarMusicValue.Enabled = true;
+            }
+            else
+            {
+                tBarMusicValue.Enabled = false;
+            }
         }
         private void SetLabel()
         {
@@ -120,7 +129,15 @@ namespace Mario
         {
             settings.music = !settings.music;
             chBmusic.Checked = settings.music;
-
+            sound_music.CheckMusic(settings);
+            if (chBmusic.Checked)
+            {
+                tBarMusicValue.Enabled = true;
+            }
+            else
+            {
+                tBarMusicValue.Enabled = false;
+            }
         }
 
         private void chBsound_Click(object sender, EventArgs e)
@@ -159,6 +176,23 @@ namespace Mario
         {
             settings.Default();
             SetLabel();
+        }
+
+        private void btnResetAll_Click(object sender, EventArgs e)
+        {
+            ReadFile.ResetAll(settings);
+            Application.Restart();
+        }
+
+        private void Setting_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ReadFile.SetSettings(settings);
+        }
+
+        private void tBarMusicValue_Scroll(object sender, EventArgs e)
+        {
+            settings.volume = tBarMusicValue.Value / 100.0;
+            sound_music.ChangeVolume(settings);
         }
     }
 }

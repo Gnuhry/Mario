@@ -28,7 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Setting));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnResetItem = new System.Windows.Forms.Button();
+            this.btnResetLeft = new System.Windows.Forms.Button();
+            this.btnResetRight = new System.Windows.Forms.Button();
             this.btnItem = new System.Windows.Forms.Button();
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
@@ -41,16 +45,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnJump = new System.Windows.Forms.Button();
+            this.btnResetUp = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.chBmusic = new System.Windows.Forms.CheckBox();
             this.chBsound = new System.Windows.Forms.CheckBox();
-            this.btnResetUp = new System.Windows.Forms.Button();
-            this.btnResetRight = new System.Windows.Forms.Button();
-            this.btnResetLeft = new System.Windows.Forms.Button();
-            this.btnResetItem = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.btnResetAll = new System.Windows.Forms.Button();
+            this.tBarMusicValue = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tBarMusicValue)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -85,6 +89,36 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(405, 161);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // btnResetItem
+            // 
+            this.btnResetItem.Location = new System.Drawing.Point(366, 123);
+            this.btnResetItem.Name = "btnResetItem";
+            this.btnResetItem.Size = new System.Drawing.Size(36, 23);
+            this.btnResetItem.TabIndex = 19;
+            this.btnResetItem.Text = "°";
+            this.btnResetItem.UseVisualStyleBackColor = true;
+            this.btnResetItem.Click += new System.EventHandler(this.btnResetItem_Click);
+            // 
+            // btnResetLeft
+            // 
+            this.btnResetLeft.Location = new System.Drawing.Point(366, 83);
+            this.btnResetLeft.Name = "btnResetLeft";
+            this.btnResetLeft.Size = new System.Drawing.Size(36, 23);
+            this.btnResetLeft.TabIndex = 18;
+            this.btnResetLeft.Text = "°";
+            this.btnResetLeft.UseVisualStyleBackColor = true;
+            this.btnResetLeft.Click += new System.EventHandler(this.btnResetLeft_Click);
+            // 
+            // btnResetRight
+            // 
+            this.btnResetRight.Location = new System.Drawing.Point(366, 43);
+            this.btnResetRight.Name = "btnResetRight";
+            this.btnResetRight.Size = new System.Drawing.Size(36, 23);
+            this.btnResetRight.TabIndex = 17;
+            this.btnResetRight.Text = "°";
+            this.btnResetRight.UseVisualStyleBackColor = true;
+            this.btnResetRight.Click += new System.EventHandler(this.btnResetRight_Click);
             // 
             // btnItem
             // 
@@ -210,6 +244,16 @@
             this.btnJump.UseVisualStyleBackColor = true;
             this.btnJump.Click += new System.EventHandler(this.btnJump_Click);
             // 
+            // btnResetUp
+            // 
+            this.btnResetUp.Location = new System.Drawing.Point(366, 3);
+            this.btnResetUp.Name = "btnResetUp";
+            this.btnResetUp.Size = new System.Drawing.Size(36, 23);
+            this.btnResetUp.TabIndex = 16;
+            this.btnResetUp.Text = "°";
+            this.btnResetUp.UseVisualStyleBackColor = true;
+            this.btnResetUp.Click += new System.EventHandler(this.btnResetUp_Click);
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -231,7 +275,7 @@
             // chBmusic
             // 
             this.chBmusic.AutoSize = true;
-            this.chBmusic.Location = new System.Drawing.Point(80, 24);
+            this.chBmusic.Location = new System.Drawing.Point(141, 21);
             this.chBmusic.Name = "chBmusic";
             this.chBmusic.Size = new System.Drawing.Size(54, 17);
             this.chBmusic.TabIndex = 7;
@@ -242,53 +286,13 @@
             // chBsound
             // 
             this.chBsound.AutoSize = true;
-            this.chBsound.Location = new System.Drawing.Point(151, 24);
+            this.chBsound.Location = new System.Drawing.Point(59, 21);
             this.chBsound.Name = "chBsound";
             this.chBsound.Size = new System.Drawing.Size(57, 17);
             this.chBsound.TabIndex = 8;
             this.chBsound.Text = "Sound";
             this.chBsound.UseVisualStyleBackColor = true;
             this.chBsound.Click += new System.EventHandler(this.chBsound_Click);
-            // 
-            // btnResetUp
-            // 
-            this.btnResetUp.Location = new System.Drawing.Point(366, 3);
-            this.btnResetUp.Name = "btnResetUp";
-            this.btnResetUp.Size = new System.Drawing.Size(36, 23);
-            this.btnResetUp.TabIndex = 16;
-            this.btnResetUp.Text = "°";
-            this.btnResetUp.UseVisualStyleBackColor = true;
-            this.btnResetUp.Click += new System.EventHandler(this.btnResetUp_Click);
-            // 
-            // btnResetRight
-            // 
-            this.btnResetRight.Location = new System.Drawing.Point(366, 43);
-            this.btnResetRight.Name = "btnResetRight";
-            this.btnResetRight.Size = new System.Drawing.Size(36, 23);
-            this.btnResetRight.TabIndex = 17;
-            this.btnResetRight.Text = "°";
-            this.btnResetRight.UseVisualStyleBackColor = true;
-            this.btnResetRight.Click += new System.EventHandler(this.btnResetRight_Click);
-            // 
-            // btnResetLeft
-            // 
-            this.btnResetLeft.Location = new System.Drawing.Point(366, 83);
-            this.btnResetLeft.Name = "btnResetLeft";
-            this.btnResetLeft.Size = new System.Drawing.Size(36, 23);
-            this.btnResetLeft.TabIndex = 18;
-            this.btnResetLeft.Text = "°";
-            this.btnResetLeft.UseVisualStyleBackColor = true;
-            this.btnResetLeft.Click += new System.EventHandler(this.btnResetLeft_Click);
-            // 
-            // btnResetItem
-            // 
-            this.btnResetItem.Location = new System.Drawing.Point(366, 123);
-            this.btnResetItem.Name = "btnResetItem";
-            this.btnResetItem.Size = new System.Drawing.Size(36, 23);
-            this.btnResetItem.TabIndex = 19;
-            this.btnResetItem.Text = "°";
-            this.btnResetItem.UseVisualStyleBackColor = true;
-            this.btnResetItem.Click += new System.EventHandler(this.btnResetItem_Click);
             // 
             // btnReset
             // 
@@ -300,23 +304,51 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // btnResetAll
+            // 
+            this.btnResetAll.BackColor = System.Drawing.Color.Red;
+            this.btnResetAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetAll.ForeColor = System.Drawing.Color.White;
+            this.btnResetAll.Location = new System.Drawing.Point(13, 240);
+            this.btnResetAll.Name = "btnResetAll";
+            this.btnResetAll.Size = new System.Drawing.Size(142, 23);
+            this.btnResetAll.TabIndex = 10;
+            this.btnResetAll.Text = "Reset All";
+            this.btnResetAll.UseVisualStyleBackColor = false;
+            this.btnResetAll.Click += new System.EventHandler(this.btnResetAll_Click);
+            // 
+            // tBarMusicValue
+            // 
+            this.tBarMusicValue.Location = new System.Drawing.Point(201, 14);
+            this.tBarMusicValue.Maximum = 100;
+            this.tBarMusicValue.Name = "tBarMusicValue";
+            this.tBarMusicValue.Size = new System.Drawing.Size(194, 45);
+            this.tBarMusicValue.TabIndex = 11;
+            this.tBarMusicValue.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tBarMusicValue.Scroll += new System.EventHandler(this.tBarMusicValue_Scroll);
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(664, 275);
+            this.Controls.Add(this.tBarMusicValue);
+            this.Controls.Add(this.btnResetAll);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.chBsound);
             this.Controls.Add(this.chBmusic);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Setting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Setting";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Setting_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tBarMusicValue)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,5 +377,7 @@
         private System.Windows.Forms.Button btnResetRight;
         private System.Windows.Forms.Button btnResetUp;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnResetAll;
+        private System.Windows.Forms.TrackBar tBarMusicValue;
     }
 }

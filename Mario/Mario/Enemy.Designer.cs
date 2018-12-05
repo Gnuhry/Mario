@@ -34,7 +34,7 @@
             // 
             // pcBEnemy
             // 
-            this.pcBEnemy.Image = global::Mario.Properties.Resources.enemy_right;
+            this.pcBEnemy.Image = global::Mario.Properties.Resources.grammy_left;
             this.pcBEnemy.Location = new System.Drawing.Point(0, 0);
             this.pcBEnemy.Name = "pcBEnemy";
             this.pcBEnemy.Size = new System.Drawing.Size(50, 50);

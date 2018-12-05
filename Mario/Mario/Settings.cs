@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.IO;
 
 namespace Mario
 {
@@ -14,14 +16,19 @@ namespace Mario
             gamehight = 20,
             itemThrowBlockLength = 3,
             invincibleCounter = 100,
-            maxEnemy=5;
+            maxEnemy = 5,
+            loadingScreenLength = 3000,
+            highBlocks=16;
         public static Size size = new Size(width, height);
-        public static double borderFactor=0.1;
+        public static string path = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9), textFilePath = path + "Level\\";
+        public static double borderFactor = 0.3;
         public static char upD = 'W', leftD = 'A', rightD = 'D', itemD = 'Q';
         private char up_, left_, right_, item_;
         private bool music_, sounds_;
+        private double volume_;
         public char up
         {
+            
             get => up_;
             set => up_ = value;
         }
@@ -50,7 +57,18 @@ namespace Mario
             get => item_;
             set => item_ = value;
         }
-
+        public double volume
+        {
+            get => volume_;
+            set
+            {
+                if (value < 0 || value > 1)
+                {
+                    return;
+                }
+                volume_ = value;
+            }
+        }
         public Settings()
         {
             Default();
@@ -62,6 +80,7 @@ namespace Mario
             right_ = rightD;
             item_ = itemD;
             music_ = sounds_ = true;
+            volume = 0.5;
         }
     }
 }

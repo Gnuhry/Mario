@@ -118,55 +118,496 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="bumarangflower" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bumarang.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="big_ben_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Enemy\Big_Ben_Walking_mirrored.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fireball" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fireball.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fireflower" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fireflower.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bumarang" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bumarang_throw.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="stone_grass" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\greenstone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="stone" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\stone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="star" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\star.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="enemy_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EnemyConcept.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="enemy_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EnemyConcept_GIF_Mirrored.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="player_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\player_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="player_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Player_Small.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="big_ben_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Enemy\Big_Ben_Walking.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="coin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\golden rice grain.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="doubleJump" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\springroll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\music_sound\coin.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="grass" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\grasblock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Blocks\grasblock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="itembox" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Eventfield  (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="event_field_close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Items\event_field0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="itembox_closed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Eventfield .png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="event_field_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Items\event_field1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mushroom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ricebowl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fireball" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Items\fireball.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="golden_rice_grain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Items\golden rice grain.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="grammy_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Enemy\enemy_small_left.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="grammy_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Enemy\enemy_small_right.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pepper" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Items\Pepper.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_pepper_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_pepper_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_pepper_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_pepper_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_pepper_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_pepper_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_pepper_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_pepper_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_pepper_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_pepper_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_pepper_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_pepper_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_pepper_left_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_pepper_left_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_pepper_left_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_pepper_left_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_pepper_left_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_pepper_left_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_pepper_left_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_pepper_left_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_pepper_left_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_pepper_left_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_pepper_left_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_pepper_left_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_pepper_left_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_pepper_left_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_pepper_left_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_pepper_left_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_pepper_left_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_pepper_left_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_pepper_left_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_pepper_left_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_pepper_left_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_pepper_left_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_pepper_left_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_pepper_left_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_pepper_left_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_pepper_left_6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_pepper_left_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_pepper_left_7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_stay_left_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_stay_left0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_stay_left_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_stay_left1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_stay_left_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_stay_left2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_stay_right_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_stay_right_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_stay_right_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_stay_right_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_stay_right_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_stay_right_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_left_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_left_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_left_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_left_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_left_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_left_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_left_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_left_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_left_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_left_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_left_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_left_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_left_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_left_6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_left_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_left_7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_left_8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_left_8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_right_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_right_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_right_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_right_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_right_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_right_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_right_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_right_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_right_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_right_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_right_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_right_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_right_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_right_6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_right_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_right_7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_walk_right_8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_walk_right_8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_run_pepper_right_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_run_pepper_right_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_run_pepper_right_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_run_pepper_right_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_run_pepper_right_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_run_pepper_right_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_run_pepper_right_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_run_pepper_right_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_run_pepper_right_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_run_pepper_right_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_run_pepper_right_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_run_pepper_right_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_run_pepper_right_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_run_pepper_right_6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_run_pepper_right_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_run_pepper_right_7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_stay_left_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_stay_left_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_stay_left_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_stay_left_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_stay_right_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_stay_right_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_stay_right_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_stay_right_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_left_00" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_left_00.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_left_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_left_01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_left_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_left_02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_left_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_left_03.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_left_04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_left_04.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_left_05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_left_05.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_left_06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_left_06.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_left_07" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_left_07.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_left_08" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_left_08.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_left_09" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_left_09.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_left_10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_left_10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_left_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_left_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_left_12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_left_12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_right_00" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_right_00.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_right_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_right_01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_right_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_right_02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_right_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_right_03.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_right_04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_right_04.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_right_05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_right_05.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_right_06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_right_06.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_right_07" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_right_07.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_right_08" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_right_08.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_right_09" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_right_09.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_right_10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_right_10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_right_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_right_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_small_walking_right_12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_small_walking_right_12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RG_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RG-Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Items\Ricebowl.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ricecoin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Items\ricecoin.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="springroll" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Items\springroll.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blocks\Stone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="story_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Story\story_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="story_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Story\story_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="story_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Story\story_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="water" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blocks\water.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="story_3_gif" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Story\story_3_gif.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="story_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Story\story_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blocks\box.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bumerang" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Items\rice.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bumerang_throw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Items\rotating_ricebowl.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dirt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blocks\dirt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="end_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blocks\end_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="end_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blocks\end_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="end_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blocks\end_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ricecoin_not" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Items\ricecoin_not_collected.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="star" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Items\star.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="water_full" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Blocks\wasser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_bumerang_left_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_bumerang_left_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_bumerang_left_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_bumerang_left_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_bumerang_left_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_bumerang_left_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_bumerang_right_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_bumerang_right_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_bumerang_right_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_bumerang_right_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_bumerang_right_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_bumerang_right_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_left_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_left_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_left_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_left_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_left_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_left_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_left_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_left_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_left_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_left_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_left_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_left_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_left_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_left_6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_left_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_left_7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_right_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_right_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_right_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_right_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_right_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_right_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_right_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_right_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_right_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_right_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_right_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_right_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_right_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_right_6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_bumerang_right_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_bumerang_right_7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="story_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Story\Story_6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_left_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_left_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_left_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_left_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_left_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_left_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_left_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_left_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_left_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_left_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_left_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_left_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_left_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_left_6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_left_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_left_7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_left_8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_left_8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_right_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_right_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_right_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_right_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_right_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_right_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_right_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_right_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_right_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_right_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_right_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_right_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_right_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_right_6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_right_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_right_7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_run_star_right_8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_run_star_right_8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_stay_star_left_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_stay_star_left_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_stay_star_left_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_stay_star_left_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_stay_star_left_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_stay_star_left_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_stay_star_right_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_stay_star_right_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_stay_star_right_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_stay_star_right_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_normal_stay_star_right_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_normal_stay_star_right_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="player_dead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Player\player_dead.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Windows\Menu.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Windows\Pause.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

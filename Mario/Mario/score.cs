@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mario
@@ -14,7 +8,36 @@ namespace Mario
     {
         private int counter,coins;
         private double timecounter, time, higscoore;
-
+        private bool[] ricecoins;
+        private Worlds worlds;
+        public score(double time, double higscoore, int coins, bool[] ricecoins, Worlds worlds, bool[] formerriceCoin)
+        {
+            this.worlds = worlds;
+            this.ricecoins = ricecoins;
+            this.time = time;
+            this.coins = coins;
+            this.higscoore = higscoore;
+            timecounter = 1;
+            counter = 0;
+            InitializeComponent();
+            if (formerriceCoin[0])
+            {
+                pcBrCoin1.Image = Properties.Resources.ricecoin;
+            }
+            if (formerriceCoin[1])
+            {
+                pcBrCoin2.Image = Properties.Resources.ricecoin;
+            }
+            if (formerriceCoin[2])
+            {
+                pcBrCoin3.Image = Properties.Resources.ricecoin;
+            }
+            panel1.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2 - (panel1.Width / 2), Screen.PrimaryScreen.WorkingArea.Height / 2 - (panel1.Height / 2));
+            Timer timer = new Timer();
+            timer.Tick += Timer_Tick;
+            timer.Interval = 1;
+            timer.Start();
+        }
         private void score_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Space)
@@ -56,40 +79,11 @@ namespace Mario
             }
         }
 
-        private bool[] ricecoins;
-        private Worlds worlds;
-        public score(double time, double higscoore,int coins, bool [] ricecoins, Worlds worlds,bool[]formerriceCoin)
-        {
-            this.worlds = worlds;
-            this.ricecoins = ricecoins;
-            this.time = time;
-            this.coins = coins;
-            this.higscoore = higscoore;
-            timecounter= 1;
-            counter = 0;
-            InitializeComponent();
-            if (formerriceCoin[0])
-            {
-                pcBrCoin1.Image = Properties.Resources.ricecoin;
-            }
-            if (formerriceCoin[1])
-            {
-                pcBrCoin2.Image = Properties.Resources.ricecoin;
-            }
-            if (formerriceCoin[2])
-            {
-                pcBrCoin3.Image = Properties.Resources.ricecoin;
-            }
-            panel1.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2 - (panel1.Width / 2), Screen.PrimaryScreen.WorkingArea.Height / 2 - (panel1.Height / 2));
-            Timer timer = new Timer();
-            timer.Tick += Timer_Tick;
-            timer.Interval = 50;
-            timer.Start();
-        }
+       
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (lbNewRecord.Visible)
+            if (lbNewRecord.Visible&&counter%5==0)
             {
                 if (lbNewRecord.ForeColor == Color.Yellow)
                 {
@@ -136,21 +130,21 @@ namespace Mario
                     }
                     counter++;
                     break;
-                case 4:
+                case 10:
                     if(ricecoins[1])
                     {
                         pcBrCoin2.Image = Properties.Resources.ricecoin;
                     }
                     counter++;
                     break;
-                case 5:
+                case 17:
                     if (ricecoins[2])
                     {
                         pcBrCoin3.Image = Properties.Resources.ricecoin;
                     }
                     counter++;
                     break;
-                case 100: ToWorld(); break;
+                case 400: ToWorld(); break;
                 default: counter++; break;
             }
         }

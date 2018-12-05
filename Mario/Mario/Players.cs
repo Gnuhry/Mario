@@ -340,8 +340,8 @@ namespace Mario
                             else if (control.Tag.Equals("end") && player)
                             {
                                 (Parent as Play).CheckHighScoore();
-                                score sc = new score((Parent as Play).GetPlayTime(), (Parent as Play).GetHigscoore(), coinCounter,star, (Parent as Play).GetWorlds(), (Parent as Play).GetRiceCoin());
                                 (Parent as Play).SetRiceCoin(star);
+                                score sc = new score((Parent as Play).GetPlayTime(), (Parent as Play).GetHigscoore(), coinCounter,star, (Parent as Play).GetWorlds(), (Parent as Play).GetRiceCoin());
                                 sc.Show();
                                 (Parent as Play).Close();
                                 return true;

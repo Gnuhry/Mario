@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Worlds));
             this.player = new System.Windows.Forms.PictureBox();
             this.pcB4 = new System.Windows.Forms.PictureBox();
             this.pcB1 = new System.Windows.Forms.PictureBox();
@@ -159,6 +160,7 @@
             this.Controls.Add(this.pcB1);
             this.Controls.Add(this.pcB4);
             this.Controls.Add(this.player);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Worlds";
             this.Text = "Worlds";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Worlds_KeyDown);

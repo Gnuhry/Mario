@@ -50,5 +50,9 @@ namespace Mario
             btnStart.Enabled = true;
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

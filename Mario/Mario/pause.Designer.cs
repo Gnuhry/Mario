@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pause));
             this.label1 = new System.Windows.Forms.Label();
             this.btnMenue = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
@@ -142,6 +143,7 @@
             this.Controls.Add(this.btnMenue);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "pause";

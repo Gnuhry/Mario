@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mario
@@ -34,18 +28,23 @@ namespace Mario
         }
         public void Reload()
         {
-            Refresh();
-            Visible = true;
-            ShowInTaskbar = true;
-            FormBorderStyle = FormBorderStyle.None;
-            WindowState = FormWindowState.Maximized;
-            InitializeComponent();
-            SetText("1-1");
-            SetText("1-2");
-            SetText("1-3");
-            SetText("1-4");
-            LoadActivated();
-            MoveToLevel();
+            try
+            {
+                Visible = true;
+                ShowInTaskbar = true;
+                FormBorderStyle = FormBorderStyle.None;
+                WindowState = FormWindowState.Maximized;
+                SetText("1-1");
+                SetText("1-2");
+                SetText("1-3");
+                SetText("1-4");
+                LoadActivated();
+                MoveToLevel();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void LoadActivated()
@@ -77,7 +76,7 @@ namespace Mario
                 level++;
                 MoveToLevel();
             }
-            if (e.KeyData == Keys.Enter || e.KeyData == Keys.Space)
+            if (e.KeyData == Keys.Enter || e.KeyData == Keys.Space|| Convert.ToChar(e.KeyValue).Equals(setting.item))
             {
                 if (activated)
                 {

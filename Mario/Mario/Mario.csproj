@@ -676,5 +676,17 @@
   <ItemGroup>
     <None Include="Resources\Player\player_dead.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pause.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Windows\Menu.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Windows\Pause.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

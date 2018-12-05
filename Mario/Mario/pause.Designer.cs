@@ -44,6 +44,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(105, 37);
             this.label1.Name = "label1";
@@ -53,46 +54,55 @@
             // 
             // btnMenue
             // 
+            this.btnMenue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(119)))), ((int)(((byte)(78)))));
+            this.btnMenue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenue.Location = new System.Drawing.Point(11, 194);
             this.btnMenue.Name = "btnMenue";
             this.btnMenue.Size = new System.Drawing.Size(284, 23);
             this.btnMenue.TabIndex = 3;
             this.btnMenue.Text = "Zum Weltenmenü";
-            this.btnMenue.UseVisualStyleBackColor = true;
+            this.btnMenue.UseVisualStyleBackColor = false;
             this.btnMenue.Click += new System.EventHandler(this.btnMenue_Click);
             // 
             // btnSettings
             // 
+            this.btnSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(119)))), ((int)(((byte)(78)))));
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.Location = new System.Drawing.Point(11, 223);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(284, 23);
             this.btnSettings.TabIndex = 4;
             this.btnSettings.Text = "Einstellungen";
-            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.UseVisualStyleBackColor = false;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // btnRestart
             // 
+            this.btnRestart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(119)))), ((int)(((byte)(78)))));
+            this.btnRestart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestart.Location = new System.Drawing.Point(11, 165);
             this.btnRestart.Name = "btnRestart";
             this.btnRestart.Size = new System.Drawing.Size(284, 23);
             this.btnRestart.TabIndex = 2;
             this.btnRestart.Text = "Neustart";
-            this.btnRestart.UseVisualStyleBackColor = true;
+            this.btnRestart.UseVisualStyleBackColor = false;
             this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
             // 
             // btnGoOn
             // 
+            this.btnGoOn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(119)))), ((int)(((byte)(78)))));
+            this.btnGoOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGoOn.Location = new System.Drawing.Point(11, 136);
             this.btnGoOn.Name = "btnGoOn";
             this.btnGoOn.Size = new System.Drawing.Size(284, 23);
             this.btnGoOn.TabIndex = 1;
             this.btnGoOn.Text = "Weiter";
-            this.btnGoOn.UseVisualStyleBackColor = true;
+            this.btnGoOn.UseVisualStyleBackColor = false;
             this.btnGoOn.Click += new System.EventHandler(this.btnGoOn_Click);
             // 
             // pcBStar1
             // 
+            this.pcBStar1.BackColor = System.Drawing.Color.Transparent;
             this.pcBStar1.Location = new System.Drawing.Point(39, 69);
             this.pcBStar1.Name = "pcBStar1";
             this.pcBStar1.Size = new System.Drawing.Size(50, 50);
@@ -101,6 +111,7 @@
             // 
             // pcBStar2
             // 
+            this.pcBStar2.BackColor = System.Drawing.Color.Transparent;
             this.pcBStar2.Location = new System.Drawing.Point(130, 69);
             this.pcBStar2.Name = "pcBStar2";
             this.pcBStar2.Size = new System.Drawing.Size(50, 50);
@@ -109,6 +120,7 @@
             // 
             // pcBStar3
             // 
+            this.pcBStar3.BackColor = System.Drawing.Color.Transparent;
             this.pcBStar3.Location = new System.Drawing.Point(222, 69);
             this.pcBStar3.Name = "pcBStar3";
             this.pcBStar3.Size = new System.Drawing.Size(50, 50);
@@ -119,6 +131,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Mario.Properties.Resources.Pause;
             this.ClientSize = new System.Drawing.Size(307, 287);
             this.Controls.Add(this.pcBStar3);
             this.Controls.Add(this.pcBStar2);

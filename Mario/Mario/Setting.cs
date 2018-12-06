@@ -118,7 +118,7 @@ namespace Mario
                 keys = '_';
                 StopKeyRecord();
             }
-            else if ((e.KeyValue >= Convert.ToInt32('0') && e.KeyValue <= Convert.ToInt32('9')) || (e.KeyValue >= Convert.ToInt32('A') && e.KeyValue <= Convert.ToInt32('Z')))
+            else if ((e.KeyValue >= Convert.ToInt32('0') && e.KeyValue <= Convert.ToInt32('9')) || (e.KeyValue >= Convert.ToInt32('A') && e.KeyValue <= Convert.ToInt32('Z'))&& e.KeyValue == Convert.ToInt32(' '))
             {
                 keys = Convert.ToChar(e.KeyValue);
                 StopKeyRecord();
@@ -196,6 +196,11 @@ namespace Mario
         }
 
         private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
             Close();
         }

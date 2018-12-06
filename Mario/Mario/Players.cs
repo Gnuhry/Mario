@@ -345,6 +345,7 @@ namespace Mario
                                 gameControls.Remove(control);
                                 Parent.Controls.Remove(control);
                                 star[Convert.ToInt32(control.Tag.ToString().Split('_')[1]) - 1] = true;
+                                (Parent as Play).GetEngine().ClearCoin(Convert.ToInt32(control.Tag.ToString().Split('_')[1]));
                                 return true;
                             }
                             else if (control.Tag.Equals("end") && player)

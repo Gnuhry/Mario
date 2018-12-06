@@ -12,6 +12,7 @@ namespace Mario
         private Players players;
         private Control.ControlCollection controlCollection;
         private Timer timer;
+        private int[] ricecoin;
 
         public Engine(Control[][] controls, Control.ControlCollection controlCollection)
         {
@@ -19,11 +20,38 @@ namespace Mario
             this.controlCollection = controlCollection;
             Init();
             FindPlayer();
+            SetRiceCoin();
             DisplayBackground();
             InitTime();
             InitTimer();
-
         }
+        private void SetRiceCoin()
+        {
+            for (int f = 0; f < controls.Length; f++)
+            {
+                for (int g = 0; g < controls[1].Length; g++)
+                {
+                    if (controls[f][g] != null)
+                    {
+                        if (controls[f][g].Tag != null)
+                        {
+                            if (controls[f][g].Tag.ToString().Split('_')[0].Equals("star"))
+                            {
+                                switch (controls[f][g].Tag.ToString().Split('_')[1])
+                                {
+                                    case "1": ricecoin[0] = f; ricecoin[1] = g; break;
+                                    case "2": ricecoin[2] = f; ricecoin[3] = g; break;
+                                    case "3": ricecoin[4] = f; ricecoin[5] = g; break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            
+        }
+
         public void Start()
         {
             players.Start();
@@ -33,6 +61,7 @@ namespace Mario
         {
             gameWidth = Screen.PrimaryScreen.WorkingArea.Width / Settings.width;
             border = gameWidth * Settings.width * Settings.borderFactor;
+            ricecoin = new int[6];
         }
 
 
@@ -55,7 +84,7 @@ namespace Mario
         {
             for (int f = 0; f < controls.Length; f++)
             {
-                for (int g = 0; g < controls[0].Length; g++)
+                for (int g = 0; g < controls[1].Length; g++)
                 {
                     if (controls[f][g] is Players)
                     {
@@ -68,8 +97,8 @@ namespace Mario
                         {
                             pointer = 0;
                         }
-                        return;
                     }
+                    
                 }
 
             }
@@ -251,6 +280,15 @@ namespace Mario
                         }
                     }
                 }
+            }
+        }
+        public void ClearCoin(int coin)
+        {
+            switch (coin)
+            {
+                case 1: controls[ricecoin[0]][ricecoin[1]] = null; break;
+                case 2: controls[ricecoin[2]][ricecoin[3]] = null; break;
+                case 3: controls[ricecoin[4]][ricecoin[5]] = null; break;
             }
         }
 

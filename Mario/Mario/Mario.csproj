@@ -694,6 +694,7 @@
     <None Include="Resources\Windows\Pause.gif" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Windows\lvl_wahl.png" />
     <Content Include="RG-Logo.ico" />
   </ItemGroup>
   <ItemGroup>

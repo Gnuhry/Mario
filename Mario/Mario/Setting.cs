@@ -194,5 +194,10 @@ namespace Mario
             settings.volume = tBarMusicValue.Value / 100.0;
             sound_music.ChangeVolume(settings);
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

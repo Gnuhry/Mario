@@ -18,6 +18,7 @@ namespace Mario
             invincibleCounter = 100,
             maxEnemy = 5,
             loadingScreenLength = 3000,
+            cloudfall=5,
             highBlocks=16;
         public static Size size = new Size(width, height);
         public static string path = Environment.CurrentDirectory.Remove(Environment.CurrentDirectory.Length - 9), textFilePath = path + "Level\\";

@@ -254,7 +254,7 @@ namespace Mario
                 {
                     if (CollisionDetect(help, false, false, false, false, false, true))
                     {
-                        return Settings.speedY / 2;
+                        return Settings.cloudfall;
                     }
                     else
                     {
@@ -385,7 +385,7 @@ namespace Mario
                                     else
                                     {
                                         Point x = Location;
-                                        x.Offset(0, -(Settings.speedY+Height));
+                                        x.Offset(0, -(50));
                                         Location = x;
                                         (control as Enemy).Hit();
                                         return false;

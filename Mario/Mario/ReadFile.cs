@@ -132,6 +132,9 @@ namespace Mario
                                 erg[column][row] = NewControl(Properties.Resources.ricecoin_not, "star_3");
                             }
                             break;
+                        case 'a':
+                            erg[column][row] = NewControl(Properties.Resources.ricecoin, "cloud");
+                            break;
                     }
                 }
                     row++;

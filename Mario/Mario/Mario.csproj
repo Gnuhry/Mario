@@ -695,6 +695,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Windows\lvl_wahl.png" />
+    <None Include="Resources\Windows\Settings.png" />
     <Content Include="RG-Logo.ico" />
   </ItemGroup>
   <ItemGroup>

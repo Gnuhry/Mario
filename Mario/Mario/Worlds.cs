@@ -17,6 +17,7 @@ namespace Mario
             WindowState = FormWindowState.Maximized;
             level = world = 1;
             InitializeComponent();
+            SetLocation();
             SetText("1-1");
             SetText("1-2");
             SetText("1-3");
@@ -26,6 +27,42 @@ namespace Mario
             menue = form1;
             MoveToLevel();
         }
+
+        private void SetLocation()
+        {
+            Point offset = new Point(Screen.PrimaryScreen.WorkingArea.Width - Width-235, Screen.PrimaryScreen.WorkingArea.Height - Height-75);
+            Point x = pcB1.Location;
+            x.Offset(offset);
+            pcB1.Location = x;
+            x = label2.Location;
+            x.Offset(offset);
+            label2.Location = x;
+
+            offset = new Point(Screen.PrimaryScreen.WorkingArea.Width - Width -145, Screen.PrimaryScreen.WorkingArea.Height - Height-130);
+            x = pcB2.Location;
+            x.Offset(offset);
+            pcB2.Location = x;
+            x = label3.Location;
+            x.Offset(offset);
+            label3.Location = x;
+
+            offset = new Point(Screen.PrimaryScreen.WorkingArea.Width - Width - 55, Screen.PrimaryScreen.WorkingArea.Height - Height - 60);
+            x = pcB3.Location;
+            x.Offset(offset);
+            pcB3.Location = x;
+            x = label5.Location;
+            x.Offset(offset);
+            label5.Location = x;
+
+            offset = new Point(Screen.PrimaryScreen.WorkingArea.Width - Width - 105, Screen.PrimaryScreen.WorkingArea.Height - Height - 55);
+            x = pcB4.Location;
+            x.Offset(offset);
+            pcB4.Location = x;
+            x = label6.Location;
+            x.Offset(offset);
+            label6.Location = x;
+        }
+
         public void Reload()
         {
             try
@@ -123,7 +160,42 @@ namespace Mario
                             if (!help[1].Equals("-1"))
                             {
                                 string[] help2 = level.Split('-');
+                                if (Convert.ToInt32(help2[1]) == 3)
+                                {
+                                    int ricecoinamount = 0;
+                                    string[]data=new ReadFile("1-1").SearchData().Split('|')[3].Split(',');
+                                    foreach(string s in data)
+                                    {
+                                        if (s.Equals("1"))
+                                        {
+                                            ricecoinamount++;
+                                        }
+                                    }
+                                    data = new ReadFile("1-2").SearchData().Split('|')[3].Split(',');
+                                    foreach (string s in data)
+                                    {
+                                        if (s.Equals("1"))
+                                        {
+                                            ricecoinamount++;
+                                        }
+                                    }
+                                    data = help[3].Split(',');
+                                    foreach (string s in data)
+                                    {
+                                        if (s.Equals("1"))
+                                        {
+                                            ricecoinamount++;
+                                        }
+                                    }
+                                    if (ricecoinamount > 8)
+                                    {
+                                        ReadFile.UnlockLevel(help2[0] + "-" + (Convert.ToInt32(help2[1]) + 1));
+                                    }
+                                }
+                                else
+                                {
                                 ReadFile.UnlockLevel(help2[0] + "-" + (Convert.ToInt32(help2[1]) + 1));
+                                }
                                 Controls[f].Text = level + " " + help[0].Split('#')[1] + " | " + help[1] + "sek";
                             }
                             else

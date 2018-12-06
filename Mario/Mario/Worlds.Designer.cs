@@ -110,7 +110,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(160, 257);
+            this.label2.Location = new System.Drawing.Point(137, 212);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 13);
             this.label2.TabIndex = 9;
@@ -121,7 +121,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(478, 144);
+            this.label3.Location = new System.Drawing.Point(456, 112);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 13);
             this.label3.TabIndex = 10;
@@ -132,7 +132,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(829, 310);
+            this.label5.Location = new System.Drawing.Point(829, 273);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(107, 13);
             this.label5.TabIndex = 11;
@@ -143,7 +143,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(595, 295);
+            this.label6.Location = new System.Drawing.Point(572, 295);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(107, 13);
             this.label6.TabIndex = 12;
@@ -168,6 +168,7 @@
             this.Controls.Add(this.player);
             this.Controls.Add(this.pcB1);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Worlds";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Worlds_KeyDown);

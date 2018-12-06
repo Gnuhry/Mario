@@ -52,7 +52,8 @@ namespace Mario
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.ExitThread();
+            Application.Exit();
         }
     }
 }

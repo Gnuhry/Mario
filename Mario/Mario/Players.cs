@@ -14,7 +14,7 @@ namespace Mario
         public Players(Settings settings, ReadFile readFile)
         {
             InitializeComponent();
-            Init(settings,readFile);
+            Init(settings, readFile);
             InitItem(readFile);
             InitGameControl();
             InitKeyPressEvents();
@@ -33,7 +33,7 @@ namespace Mario
             player_timer.Start();
             StartEnemies();
         }
-        private void Init(Settings settings,ReadFile readFile)
+        private void Init(Settings settings, ReadFile readFile)
         {
             this.settings = settings;
             this.readFile = readFile;
@@ -54,19 +54,19 @@ namespace Mario
         private void Players_KeyUp(object sender, KeyEventArgs e)
         {
             char key = Convert.ToChar(e.KeyValue);
-            if (key.Equals(settings.left))
+            if (key.Equals(settings.Left))
             {
                 left = false;
             }
-            else if (key.Equals(settings.right))
+            else if (key.Equals(settings.Right))
             {
                 right = false;
             }
-            else if (key.Equals(settings.up))
+            else if (key.Equals(settings.Up))
             {
                 up = false;
             }
-            else if (key.Equals(settings.item))
+            else if (key.Equals(settings.Item))
             {
                 previtem = false;
             }
@@ -75,21 +75,21 @@ namespace Mario
         private void Players_KeyDown(object sender, KeyEventArgs e)
         {
             char key = Convert.ToChar(e.KeyValue);
-            if (key.Equals(settings.left))
+            if (key.Equals(settings.Left))
             {
                 left = true;
                 lastpressRight = false;
             }
-            else if (key.Equals(settings.right))
+            else if (key.Equals(settings.Right))
             {
                 right = true;
                 lastpressRight = true;
             }
-            else if (key.Equals(settings.up))
+            else if (key.Equals(settings.Up))
             {
                 up = true;
             }
-            else if (key.Equals(settings.item))
+            else if (key.Equals(settings.Item))
             {
                 UseItem();
                 previtem = true;
@@ -102,12 +102,15 @@ namespace Mario
 
 
         //---------------------------------------------Tick/Move-----------------------------------------------------
-        private bool jump;
+        private bool jump, fulldown;
         private int jumpCounter;
         private void InitPlayerTimer()
         {
-            player_timer = new System.Windows.Forms.Timer();
-            player_timer.Interval = 25;//40Hz
+            fulldown = true;
+            player_timer = new Timer
+            {
+                Interval = 25//40Hz
+            };
             player_timer.Tick += Player_timer_Tick;
         }
 
@@ -136,8 +139,10 @@ namespace Mario
                     return;
                 }
                 counter = 0;
-                Point offset = new Point();
-                offset.Y = CheckY();
+                Point offset = new Point
+                {
+                    Y = CheckY()
+                };
                 offset.X = CheckX(offset.Y);
                 CollisionDetect(Bounds, false, false, true, false, false, false);
                 ItemTimer();
@@ -254,7 +259,13 @@ namespace Mario
                 {
                     if (CollisionDetect(help, false, false, false, false, false, true))
                     {
-                        return Settings.cloudfall;
+                        fulldown = !fulldown;
+                        return Settings.speedY / 2;
+                    }
+                    else if (!fulldown)
+                    {
+                        fulldown = true;
+                        return Settings.speedY / 2;
                     }
                     else
                     {
@@ -270,7 +281,6 @@ namespace Mario
                 }
             }
         }
-
 
         //--------------------------------------------Collision Detect--------------------------------------------------
         public bool CollisionDetect(Rectangle location, bool up, bool down, bool player, bool destroyEnemyItem, bool pickCoinItem, bool cloud)
@@ -323,7 +333,7 @@ namespace Mario
                             }
                             else if (control.Tag.Equals("coin") && (player || pickCoinItem))
                             {
-                                sound_music.RiceSound(settings);
+                                Sound_music.RiceSound(settings);
                                 gameControls.Remove(control);
                                 Parent.Controls.Remove(control);
                                 (Parent as Play).SetCoin(++coinCounter);
@@ -341,7 +351,7 @@ namespace Mario
                             {
                                 (Parent as Play).CheckHighScoore();
                                 (Parent as Play).SetRiceCoin(star);
-                                score sc = new score((Parent as Play).GetPlayTime(), (Parent as Play).GetHigscoore(), coinCounter,star, (Parent as Play).GetWorlds(), (Parent as Play).GetRiceCoin());
+                                score sc = new score((Parent as Play).GetPlayTime(), (Parent as Play).GetHigscoore(), coinCounter, star, (Parent as Play).GetWorlds(), (Parent as Play).GetRiceCoin());
                                 sc.Show();
                                 (Parent as Play).Close();
                                 return true;
@@ -384,9 +394,14 @@ namespace Mario
                                     }
                                     else
                                     {
-                                        Point x = Location;
-                                        x.Offset(0, -(50));
-                                        Location = x;
+                                        Rectangle rectangle = Bounds;
+                                        rectangle.Offset(0, -50);
+                                        if (CollisionDetect(rectangle, true, false, true, false, true, false))
+                                        {
+                                            Point x = Location;
+                                            x.Offset(0, -50);
+                                            Location = x;
+                                        }
                                         (control as Enemy).Hit();
                                         return false;
                                     }

@@ -11,7 +11,7 @@ namespace Mario
         {
             InitializeComponent();
             settings = ReadFile.GetSettings();
-            sound_music.CheckMusic(settings);
+            Sound_music.CheckMusic(settings);
             if (ReadFile.IsFirst())
             {
                 btnStart.Enabled = false;
@@ -22,13 +22,13 @@ namespace Mario
         {
             Visible = false;
             ShowInTaskbar = false;
-            new Worlds(settings,this).Show();
+            new Worlds(settings, this).Show();
         }
 
         private void Forms_FormClosed(object sender, FormClosedEventArgs e)
         {
             Visible = true;
-            ShowInTaskbar = true; 
+            ShowInTaskbar = true;
         }
 
         private void btnSetting_Click(object sender, EventArgs e)

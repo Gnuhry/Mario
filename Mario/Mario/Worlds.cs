@@ -60,7 +60,7 @@ namespace Mario
 
         private void Worlds_KeyDown(object sender, KeyEventArgs e)
         {
-            if (Convert.ToChar(e.KeyValue).Equals(setting.left))
+            if (Convert.ToChar(e.KeyValue).Equals(setting.Left))
             {
                 if (level == 1)
                 {
@@ -69,7 +69,7 @@ namespace Mario
                 level--;
                 MoveToLevel();
             }
-            if (Convert.ToChar(e.KeyValue).Equals(setting.right))
+            if (Convert.ToChar(e.KeyValue).Equals(setting.Right))
             {
                 if (level == levelMax)
                 {
@@ -78,7 +78,7 @@ namespace Mario
                 level++;
                 MoveToLevel();
             }
-            if (e.KeyData == Keys.Enter || e.KeyData == Keys.Space || Convert.ToChar(e.KeyValue).Equals(setting.item))
+            if (e.KeyData == Keys.Enter || e.KeyData == Keys.Space || Convert.ToChar(e.KeyValue).Equals(setting.Item))
             {
                 if (activated)
                 {
@@ -170,7 +170,7 @@ namespace Mario
                         }
                         else
                         {
-                            Controls[f].Text = "?!?!?!?!?!?!?!?!?!?!?!?!";
+                            Controls[f].Text = "";
                         }
                         return;
                     }

@@ -29,8 +29,10 @@ namespace Mario
                 Tag = "Enemy";
             }
             right = true;
-            enemy_timer = new Timer();
-            enemy_timer.Interval = 100;
+            enemy_timer = new Timer
+            {
+                Interval = 100
+            };
             enemy_timer.Tick += Enemy_timer_Tick;
         }
 

@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mario
@@ -82,7 +75,7 @@ namespace Mario
             help[1] = time.ToString();
             help[4] = "1";
             string erg = "";
-            for (int f = 0; f < help.Length-1; f++)
+            for (int f = 0; f < help.Length - 1; f++)
             {
                 erg += help[f] + "|";
             }
@@ -125,22 +118,22 @@ namespace Mario
                     txt += "0,";
                 }
             }
-            txt=txt.Substring(0, txt.Length - 1);
+            txt = txt.Substring(0, txt.Length - 1);
             string data = readFile.SearchData();
             string[] help = data.Split('|');
             help[3] = txt;
             string erg = "";
-            for (int f = 0; f < help.Length-1; f++)
+            for (int f = 0; f < help.Length - 1; f++)
             {
                 erg += help[f] + "|";
             }
             readFile.SetData(erg);
         }
-        public bool[] GetRiceCoin ()
+        public bool[] GetRiceCoin()
         {
             bool[] ricecoin = new bool[3];
-            string[] help=readFile.SearchData().Split('|')[3].Split(',');
-            for(int f=0;f<help.Length;f++)
+            string[] help = readFile.SearchData().Split('|')[3].Split(',');
+            for (int f = 0; f < help.Length; f++)
             {
                 ricecoin[f] = help[f].Equals("1");
             }

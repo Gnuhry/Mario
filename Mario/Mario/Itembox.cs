@@ -31,7 +31,7 @@ namespace Mario
             else
             {
                 randomNr = DateTime.Now.Millisecond;
-                randomNr = (new Random().Next(1, ItemPicture.Length)* new Random().Next(1, ItemPicture.Length) + DateTime.Now.Millisecond);
+                randomNr = (new Random().Next(1, ItemPicture.Length) * new Random().Next(1, ItemPicture.Length) + DateTime.Now.Millisecond);
                 randomNr = randomNr % 4 + 1;
                 if (randomNr == 2)
                 {

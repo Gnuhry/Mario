@@ -6,7 +6,7 @@ namespace Mario
 {
     public partial class score : Form
     {
-        private int counter,coins;
+        private int counter, coins;
         private double timecounter, time, higscoore;
         private bool[] ricecoins;
         private Worlds worlds;
@@ -52,11 +52,14 @@ namespace Mario
                         }
                         counter++;
                         break;
-                    case 1: case 2:
+                    case 1:
+                    case 2:
                         lbCoin.Text = coins + " Coins";
                         counter++;
                         break;
-                    case 3: case 4: case 5:
+                    case 3:
+                    case 4:
+                    case 5:
                         if (ricecoins[0])
                         {
                             pcBrCoin1.Image = Properties.Resources.ricecoin;
@@ -79,11 +82,11 @@ namespace Mario
             }
         }
 
-       
+
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (lbNewRecord.Visible&&counter%5==0)
+            if (lbNewRecord.Visible && counter % 5 == 0)
             {
                 if (lbNewRecord.ForeColor == Color.Yellow)
                 {
@@ -100,7 +103,7 @@ namespace Mario
                     if (timecounter < time)
                     {
                         lbTime.Text = timecounter + " sek";
-                        timecounter+=1;
+                        timecounter += 1;
                         break;
                     }
                     lbTime.Text = time + " sek";
@@ -131,7 +134,7 @@ namespace Mario
                     counter++;
                     break;
                 case 10:
-                    if(ricecoins[1])
+                    if (ricecoins[1])
                     {
                         pcBrCoin2.Image = Properties.Resources.ricecoin;
                     }

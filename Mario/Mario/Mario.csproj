@@ -696,6 +696,7 @@
   <ItemGroup>
     <None Include="Resources\Windows\lvl_wahl.png" />
     <None Include="Resources\Windows\Settings.png" />
+    <None Include="Resources\Blocks\New Piskel.gif" />
     <Content Include="RG-Logo.ico" />
   </ItemGroup>
   <ItemGroup>

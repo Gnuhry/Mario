@@ -49,10 +49,10 @@ namespace Mario
             }
             for (int f = 1; f < file.Length; f++)
             {
-                    if (file[f].Length != file[1].Length)
-                    {
-                        return null;
-                    }
+                if (file[f].Length != file[1].Length)
+                {
+                    return null;
+                }
                 for (int column = 0; column < file[1].Length; column++)
                 {
                     switch (file[f].ToCharArray()[column])
@@ -133,11 +133,11 @@ namespace Mario
                             }
                             break;
                         case 'a':
-                            erg[column][row] = NewControl(Properties.Resources.ricecoin, "cloud");
+                            erg[column][row] = NewControl(Properties.Resources.cloud, "cloud");
                             break;
                     }
                 }
-                    row++;
+                row++;
             }
 
             return erg;
@@ -175,7 +175,7 @@ namespace Mario
         }
         public static void UnlockLevel(string level)
         {
-           string path = Settings.textFilePath + level + ".txt";
+            string path = Settings.textFilePath + level + ".txt";
             List<string> file = new List<string>();
             if (!File.Exists(path))
             {
@@ -187,7 +187,7 @@ namespace Mario
                 file.Add(reader.ReadLine());
             }
             reader.Dispose();
-            for(int f=0;f<file.Count;f++)
+            for (int f = 0; f < file.Count; f++)
             {
                 if (file[f].StartsWith("#"))
                 {
@@ -198,7 +198,7 @@ namespace Mario
                     {
                         file[f] += erg[g] + "|";
                     }
-                    File.WriteAllLines(path,file);
+                    File.WriteAllLines(path, file);
                     return;
                 }
             }
@@ -207,7 +207,7 @@ namespace Mario
         //----------------------------------------Resets-------------------------------------
         public static void ResetAll(Settings settings)
         {
-            foreach(string filename in GetFileNames())
+            foreach (string filename in GetFileNames())
             {
                 if (filename == "1-1.txt")
                 {
@@ -225,16 +225,16 @@ namespace Mario
         }
         public static void ResetLevel(ReadFile readFile, string four)
         {
-            string[] help=readFile.SearchData().Split('|');
+            string[] help = readFile.SearchData().Split('|');
             help[1] = "-1";
             help[3] = "0,0,0";
             help[4] = four;
-            string setdata="";
-            for(int f=0;f<help.Length-1;f++)
+            string setdata = "";
+            for (int f = 0; f < help.Length - 1; f++)
             {
                 setdata += help[f] + "|";
             }
-            setdata += help[help.Length-1];
+            setdata += help[help.Length - 1];
             readFile.SetData(setdata);
         }
         //-----------------------------------Filenames-----------------------------------
@@ -253,21 +253,22 @@ namespace Mario
         public static Settings GetSettings()
         {
             string[] txt = File.ReadAllLines(Settings.textFilePath + ".global.txt");
-            string[] setting=txt[1].Split(';');
-            Settings settings = new Settings();
-            settings.left = Convert.ToChar(setting[0]);
-            settings.right = Convert.ToChar(setting[1]);
-            settings.up = Convert.ToChar(setting[2]);
-            settings.item = Convert.ToChar(setting[3]);
-            settings.music = setting[4] == "True";
-            settings.sounds = setting[5] == "True";
-            settings.volume = Convert.ToInt32(setting[6]) / 100.0;
-            return settings;
+            string[] setting = txt[1].Split(';');
+            return new Settings
+            {
+                Left = Convert.ToChar(setting[0]),
+                Right = Convert.ToChar(setting[1]),
+                Up = Convert.ToChar(setting[2]),
+                Item = Convert.ToChar(setting[3]),
+                Music = setting[4] == "True",
+                Sounds = setting[5] == "True",
+                Volume = Convert.ToInt32(setting[6]) / 100.0
+            };
         }
         public static void SetSettings(Settings settings)
         {
-            string[] txt=File.ReadAllLines(Settings.textFilePath + ".global.txt");
-            txt[1] = settings.left + ";" + settings.right + ";" + settings.up + ";" + settings.item + ";" + settings.music + ";" + settings.sounds + ";"+(settings.volume*100)+";";
+            string[] txt = File.ReadAllLines(Settings.textFilePath + ".global.txt");
+            txt[1] = settings.Left + ";" + settings.Right + ";" + settings.Up + ";" + settings.Item + ";" + settings.Music + ";" + settings.Sounds + ";" + (settings.Volume * 100) + ";";
             File.WriteAllLines(Settings.textFilePath + ".global.txt", txt);
         }
         //------------------------------------------------Is first?-----------------------------------------

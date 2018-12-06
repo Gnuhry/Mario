@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace Mario
@@ -13,7 +11,7 @@ namespace Mario
         private double border;
         private Players players;
         private Control.ControlCollection controlCollection;
-        private System.Windows.Forms.Timer timer;
+        private Timer timer;
 
         public Engine(Control[][] controls, Control.ControlCollection controlCollection)
         {

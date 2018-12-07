@@ -159,6 +159,22 @@ namespace Mario
                 {
                     if (controls[pointer + gameWidth - 1][f] != null)
                     {
+                        if (controls[pointer + gameWidth - 1][f].Tag.Equals("coin"))
+                        {
+                            if (!players.IsGameControl(controls[pointer + gameWidth - 1][f]))
+                            {
+                                controls[pointer + gameWidth - 1][f] = null;
+                            }
+                        }
+                        else if ((controls[pointer + gameWidth - 1][f].Tag.ToString().Split('_').Length > 1))
+                        {
+                         if (controls[pointer + gameWidth - 1][f].Tag.ToString().Split('_')[1].Equals("coin"))
+                            {
+                                if (!players.IsGameControl(controls[pointer + gameWidth - 1][f]))
+                                {
+                                    controls[pointer + gameWidth - 1][f] = ReadFile.NewControl(Properties.Resources.box, "obstacle_destroy");
+                                }
+                            } }
                         int index = players.GetGameControlIndexOf(controls[pointer + gameWidth - 1][f]);
                         if (index != -1)
                         {
@@ -229,6 +245,21 @@ namespace Mario
                 {
                     if (controls[pointer][f] != null)
                     {
+                        if (controls[pointer][f].Tag.Equals("coin"))
+                        {
+                            if (!players.IsGameControl(controls[pointer][f]))
+                            {
+                                controls[pointer][f] = null;
+                            }
+                        }
+                        else if ((controls[pointer][f].Tag.ToString().Split('_').Length > 1)){
+                            if (controls[pointer][f].Tag.ToString().Split('_')[1].Equals("coin"))
+                            {
+                                if (!players.IsGameControl(controls[pointer][f]))
+                                {
+                                    controls[pointer][f] = ReadFile.NewControl(Properties.Resources.box, "obstacle_destroy"); ;
+                                }
+                            } }
                         int index = players.GetGameControlIndexOf(controls[pointer][f]);
                         if (index != -1)
                         {

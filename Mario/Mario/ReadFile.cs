@@ -142,7 +142,7 @@ namespace Mario
 
             return erg;
         }
-        public PictureBox NewControl(Image img, string Tag)
+        public static PictureBox NewControl(Image img, string Tag)
         {
             PictureBox temp = new PictureBox()
             {

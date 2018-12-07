@@ -1045,6 +1045,17 @@ namespace Mario
         {
             return gameControls.IndexOf(control);
         }
+        public bool IsGameControl(Control control)
+        {
+            try
+            {
+                return gameControls.BinarySearch(control) > -1;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         public void EnemyAdd(Enemy enemy)
         {
             int counter = 0;

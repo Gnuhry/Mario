@@ -30,12 +30,11 @@ namespace Mario
 
         public void Reload()
         {
+            Console.WriteLine("Reloud");
             try
             {
                 Visible = true;
                 ShowInTaskbar = true;
-                FormBorderStyle = FormBorderStyle.None;
-                WindowState = FormWindowState.Maximized;
                 SetText("1-1");
                 SetText("1-2");
                 SetText("1-3");
@@ -78,7 +77,7 @@ namespace Mario
                 level++;
                 MoveToLevel();
             }
-            if (e.KeyData == Keys.Enter || e.KeyData == Keys.Space || Convert.ToChar(e.KeyValue).Equals(setting.Item))
+            if (e.KeyData == Keys.Enter || Convert.ToChar(e.KeyValue).Equals(setting.Item))
             {
                 if (activated)
                 {
@@ -110,7 +109,7 @@ namespace Mario
             player.BringToFront();
             activated = pcB.Tag.Equals("1");
         }
-
+        public Settings GetSetting() => setting;
         private void SetText(string level)
         {
             for (int f = 0; f < Controls.Count; f++)

@@ -208,14 +208,18 @@ namespace Mario
                         }
                     }
                 }
-                for (int f = 0; f < players.GetEnemy().Count; f++)
+               /* for (int f = 0; f < players.GetEnemy().Count; f++)
                 {
                     if (players.GetEnemy()[f].Location.Y == Settings.width * (pointer - 1))
                     {
-                        controlCollection.Add(players.GetEnemy()[f]);
-                        players.GetEnemy()[f].Start(players);
+                        try
+                        {
+                            controlCollection.Add(players.GetEnemy()[f]);
+                            players.GetEnemy()[f].Start(players);
+                        }
+                        catch (Exception) { }
                     }
-                }
+                }*/
                 pointer--;
                 Point temp = players.Location;
                 temp.Offset(Settings.width, 0);

@@ -242,6 +242,16 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap jump {
+            get {
+                object obj = ResourceManager.GetObject("jump", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lvl_wahl {
             get {
                 object obj = ResourceManager.GetObject("lvl_wahl", resourceCulture);
@@ -1265,6 +1275,16 @@ namespace Mario.Properties {
         internal static System.Drawing.Bitmap player_run_pepper_right_7 {
             get {
                 object obj = ResourceManager.GetObject("player_run_pepper_right_7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_small_die_left {
+            get {
+                object obj = ResourceManager.GetObject("player_small_die_left", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

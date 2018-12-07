@@ -697,6 +697,8 @@
     <None Include="Resources\Windows\lvl_wahl.png" />
     <None Include="Resources\Windows\Settings.png" />
     <None Include="Resources\Blocks\New Piskel.gif" />
+    <None Include="Resources\Items\jump.gif" />
+    <None Include="Resources\Player\player_small_die_left.gif" />
     <Content Include="RG-Logo.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -554,7 +554,7 @@ namespace Mario
                         backbumerang = true;
                     }
                 }
-                else if (invincible)
+                else if (invincible&&itemCounter>0)
                 {
                     Sound_music.StarSound(settings);
                 }

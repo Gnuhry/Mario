@@ -474,7 +474,7 @@ namespace Mario
         {
             if (doubleJumping && !prevup)
             {
-                Sound_music.DoubleJumpSound(settings);
+                //Sound_music.DoubleJumpSound(settings);
                 jump = true;
                 jumpCounter = Settings.jumpspeed;
                 doubleJumping = false;
@@ -554,10 +554,10 @@ namespace Mario
                         backbumerang = true;
                     }
                 }
-                else if (invincible&&itemCounter>0)
+                /*else if (invincible&&itemCounter>0)
                 {
                     Sound_music.StarSound(settings);
-                }
+                }*/
                 if (--itemCounter == 0)
                 {
                     if (fireBall || backbumerang)

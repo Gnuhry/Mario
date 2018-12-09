@@ -1,2 +1,2 @@
-1
-A;D;W;Q;True;True;12;
+0
+A;D;W;Q;True;True;50;

@@ -50,11 +50,23 @@ namespace Mario
 
         private void LoadActivated()
         {
+            pcB1.Image = pcB2.Image = pcB3.Image = pcB4.Image = null;
             pcB1.Tag = new ReadFile(world + "-1").SearchData().Split('|')[4];
             pcB2.Tag = new ReadFile(world + "-2").SearchData().Split('|')[4];
             pcB3.Tag = new ReadFile(world + "-3").SearchData().Split('|')[4];
             pcB4.Tag = new ReadFile(world + "-4").SearchData().Split('|')[4];
-
+            if (!pcB2.Tag.ToString().Equals("1"))
+            {
+                pcB2.Image = Properties.Resources.lock1;
+            }
+            if (!pcB3.Tag.ToString().Equals("1"))
+            {
+                pcB3.Image = Properties.Resources.lock1;
+            }
+            if (!pcB4.Tag.ToString().Equals("1"))
+            {
+                pcB4.Image = Properties.Resources.lock1;
+            }
         }
 
         private void Worlds_KeyDown(object sender, KeyEventArgs e)
@@ -73,6 +85,12 @@ namespace Mario
                 if (level == levelMax)
                 {
                     return;
+                }
+                switch (level)
+                {
+                    case 1: if (pcB2.Image != null) { return; } break;
+                    case 2: if (pcB3.Image != null) { return; } break;
+                    case 3: if (pcB4.Image != null) { return; } break;
                 }
                 level++;
                 MoveToLevel();

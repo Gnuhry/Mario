@@ -534,7 +534,6 @@ namespace Mario
                     {
                         if (bumerang)
                         {
-                            Sound_music.BumerangSound(settings);
                             CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, true, false);
                         }
                         if (fireBall)
@@ -606,6 +605,10 @@ namespace Mario
                 else
                 {
                     help.Offset(-Settings.width, 0);
+                }
+                if (bumerang)
+                {
+                    Sound_music.BumerangSound(settings);
                 }
                 itemThrow.Location = help;
                 Parent.Controls.Add(itemThrow);
@@ -891,13 +894,39 @@ namespace Mario
             run_star_right.Add(Properties.Resources.player_normal_run_star_right_7);
             run_star_right.Add(Properties.Resources.player_normal_run_star_right_8);
             stay_jump_left = new Animation();
-            stay_jump_left.Add(Properties.Resources.dirt);
+            stay_jump_left.Add(Properties.Resources.player_normal_stay_doublejump_left_0);
+            stay_jump_left.Add(Properties.Resources.player_normal_stay_doublejump_left_0);
+            stay_jump_left.Add(Properties.Resources.player_normal_stay_doublejump_left_1);
+            stay_jump_left.Add(Properties.Resources.player_normal_stay_doublejump_left_1);
+            stay_jump_left.Add(Properties.Resources.player_normal_stay_doublejump_left_2);
+            stay_jump_left.Add(Properties.Resources.player_normal_stay_doublejump_left_2);
             stay_jump_right = new Animation();
-            stay_jump_right.Add(Properties.Resources.dirt);
+            stay_jump_right.Add(Properties.Resources.player_normal_stay_doublejump_right_0);
+            stay_jump_right.Add(Properties.Resources.player_normal_stay_doublejump_right_0);
+            stay_jump_right.Add(Properties.Resources.player_normal_stay_doublejump_right_1);
+            stay_jump_right.Add(Properties.Resources.player_normal_stay_doublejump_right_1);
+            stay_jump_right.Add(Properties.Resources.player_normal_stay_doublejump_right_2);
+            stay_jump_right.Add(Properties.Resources.player_normal_stay_doublejump_right_2);
             run_jump_left = new Animation();
-            run_jump_left.Add(Properties.Resources.dirt);
+            run_jump_left.Add(Properties.Resources.player_normal_run_doublejump_left_0);
+            run_jump_left.Add(Properties.Resources.player_normal_run_doublejump_left_1);
+            run_jump_left.Add(Properties.Resources.player_normal_run_doublejump_left_2);
+            run_jump_left.Add(Properties.Resources.player_normal_run_doublejump_left_3);
+            run_jump_left.Add(Properties.Resources.player_normal_run_doublejump_left_4);
+            run_jump_left.Add(Properties.Resources.player_normal_run_doublejump_left_5);
+            run_jump_left.Add(Properties.Resources.player_normal_run_doublejump_left_6);
+            run_jump_left.Add(Properties.Resources.player_normal_run_doublejump_left_7);
+            run_jump_left.Add(Properties.Resources.player_normal_run_doublejump_left_8);
             run_jump_right = new Animation();
-            run_jump_right.Add(Properties.Resources.dirt);
+            run_jump_right.Add(Properties.Resources.player_normal_run_doublejump_right_0);
+            run_jump_right.Add(Properties.Resources.player_normal_run_doublejump_right_1);
+            run_jump_right.Add(Properties.Resources.player_normal_run_doublejump_right_2);
+            run_jump_right.Add(Properties.Resources.player_normal_run_doublejump_right_3);
+            run_jump_right.Add(Properties.Resources.player_normal_run_doublejump_right_4);
+            run_jump_right.Add(Properties.Resources.player_normal_run_doublejump_right_5);
+            run_jump_right.Add(Properties.Resources.player_normal_run_doublejump_right_6);
+            run_jump_right.Add(Properties.Resources.player_normal_run_doublejump_right_7);
+            run_jump_right.Add(Properties.Resources.player_normal_run_doublejump_right_8);
         }
         private void ChangeTexture()
         {

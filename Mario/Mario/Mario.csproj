@@ -436,9 +436,6 @@
     <None Include="Resources\music_sound\coin.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\music_sound\level1.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Blocks\water.png" />
   </ItemGroup>
   <ItemGroup>
@@ -699,6 +696,48 @@
     <None Include="Resources\Blocks\New Piskel.gif" />
     <None Include="Resources\Items\jump.gif" />
     <None Include="Resources\Player\player_small_die_left.gif" />
+    <None Include="Resources\music_sound\music.wav" />
+    <None Include="Resources\music_sound\bummerang.wav" />
+    <None Include="Resources\music_sound\counter_sound.wav" />
+    <None Include="Resources\music_sound\destroy_block_sound.wav" />
+    <None Include="Resources\music_sound\die_sound.wav" />
+    <None Include="Resources\music_sound\fireball.wav" />
+    <None Include="Resources\music_sound\growsound.wav" />
+    <None Include="Resources\music_sound\hitblocksound.wav" />
+    <None Include="Resources\music_sound\hitenemysound.wav" />
+    <None Include="Resources\music_sound\hitsound.wav" />
+    <None Include="Resources\music_sound\itemboxsound.wav" />
+    <None Include="Resources\music_sound\ricecoinsound.wav" />
+    <None Include="Resources\music_sound\watersound.wav" />
+    <None Include="Resources\music_sound\jump.wav" />
+    <None Include="Resources\music_sound\star.wav" />
+    <None Include="Resources\Player\player_normal_stay_doublejump_left_0.png" />
+    <None Include="Resources\Player\player_normal_stay_doublejump_left_1.png" />
+    <None Include="Resources\Player\player_normal_stay_doublejump_left_2.png" />
+    <None Include="Resources\Player\player_normal_stay_doublejump_right_0.png" />
+    <None Include="Resources\Player\player_normal_stay_doublejump_right_1.png" />
+    <None Include="Resources\Player\player_normal_stay_doublejump_right_2.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_left_0.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_left_1.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_left_2.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_left_3.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_left_4.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_left_5.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_left_6.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_left_7.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_left_8.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_right_0.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_right_1.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_right_2.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_right_3.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_right_4.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_right_5.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_right_6.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_right_7.png" />
+    <None Include="Resources\Player\player_normal_run_doublejump_right_8.png" />
+    <None Include="Resources\music_sound\itempickup.wav" />
+    <None Include="Resources\Windows\lock.png" />
+    <None Include="Resources\music_sound\cloud.wav" />
     <Content Include="RG-Logo.ico" />
   </ItemGroup>
   <ItemGroup>

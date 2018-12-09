@@ -55,6 +55,7 @@
             this.tBarMusicValue = new System.Windows.Forms.TrackBar();
             this.btnClose = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.help = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tBarMusicValue)).BeginInit();
             this.SuspendLayout();
@@ -380,6 +381,16 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // help
+            // 
+            this.help.Location = new System.Drawing.Point(12, 242);
+            this.help.Name = "help";
+            this.help.Size = new System.Drawing.Size(23, 10);
+            this.help.TabIndex = 14;
+            this.help.Text = "button2";
+            this.help.UseVisualStyleBackColor = true;
+            this.help.Visible = false;
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -387,6 +398,7 @@
             this.BackgroundImage = global::Mario.Properties.Resources.Settings;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(664, 275);
+            this.Controls.Add(this.help);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tBarMusicValue);
@@ -440,5 +452,6 @@
         private System.Windows.Forms.TrackBar tBarMusicValue;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button help;
     }
 }

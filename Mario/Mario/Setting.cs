@@ -30,10 +30,38 @@ namespace Mario
         private void SetLabel()
         {
             label2.ForeColor = label4.ForeColor = label6.ForeColor = label8.ForeColor = Color.Black;
-            label2.Text = settings.Up + "";
-            label4.Text = settings.Right + "";
-            label6.Text = settings.Left + "";
-            label8.Text = settings.Item + "";
+            if (settings.Up == ' ')
+            {
+                label2.Text = "-";
+            }
+            else
+            {
+                label2.Text = settings.Up + "";
+            }
+            if (settings.Right == ' ')
+            {
+                label4.Text = "-";
+            }
+            else
+            {
+                label4.Text = settings.Right + "";
+            }
+            if (settings.Left == ' ')
+            {
+                label6.Text = "-";
+            }
+            else
+            {
+                label6.Text = settings.Left + "";
+            }
+            if (settings.Item == ' ')
+            {
+                label8.Text = "-";
+            }
+            else
+            {
+                label8.Text = settings.Item + "";
+            }
 
             if (settings.Up.Equals(settings.Right))
             {
@@ -96,17 +124,16 @@ namespace Mario
         }
         private void StopKeyRecord()
         {
-            KeyDown -= Setting_KeyDown;
             if (keys == '_')
             {
                 return;
             }
             switch (mode)
             {
-                case 0: btnJump.Enabled = true; settings.Up = keys; break;
-                case 1: btnRight.Enabled = true; settings.Right = keys; break;
-                case 2: btnLeft.Enabled = true; settings.Left = keys; break;
-                case 3: btnItem.Enabled = true; settings.Item = keys; break;
+                case 0: btnJump.KeyDown -= Setting_KeyDown; btnJump.Enabled = true; settings.Up = keys; break;
+                case 1: btnRight.KeyDown -= Setting_KeyDown; btnRight.Enabled = true; settings.Right = keys;break;
+                case 2: btnLeft.KeyDown -= Setting_KeyDown; btnLeft.Enabled = true; settings.Left = keys;  break;
+                case 3: btnItem.KeyDown -= Setting_KeyDown; btnItem.Enabled = true; settings.Item = keys; break;
             }
             SetLabel();
         }
@@ -118,7 +145,7 @@ namespace Mario
                 keys = '_';
                 StopKeyRecord();
             }
-            else if ((e.KeyValue >= Convert.ToInt32('0') && e.KeyValue <= Convert.ToInt32('9')) || (e.KeyValue >= Convert.ToInt32('A') && e.KeyValue <= Convert.ToInt32('Z'))&& e.KeyValue == Convert.ToInt32(' '))
+            else if ((e.KeyValue >= Convert.ToInt32('0') && e.KeyValue <= Convert.ToInt32('9')) || (e.KeyValue >= Convert.ToInt32('A') && e.KeyValue <= Convert.ToInt32('Z'))|| e.KeyValue == Convert.ToInt32(' '))
             {
                 keys = Convert.ToChar(e.KeyValue);
                 StopKeyRecord();

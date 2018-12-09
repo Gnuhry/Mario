@@ -122,7 +122,7 @@ namespace Mario
         {
             for (int row = pointer; row < pointer + gameWidth && row < pointer + controls.Length; row++)
             {
-                for (int column = 0; column < Settings.gamehight && column < controls[0].Length; column++)
+                for (int column = 0; /*column < Settings.gamehight &&*/ column < controls[0].Length; column++)
                 {
                     if (controls[row][column] != null)
                     {
@@ -155,7 +155,7 @@ namespace Mario
             Point help = players.Location;
             if (help.X < border)
             {
-                for (int f = 0; f < Settings.highBlocks; f++)
+                for (int f = 0; f < controls[0].Length; f++)
                 {
                     if (controls[pointer + gameWidth - 1][f] != null)
                     {
@@ -192,7 +192,7 @@ namespace Mario
                         control.Location = location;
                     }
                 }
-                for (int f = 0; f < Settings.highBlocks; f++)
+                for (int f = 0; f < controls[0].Length; f++)
                 {
                     if (controls[pointer - 1][f] != null)
                     {
@@ -245,7 +245,7 @@ namespace Mario
             Point help = players.Location;
             if (help.X > gameWidth * Settings.width - border)
             {
-                for (int f = 0; f < Settings.highBlocks; f++)
+                for (int f = 0; f < controls[0].Length; f++)
                 {
                     if (controls[pointer][f] != null)
                     {
@@ -281,7 +281,7 @@ namespace Mario
                         control.Location = location;
                     }
                 }
-                for (int f = 0; f < Settings.highBlocks; f++)
+                for (int f = 0; f < controls[0].Length; f++)
                 {
                     if (controls[pointer + gameWidth][f] != null)
                     {

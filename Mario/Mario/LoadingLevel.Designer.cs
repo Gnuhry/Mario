@@ -57,7 +57,7 @@
             // lbLevelName
             // 
             this.lbLevelName.BackColor = System.Drawing.Color.Transparent;
-            this.lbLevelName.Font = new System.Drawing.Font("Monotype Corsiva", 26.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLevelName.Font = new System.Drawing.Font("Monotype Corsiva", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLevelName.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbLevelName.Location = new System.Drawing.Point(200, 21);
             this.lbLevelName.Name = "lbLevelName";

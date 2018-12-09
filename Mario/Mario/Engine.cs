@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace Mario
@@ -13,7 +11,8 @@ namespace Mario
         private double border;
         private Players players;
         private Control.ControlCollection controlCollection;
-        private System.Windows.Forms.Timer timer;
+        private Timer timer;
+        private int[] ricecoin;
 
         public Engine(Control[][] controls, Control.ControlCollection controlCollection)
         {
@@ -21,11 +20,38 @@ namespace Mario
             this.controlCollection = controlCollection;
             Init();
             FindPlayer();
+            SetRiceCoin();
             DisplayBackground();
             InitTime();
             InitTimer();
-
         }
+        private void SetRiceCoin()
+        {
+            for (int f = 0; f < controls.Length; f++)
+            {
+                for (int g = 0; g < controls[1].Length; g++)
+                {
+                    if (controls[f][g] != null)
+                    {
+                        if (controls[f][g].Tag != null)
+                        {
+                            if (controls[f][g].Tag.ToString().Split('_')[0].Equals("star"))
+                            {
+                                switch (controls[f][g].Tag.ToString().Split('_')[1])
+                                {
+                                    case "1": ricecoin[0] = f; ricecoin[1] = g; break;
+                                    case "2": ricecoin[2] = f; ricecoin[3] = g; break;
+                                    case "3": ricecoin[4] = f; ricecoin[5] = g; break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            
+        }
+
         public void Start()
         {
             players.Start();
@@ -35,6 +61,7 @@ namespace Mario
         {
             gameWidth = Screen.PrimaryScreen.WorkingArea.Width / Settings.width;
             border = gameWidth * Settings.width * Settings.borderFactor;
+            ricecoin = new int[6];
         }
 
 
@@ -57,7 +84,7 @@ namespace Mario
         {
             for (int f = 0; f < controls.Length; f++)
             {
-                for (int g = 0; g < controls[0].Length; g++)
+                for (int g = 0; g < controls[1].Length; g++)
                 {
                     if (controls[f][g] is Players)
                     {
@@ -70,8 +97,8 @@ namespace Mario
                         {
                             pointer = 0;
                         }
-                        return;
                     }
+                    
                 }
 
             }
@@ -95,7 +122,7 @@ namespace Mario
         {
             for (int row = pointer; row < pointer + gameWidth && row < pointer + controls.Length; row++)
             {
-                for (int column = 0; column < Settings.gamehight && column < controls[0].Length; column++)
+                for (int column = 0; /*column < Settings.gamehight &&*/ column < controls[0].Length; column++)
                 {
                     if (controls[row][column] != null)
                     {
@@ -128,10 +155,26 @@ namespace Mario
             Point help = players.Location;
             if (help.X < border)
             {
-                for (int f = 0; f < Settings.highBlocks; f++)
+                for (int f = 0; f < controls[0].Length; f++)
                 {
                     if (controls[pointer + gameWidth - 1][f] != null)
                     {
+                        if (controls[pointer + gameWidth - 1][f].Tag.Equals("coin"))
+                        {
+                            if (!players.IsGameControl(controls[pointer + gameWidth - 1][f]))
+                            {
+                                controls[pointer + gameWidth - 1][f] = null;
+                            }
+                        }
+                        else if ((controls[pointer + gameWidth - 1][f].Tag.ToString().Split('_').Length > 1))
+                        {
+                         if (controls[pointer + gameWidth - 1][f].Tag.ToString().Split('_')[1].Equals("coin"))
+                            {
+                                if (!players.IsGameControl(controls[pointer + gameWidth - 1][f]))
+                                {
+                                    controls[pointer + gameWidth - 1][f] = ReadFile.NewControl(Properties.Resources.box, "obstacle_destroy");
+                                }
+                            } }
                         int index = players.GetGameControlIndexOf(controls[pointer + gameWidth - 1][f]);
                         if (index != -1)
                         {
@@ -149,7 +192,7 @@ namespace Mario
                         control.Location = location;
                     }
                 }
-                for (int f = 0; f < Settings.highBlocks; f++)
+                for (int f = 0; f < controls[0].Length; f++)
                 {
                     if (controls[pointer - 1][f] != null)
                     {
@@ -165,14 +208,18 @@ namespace Mario
                         }
                     }
                 }
-                for (int f = 0; f < players.GetEnemy().Count; f++)
+               /* for (int f = 0; f < players.GetEnemy().Count; f++)
                 {
                     if (players.GetEnemy()[f].Location.Y == Settings.width * (pointer - 1))
                     {
-                        controlCollection.Add(players.GetEnemy()[f]);
-                        players.GetEnemy()[f].Start(players);
+                        try
+                        {
+                            controlCollection.Add(players.GetEnemy()[f]);
+                            players.GetEnemy()[f].Start(players);
+                        }
+                        catch (Exception) { }
                     }
-                }
+                }*/
                 pointer--;
                 Point temp = players.Location;
                 temp.Offset(Settings.width, 0);
@@ -198,10 +245,25 @@ namespace Mario
             Point help = players.Location;
             if (help.X > gameWidth * Settings.width - border)
             {
-                for (int f = 0; f < Settings.highBlocks; f++)
+                for (int f = 0; f < controls[0].Length; f++)
                 {
                     if (controls[pointer][f] != null)
                     {
+                        if (controls[pointer][f].Tag.Equals("coin"))
+                        {
+                            if (!players.IsGameControl(controls[pointer][f]))
+                            {
+                                controls[pointer][f] = null;
+                            }
+                        }
+                        else if ((controls[pointer][f].Tag.ToString().Split('_').Length > 1)){
+                            if (controls[pointer][f].Tag.ToString().Split('_')[1].Equals("coin"))
+                            {
+                                if (!players.IsGameControl(controls[pointer][f]))
+                                {
+                                    controls[pointer][f] = ReadFile.NewControl(Properties.Resources.box, "obstacle_destroy"); ;
+                                }
+                            } }
                         int index = players.GetGameControlIndexOf(controls[pointer][f]);
                         if (index != -1)
                         {
@@ -219,7 +281,7 @@ namespace Mario
                         control.Location = location;
                     }
                 }
-                for (int f = 0; f < Settings.highBlocks; f++)
+                for (int f = 0; f < controls[0].Length; f++)
                 {
                     if (controls[pointer + gameWidth][f] != null)
                     {
@@ -253,6 +315,15 @@ namespace Mario
                         }
                     }
                 }
+            }
+        }
+        public void ClearCoin(int coin)
+        {
+            switch (coin)
+            {
+                case 1: controls[ricecoin[0]][ricecoin[1]] = null; break;
+                case 2: controls[ricecoin[2]][ricecoin[3]] = null; break;
+                case 3: controls[ricecoin[4]][ricecoin[5]] = null; break;
             }
         }
 

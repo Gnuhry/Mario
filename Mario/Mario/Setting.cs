@@ -15,9 +15,9 @@ namespace Mario
             Focus();
             this.settings = settings;
             SetLabel();
-            chBmusic.Checked = settings.music;
-            chBsound.Checked = settings.sounds;
-            tBarMusicValue.Value = Convert.ToInt32(100 * settings.volume);
+            chBmusic.Checked = settings.Music;
+            chBsound.Checked = settings.Sounds;
+            tBarMusicValue.Value = Convert.ToInt32(100 * settings.Volume);
             if (chBmusic.Checked)
             {
                 tBarMusicValue.Enabled = true;
@@ -30,37 +30,65 @@ namespace Mario
         private void SetLabel()
         {
             label2.ForeColor = label4.ForeColor = label6.ForeColor = label8.ForeColor = Color.Black;
-            label2.Text = settings.up + "";
-            label4.Text = settings.right + "";
-            label6.Text = settings.left + "";
-            label8.Text = settings.item + "";
+            if (settings.Up == ' ')
+            {
+                label2.Text = "-";
+            }
+            else
+            {
+                label2.Text = settings.Up + "";
+            }
+            if (settings.Right == ' ')
+            {
+                label4.Text = "-";
+            }
+            else
+            {
+                label4.Text = settings.Right + "";
+            }
+            if (settings.Left == ' ')
+            {
+                label6.Text = "-";
+            }
+            else
+            {
+                label6.Text = settings.Left + "";
+            }
+            if (settings.Item == ' ')
+            {
+                label8.Text = "-";
+            }
+            else
+            {
+                label8.Text = settings.Item + "";
+            }
 
-            if (settings.up.Equals(settings.right))
+            if (settings.Up.Equals(settings.Right))
             {
                 label2.ForeColor = Color.Red;
                 label4.ForeColor = Color.Red;
             }
-            if (settings.up.Equals(settings.left))
+            if (settings.Up.Equals(settings.Left))
             {
                 label2.ForeColor = Color.Red;
                 label6.ForeColor = Color.Red;
             }
-            if (settings.up.Equals(settings.item))
+            if (settings.Up.Equals(settings.Item))
             {
                 label2.ForeColor = Color.Red;
                 label8.ForeColor = Color.Red;
             }
-            if (settings.right.Equals(settings.left))
+            if (settings.Right.Equals(settings.Left))
             {
                 label4.ForeColor = Color.Red;
                 label6.ForeColor = Color.Red;
             }
-            if (settings.right.Equals(settings.item))
+            if (settings.Right.Equals(settings.Item))
             {
                 label4.ForeColor = Color.Red;
                 label8.ForeColor = Color.Red;
             }
-            if (settings.left.Equals(settings.item))
+            if (settings.Left.Equals(settings.Item))
             {
                 label6.ForeColor = Color.Red;
                 label8.ForeColor = Color.Red;
@@ -96,17 +124,16 @@ namespace Mario
         }
         private void StopKeyRecord()
         {
-            KeyDown -= Setting_KeyDown;
             if (keys == '_')
             {
                 return;
             }
             switch (mode)
             {
-                case 0: btnJump.Enabled = true; settings.up = keys; break;
-                case 1: btnRight.Enabled = true; settings.right = keys; break;
-                case 2: btnLeft.Enabled = true; settings.left = keys; break;
-                case 3: btnItem.Enabled = true; settings.item = keys; break;
+                case 0: btnJump.KeyDown -= Setting_KeyDown; btnJump.Enabled = true; settings.Up = keys; break;
+                case 1: btnRight.KeyDown -= Setting_KeyDown; btnRight.Enabled = true; settings.Right = keys;break;
+                case 2: btnLeft.KeyDown -= Setting_KeyDown; btnLeft.Enabled = true; settings.Left = keys;  break;
+                case 3: btnItem.KeyDown -= Setting_KeyDown; btnItem.Enabled = true; settings.Item = keys; break;
             }
             SetLabel();
         }
@@ -118,7 +145,7 @@ namespace Mario
                 keys = '_';
                 StopKeyRecord();
             }
-            else if ((e.KeyValue >= Convert.ToInt32('0') && e.KeyValue <= Convert.ToInt32('9')) || (e.KeyValue >= Convert.ToInt32('A') && e.KeyValue <= Convert.ToInt32('Z')))
+            else if ((e.KeyValue >= Convert.ToInt32('0') && e.KeyValue <= Convert.ToInt32('9')) || (e.KeyValue >= Convert.ToInt32('A') && e.KeyValue <= Convert.ToInt32('Z'))|| e.KeyValue == Convert.ToInt32(' '))
             {
                 keys = Convert.ToChar(e.KeyValue);
                 StopKeyRecord();
@@ -127,9 +154,9 @@ namespace Mario
 
         private void chBmusic_Click(object sender, EventArgs e)
         {
-            settings.music = !settings.music;
-            chBmusic.Checked = settings.music;
-            sound_music.CheckMusic(settings);
+            settings.Music = !settings.Music;
+            chBmusic.Checked = settings.Music;
+            Sound_music.CheckMusic(settings);
             if (chBmusic.Checked)
             {
                 tBarMusicValue.Enabled = true;
@@ -142,32 +169,32 @@ namespace Mario
 
         private void chBsound_Click(object sender, EventArgs e)
         {
-            settings.sounds = !settings.sounds;
-            chBsound.Checked = settings.sounds;
+            settings.Sounds = !settings.Sounds;
+            chBsound.Checked = settings.Sounds;
         }
 
         private void btnResetUp_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Reset");
-            settings.up = Settings.upD;
+            settings.Up = Settings.upD;
             SetLabel();
         }
 
         private void btnResetRight_Click(object sender, EventArgs e)
         {
-            settings.right = Settings.rightD;
+            settings.Right = Settings.rightD;
             SetLabel();
         }
 
         private void btnResetLeft_Click(object sender, EventArgs e)
         {
-            settings.left = Settings.leftD;
+            settings.Left = Settings.leftD;
             SetLabel();
         }
 
         private void btnResetItem_Click(object sender, EventArgs e)
         {
-            settings.item = Settings.itemD;
+            settings.Item = Settings.itemD;
 
             SetLabel();
         }
@@ -191,8 +218,18 @@ namespace Mario
 
         private void tBarMusicValue_Scroll(object sender, EventArgs e)
         {
-            settings.volume = tBarMusicValue.Value / 100.0;
-            sound_music.ChangeVolume(settings);
+            settings.Volume = tBarMusicValue.Value / 100.0;
+            Sound_music.ChangeVolume(settings);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

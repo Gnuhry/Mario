@@ -29,8 +29,10 @@ namespace Mario
                 Tag = "Enemy";
             }
             right = true;
-            enemy_timer = new Timer();
-            enemy_timer.Interval = 100;
+            enemy_timer = new Timer
+            {
+                Interval = 100
+            };
             enemy_timer.Tick += Enemy_timer_Tick;
         }
 
@@ -154,6 +156,10 @@ namespace Mario
                     {
                         return false;
                     }
+                    else if (control.Tag.ToString().Equals("water"))
+                    {
+                            Hit();
+                    }
                 }
             }
             if (help.X < 0)
@@ -167,7 +173,14 @@ namespace Mario
             return true;
         }
 
-        public void Hit()
+        public void Hit(Settings settings)
+        {
+            Sound_music.HitEnemySound(settings);
+            enemy_timer.Stop();
+            Parent.Controls.Remove(this);
+            Dispose();
+        }
+        private void Hit()
         {
             enemy_timer.Stop();
             Parent.Controls.Remove(this);

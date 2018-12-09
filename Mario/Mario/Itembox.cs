@@ -13,7 +13,7 @@ namespace Mario
         {
             InitializeComponent();
             ItemPicture = new Image[] { Properties.Resources.rice, Properties.Resources.pepper,
-                Properties.Resources.star, Properties.Resources.springroll, Properties.Resources.bumerang };
+                Properties.Resources.star, Properties.Resources.jump, Properties.Resources.bumerang };
             Size = new Size(Settings.width, Settings.height);
             Tag = "itembox";
             active = true;
@@ -31,7 +31,7 @@ namespace Mario
             else
             {
                 randomNr = DateTime.Now.Millisecond;
-                randomNr = (new Random().Next(1, ItemPicture.Length)* new Random().Next(1, ItemPicture.Length) + DateTime.Now.Millisecond);
+                randomNr = (new Random().Next(1, ItemPicture.Length) * new Random().Next(1, ItemPicture.Length) + DateTime.Now.Millisecond);
                 randomNr = randomNr % 4 + 1;
                 if (randomNr == 2)
                 {

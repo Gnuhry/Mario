@@ -5,35 +5,55 @@ namespace Mario
 {
     public partial class Form1 : Form
     {
-        private Player player;
-        private Engine engine;
+        private Settings settings;
+        private Setting setting;
         public Form1()
         {
             InitializeComponent();
-            player = new Player(label1);
-            engine = new Engine(new ReadFile(1).interpretFile(), player);
-        }
-
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            Console.WriteLine(Convert.ToChar(e.KeyValue));
-            switch (Convert.ToChar(e.KeyValue))
+            settings = ReadFile.GetSettings();
+            Sound_music.CheckMusic(settings);
+            if (ReadFile.IsFirst())
             {
-                case 'W': player.jump = true; break;
-                case 'A': player.left = true; break;
-                case 'D': player.right = true; break;
+                btnStart.Enabled = false;
             }
         }
 
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(Convert.ToChar(e.KeyValue));
-            switch (Convert.ToChar(e.KeyValue))
+            Visible = false;
+            ShowInTaskbar = false;
+            new Worlds(settings, this).Show();
+        }
+
+        private void Forms_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Visible = true;
+            ShowInTaskbar = true;
+        }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            Visible = false;
+            ShowInTaskbar = false;
+            setting = new Setting(settings);
+            setting.Show();
+            setting.FormClosed += Forms_FormClosed;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (ReadFile.IsFirst())
             {
-                case 'W': player.jump = false; break;
-                case 'A': player.left = false; break;
-                case 'D': player.right = false; break;
+                ReadFile.SetFirst("1");
             }
+            new Story(this).Show();
+            btnStart.Enabled = true;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.ExitThread();
+            Application.Exit();
         }
     }
 }

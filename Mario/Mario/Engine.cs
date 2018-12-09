@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,112 +6,366 @@ namespace Mario
 {
     public class Engine
     {
-        private Control[] controls;
-        private Rectangle[] obstacles;
-        private Player player;
+        private Control[][] controls;
+        private int pointer, gameWidth;
+        private double border;
+        private Players players;
+        private Control.ControlCollection controlCollection;
         private Timer timer;
+        private int[] ricecoin;
 
-        public Engine(Control[] controls, Player player)
+        public Engine(Control[][] controls, Control.ControlCollection controlCollection)
         {
-            obstacles = new Rectangle[] { new Rectangle(0, 400, 1000, 1) };
             this.controls = controls;
-            this.player = player;
-            timer = new Timer();
-            timer.Interval = Settings.timerlenght;
-            timer.Tick += Timer;
+            this.controlCollection = controlCollection;
+            Init();
+            FindPlayer();
+            SetRiceCoin();
+            DisplayBackground();
+            InitTime();
+            InitTimer();
+        }
+        private void SetRiceCoin()
+        {
+            for (int f = 0; f < controls.Length; f++)
+            {
+                for (int g = 0; g < controls[1].Length; g++)
+                {
+                    if (controls[f][g] != null)
+                    {
+                        if (controls[f][g].Tag != null)
+                        {
+                            if (controls[f][g].Tag.ToString().Split('_')[0].Equals("star"))
+                            {
+                                switch (controls[f][g].Tag.ToString().Split('_')[1])
+                                {
+                                    case "1": ricecoin[0] = f; ricecoin[1] = g; break;
+                                    case "2": ricecoin[2] = f; ricecoin[3] = g; break;
+                                    case "3": ricecoin[4] = f; ricecoin[5] = g; break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            
+        }
+
+        public void Start()
+        {
+            players.Start();
+            StartTime();
+        }
+        private void Init()
+        {
+            gameWidth = Screen.PrimaryScreen.WorkingArea.Width / Settings.width;
+            border = gameWidth * Settings.width * Settings.borderFactor;
+            ricecoin = new int[6];
+        }
+
+
+        //-------------------------Timer-----------------------------------------------
+        private void InitTimer()
+        {
+            timer = new System.Windows.Forms.Timer();
+            timer.Tick += Timer_Tick;
             timer.Start();
         }
-        public bool collisionDetect(Rectangle rectangle)
+        private void Timer_Tick(object sender, EventArgs e)
         {
-            foreach (Rectangle obstacle in obstacles)
-            {
-                if (rectangle.IntersectsWith(obstacle)) return false;
-            }
-            return true;
+            MoveBackgroundLeft();
+            MoveBackgroundRight();
+            TimerTime();
         }
-        private void SetObstacles(Control[] controls)
+
+        //------------------------Player-----------------------------------------
+        private void FindPlayer()
         {
-            List<Rectangle> rectangles = new List<Rectangle>();
-            foreach (Control control in controls)
+            for (int f = 0; f < controls.Length; f++)
             {
-                if (control.Tag.Equals("obstacle"))
+                for (int g = 0; g < controls[1].Length; g++)
                 {
-                    rectangles.Add(new Rectangle(control.Location, control.Size));
+                    if (controls[f][g] is Players)
+                    {
+                        players = controls[f][g] as Players;
+                        if (f > gameWidth / 2)
+                        {
+                            pointer = f - (gameWidth / 2);
+                        }
+                        else
+                        {
+                            pointer = 0;
+                        }
+                    }
+                    
+                }
+
+            }
+            if (players == null)
+            {
+                throw new Exception();
+            }
+        }
+        public void PlayerStart()
+        {
+            players.Start();
+        }
+        public void PlayerDipose()
+        {
+            players.Stop();
+            players.Dispose();
+        }
+
+        //-------------------------Background-------------------------------------
+        private void DisplayBackground()
+        {
+            for (int row = pointer; row < pointer + gameWidth && row < pointer + controls.Length; row++)
+            {
+                for (int column = 0; /*column < Settings.gamehight &&*/ column < controls[0].Length; column++)
+                {
+                    if (controls[row][column] != null)
+                    {
+                        players.GameControlAdd(controls[row][column]);
+                        controls[row][column].Location = new Point((row - pointer) * Settings.width, column * Settings.height);
+                        controlCollection.Add(controls[row][column]);
+                        if (controls[row][column] == players)
+                        {
+                            players.GameControlRemove(controls[row][column]);
+                            controls[row][column] = null;
+                        }
+                        if (controls[row][column] is Enemy)
+                        {
+                            if (controls[row][column].Tag.ToString().Split('_').Length > 1)
+                            {
+                                controls[row][column].Location = new Point((row - pointer) * Settings.width, column * Settings.height - Settings.height);
+                            }
+                            players.GameControlRemove(controls[row][column]);
+                            players.EnemyAdd(controls[row][column] as Enemy);
+                            controls[row][column] = null;
+                        }
+                    }
                 }
             }
-            obstacles = rectangles.ToArray();
+
         }
-        private void DisplayBackground(ref Control.ControlCollection controlCollection)
+        private void MoveBackgroundLeft()
         {
-            //TODO abfrage nach bildschirmgröße und spielpixel anzahl
-            //anzeigen der möglichen
-            //die anderen nicht hinzufügen
-            //SetObstacles();
-        }
-        private void MoveBackgroundLeft(ref Control.ControlCollection controlCollection)
-        {
-            //TODO alles nach rechts Move
-            //ganz rechts die Controls löschen
-            //links neue Controls hinzufügen
-        }
-        private void MoveBackgroundRight(ref Control.ControlCollection controlCollection)
-        {
-            //TODO alles nach links Move
-            //ganz links die Controls löschen
-            //rechts neue Controls hinzufügen
-        }
-        private void MoveBackgroundUp(ref Control.ControlCollection controlCollection)
-        {
-            //TODO alles nach unten Move
-            //ganz unten die Controls löschen
-            //oben neue Controls hinzufügen
-        }
-        private void MoveBackgroundDown(ref Control.ControlCollection controlCollection)
-        {
-            //TODO alles nach oben Move
-            //ganz oben die Controls löschen
-            //unten neue Controls hinzufügen
-        }
-        private void Timer(object sender, EventArgs e)
-        {
-            int x = 0, y = 0;
-            if (player.jumping && player.jump)
+            if (pointer < 1) return;
+            Point help = players.Location;
+            if (help.X < border)
             {
-                if (player.JumpCounter-- <= 0)
+                for (int f = 0; f < controls[0].Length; f++)
                 {
-                    player.jumping = false;
-                    return;
+                    if (controls[pointer + gameWidth - 1][f] != null)
+                    {
+                        if (controls[pointer + gameWidth - 1][f].Tag.Equals("coin"))
+                        {
+                            if (!players.IsGameControl(controls[pointer + gameWidth - 1][f]))
+                            {
+                                controls[pointer + gameWidth - 1][f] = null;
+                            }
+                        }
+                        else if ((controls[pointer + gameWidth - 1][f].Tag.ToString().Split('_').Length > 1))
+                        {
+                         if (controls[pointer + gameWidth - 1][f].Tag.ToString().Split('_')[1].Equals("coin"))
+                            {
+                                if (!players.IsGameControl(controls[pointer + gameWidth - 1][f]))
+                                {
+                                    controls[pointer + gameWidth - 1][f] = ReadFile.NewControl(Properties.Resources.box, "obstacle_destroy");
+                                }
+                            } }
+                        int index = players.GetGameControlIndexOf(controls[pointer + gameWidth - 1][f]);
+                        if (index != -1)
+                        {
+                            controlCollection.Remove(players.GetGameControlItem(index));
+                            players.GameControlRemoveAt(index);
+                        }
+                    }
                 }
-                if (collisionDetect(new Rectangle(player.control.Location.X, player.control.Location.Y - Settings.speedX, player.control.Size.Width, player.control.Size.Height)))
+                foreach (Control control in players.GetGameControl())
                 {
-                    x = -Settings.speedX;
+                    if (control != null)
+                    {
+                        Point location = control.Location;
+                        location.Offset(Settings.width, 0);
+                        control.Location = location;
+                    }
                 }
-            }
-            else
-            {
-                if (collisionDetect(new Rectangle(player.control.Location.X, player.control.Location.Y + Settings.speedX, player.control.Size.Width, player.control.Size.Height)))
+                for (int f = 0; f < controls[0].Length; f++)
                 {
-                    x = Settings.speedX;
+                    if (controls[pointer - 1][f] != null)
+                    {
+                        controls[pointer - 1][f].Location = new Point(0, f * Settings.height);
+                        players.GameControlAdd(controls[pointer - 1][f]);
+                        controlCollection.Add(controls[pointer - 1][f]);
+                        if (controls[pointer - 1][f] is Enemy)
+                        {
+                            players.GameControlRemove(controls[pointer - 1][f]);
+                            players.EnemyAdd(controls[pointer - 1][f] as Enemy);
+                            players.StartEnemies();
+                            controls[pointer - 1][f] = null;
+                        }
+                    }
                 }
-                else
+               /* for (int f = 0; f < players.GetEnemy().Count; f++)
                 {
-                    player.jumping = true;
-                    player.JumpCounter = Settings.jumpspeed;
+                    if (players.GetEnemy()[f].Location.Y == Settings.width * (pointer - 1))
+                    {
+                        try
+                        {
+                            controlCollection.Add(players.GetEnemy()[f]);
+                            players.GetEnemy()[f].Start(players);
+                        }
+                        catch (Exception) { }
+                    }
+                }*/
+                pointer--;
+                Point temp = players.Location;
+                temp.Offset(Settings.width, 0);
+                players.Location = temp;
+                foreach (Enemy enemy in players.GetEnemy())
+                {
+                    if (enemy != null)
+                    {
+                        Point help2 = enemy.Location;
+                        help2.Offset(Settings.width, 0);
+                        enemy.Location = help2;
+                        if (help.X > Screen.PrimaryScreen.WorkingArea.Width)
+                        {
+                            players.EnemyRemove(enemy);
+                        }
+                    }
                 }
             }
-            if (player.right && player.left)
+        }
+        private void MoveBackgroundRight()
+        {
+            if (pointer >= controls.Length - gameWidth) return;
+            Point help = players.Location;
+            if (help.X > gameWidth * Settings.width - border)
             {
-                player.right = player.left = false;
+                for (int f = 0; f < controls[0].Length; f++)
+                {
+                    if (controls[pointer][f] != null)
+                    {
+                        if (controls[pointer][f].Tag.Equals("coin"))
+                        {
+                            if (!players.IsGameControl(controls[pointer][f]))
+                            {
+                                controls[pointer][f] = null;
+                            }
+                        }
+                        else if ((controls[pointer][f].Tag.ToString().Split('_').Length > 1)){
+                            if (controls[pointer][f].Tag.ToString().Split('_')[1].Equals("coin"))
+                            {
+                                if (!players.IsGameControl(controls[pointer][f]))
+                                {
+                                    controls[pointer][f] = ReadFile.NewControl(Properties.Resources.box, "obstacle_destroy"); ;
+                                }
+                            } }
+                        int index = players.GetGameControlIndexOf(controls[pointer][f]);
+                        if (index != -1)
+                        {
+                            controlCollection.Remove(players.GetGameControlItem(index));
+                            players.GameControlRemoveAt(index);
+                        }
+                    }
+                }
+                foreach (Control control in players.GetGameControl())
+                {
+                    if (control != null)
+                    {
+                        Point location = control.Location;
+                        location.Offset(-Settings.width, 0);
+                        control.Location = location;
+                    }
+                }
+                for (int f = 0; f < controls[0].Length; f++)
+                {
+                    if (controls[pointer + gameWidth][f] != null)
+                    {
+                        controls[pointer + gameWidth][f].Location = new Point((gameWidth - 1) * Settings.width, f * Settings.height);
+                        players.GameControlAdd(controls[pointer + gameWidth][f]);
+                        controlCollection.Add(controls[pointer + gameWidth][f]);
+                        if (controls[pointer + gameWidth][f] is Enemy)
+                        {
+                            players.GameControlRemove(controls[pointer + gameWidth][f]);
+                            players.EnemyAdd(controls[pointer + gameWidth][f] as Enemy);
+                            players.StartEnemies();
+                            controls[pointer + gameWidth][f] = null;
+                        }
+
+                    }
+                }
+                pointer++;
+                Point temp = players.Location;
+                temp.Offset(-Settings.width, 0);
+                players.Location = temp;
+                foreach (Enemy enemy in players.GetEnemy())
+                {
+                    if (enemy != null)
+                    {
+                        Point help2 = enemy.Location;
+                        help2.Offset(-Settings.width, 0);
+                        enemy.Location = help2;
+                        if (help.X < 0)
+                        {
+                            players.EnemyRemove(enemy);
+                        }
+                    }
+                }
             }
-            else if (player.right && collisionDetect(new Rectangle(player.control.Location.X + Settings.speedX, player.control.Location.Y, player.control.Size.Width, player.control.Size.Height)))
+        }
+        public void ClearCoin(int coin)
+        {
+            switch (coin)
             {
-                y = Settings.speedY;
+                case 1: controls[ricecoin[0]][ricecoin[1]] = null; break;
+                case 2: controls[ricecoin[2]][ricecoin[3]] = null; break;
+                case 3: controls[ricecoin[4]][ricecoin[5]] = null; break;
             }
-            else if (player.left && collisionDetect(new Rectangle(player.control.Location.X - Settings.speedX, player.control.Location.Y, player.control.Size.Width, player.control.Size.Height)))
+        }
+
+        //-----------------------------------------Time------------------------------------------
+        private DateTime start, help;
+        private Label time;
+        private bool active;
+        private void InitTime()
+        {
+            time = new Label
             {
-                y = -Settings.speedY;
+                AutoSize = true,
+                Location = new Point(0, 0),
+                BackColor = Color.White
+            };
+            controlCollection.Add(time);
+            time.BringToFront();
+            active = false;
+            help = new DateTime();
+        }
+        private void TimerTime()
+        {
+            if (active)
+            {
+                time.Text = ((DateTime.Now - start).TotalSeconds + (help - new DateTime()).TotalSeconds) + "sek";
             }
-            player.Move(y, x);
+        }
+        public void StartTime()
+        {
+            active = true;
+            start = DateTime.Now;
+
+        }
+        public void StopTime()
+        {
+            active = false;
+            help += DateTime.Now - start;
+        }
+        public double GetTime()
+        {
+            return (help - new DateTime()).TotalSeconds;
         }
     }
 }
+

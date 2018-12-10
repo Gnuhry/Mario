@@ -7,7 +7,7 @@ namespace Mario
 {
     public partial class Players : UserControl
     {
-        private System.Windows.Forms.Timer player_timer;
+        private Timer player_timer;
         private Settings settings;
         private pause pause;
         private ReadFile readFile;
@@ -240,7 +240,7 @@ namespace Mario
                 }
                 else
                 {
-                    CheckDoubleJump();
+                    CheckDoubleJump(true);
                 }
                 Rectangle help = Bounds;
                 help.Offset(0, -Settings.speedY);
@@ -256,7 +256,7 @@ namespace Mario
             }
             else
             {
-                CheckDoubleJump();
+                CheckDoubleJump(false);
                 Rectangle help = Bounds;
                 help.Offset(0, Settings.speedY);
                 if (CollisionDetect(help, false, true, true, false, false, false))
@@ -470,11 +470,14 @@ namespace Mario
         private PictureBox itemThrow, coin;
         private bool[] star;
 
-        private void CheckDoubleJump()
+        private void CheckDoubleJump(bool sound)
         {
             if (doubleJumping && !prevup)
             {
-                //Sound_music.DoubleJumpSound(settings);
+                if (sound)
+                {
+                    Sound_music.DoubleJumpSound(settings);
+                }
                 jump = true;
                 jumpCounter = Settings.jumpspeed;
                 doubleJumping = false;
@@ -554,10 +557,10 @@ namespace Mario
                         backbumerang = true;
                     }
                 }
-                /*else if (invincible&&itemCounter>0)
+                else if (invincible&&itemCounter>0)
                 {
                     Sound_music.StarSound(settings);
-                }*/
+                }
                 if (--itemCounter == 0)
                 {
                     if (fireBall || backbumerang)
@@ -656,6 +659,7 @@ namespace Mario
             pcB.BringToFront();
             deadanimationcounter = 50;
             Visible = false;
+            StopEnemies();
         }
         private void PickItem(Control control)
         {

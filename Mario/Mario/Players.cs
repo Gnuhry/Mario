@@ -122,10 +122,12 @@ namespace Mario
         int counter = 0;
         private void Player_timer_Tick(object sender, EventArgs e)
         {
+            Console.WriteLine(deadanimationcounter);
             if (deadanimationcounter > -1)
             {
                 if (--deadanimationcounter < 0)
                 {
+                    player_timer.Stop();
                     (Parent as Play).Restart();
                 }
             }
@@ -651,15 +653,12 @@ namespace Mario
                 Image = Properties.Resources.player_dead,
                 Location = x
             };
-            if (left)
-            {
-                pcB.Image = Properties.Resources.player_small_die_left;
-            }
             (Parent as Play).Controls.Add(pcB);
             pcB.BringToFront();
             deadanimationcounter = 50;
+            KeyDown -= Players_KeyDown;
+            left = right = up = false;
             Visible = false;
-            StopEnemies();
         }
         private void PickItem(Control control)
         {

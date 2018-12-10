@@ -1658,16 +1658,6 @@ namespace Mario.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap player_small_die_left {
-            get {
-                object obj = ResourceManager.GetObject("player_small_die_left", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap player_small_stay_left_0 {
             get {
                 object obj = ResourceManager.GetObject("player_small_stay_left_0", resourceCulture);

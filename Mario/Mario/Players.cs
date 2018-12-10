@@ -240,12 +240,17 @@ namespace Mario
                 }
                 else
                 {
-                    CheckDoubleJump(true);
+                    CheckDoubleJump();
                 }
                 Rectangle help = Bounds;
                 help.Offset(0, -Settings.speedY);
                 if (CollisionDetect(help, true, false, true, false, false, false))
                 {
+                    if (!prevup)
+                    {
+                        Sound_music.DoubleJumpSound(settings);
+                    }
+                    prevup = up;
                     return -Settings.speedY;
                 }
                 else
@@ -256,7 +261,7 @@ namespace Mario
             }
             else
             {
-                CheckDoubleJump(false);
+                CheckDoubleJump();
                 Rectangle help = Bounds;
                 help.Offset(0, Settings.speedY);
                 if (CollisionDetect(help, false, true, true, false, false, false))
@@ -470,14 +475,10 @@ namespace Mario
         private PictureBox itemThrow, coin;
         private bool[] star;
 
-        private void CheckDoubleJump(bool sound)
+        private void CheckDoubleJump()
         {
             if (doubleJumping && !prevup)
             {
-                if (sound)
-                {
-                    Sound_music.DoubleJumpSound(settings);
-                }
                 jump = true;
                 jumpCounter = Settings.jumpspeed;
                 doubleJumping = false;
@@ -510,6 +511,10 @@ namespace Mario
         }
         private void ItemTimer()
         {
+           /* if (invincible)
+            {
+                Sound_music.StarSound(settings);
+            }*/
             if (coinVisibleCounter-- == 0)
             {
                 gameControls.Remove(coin);
@@ -557,10 +562,7 @@ namespace Mario
                         backbumerang = true;
                     }
                 }
-                else if (invincible&&itemCounter>0)
-                {
-                    Sound_music.StarSound(settings);
-                }
+                
                 if (--itemCounter == 0)
                 {
                     if (fireBall || backbumerang)
@@ -692,6 +694,7 @@ namespace Mario
                     case 2:
                         invincible = true;
                         itemCounter = Settings.invincibleCounter;
+                        Sound_music.StarSound(settings);
                         break;
                     case 3:
                         doubleJump = true;

@@ -250,7 +250,6 @@ namespace Mario
                     {
                         Sound_music.DoubleJumpSound(settings);
                     }
-                    prevup = up;
                     return -Settings.speedY;
                 }
                 else

@@ -652,10 +652,6 @@ namespace Mario
                 Image = Properties.Resources.player_dead,
                 Location = x
             };
-            if (left)
-            {
-                pcB.Image = Properties.Resources.player_small_die_left;
-            }
             (Parent as Play).Controls.Add(pcB);
             pcB.BringToFront();
             deadanimationcounter = 50;

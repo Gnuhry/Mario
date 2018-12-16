@@ -317,7 +317,7 @@ namespace Mario
                         else
                         {
 
-                            if (control.Tag.ToString().Split('_').Length > 1 && player && (up || pickCoinItem))
+                            if (control.Tag.ToString().Split('_').Length > 1 && ((player && up) || pickCoinItem))
                             {
                                 if (control.Tag.ToString().Split('_')[1].Equals("coin"))
                                 {
@@ -380,7 +380,7 @@ namespace Mario
                             }
                             else if (control is Itembox)
                             {
-                                if (up)
+                                if (up||pickCoinItem)
                                 {
                                     Control c = (control as Itembox).Activate(!mushroom);
                                     if (c != null)
@@ -395,7 +395,7 @@ namespace Mario
                                 }
                                 return false;
                             }
-                            else if (control.Tag.ToString().Split('_')[0].Equals("Item") && player)
+                            else if (control.Tag.ToString().Split('_')[0].Equals("Item") && (player||pickCoinItem))
                             {
                                 PickItem(control);
                             }
@@ -537,12 +537,17 @@ namespace Mario
                     {
                         help.Offset(-Settings.width, 0);
                     }
+                    if (bumerang)
+                    {
+                        if(!CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, true, false))
+                        {
+                            itemCounter = 1;
+                            backbumerang = true;
+                        }
+                    }
                     if (CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, false, false))
                     {
-                        if (bumerang)
-                        {
-                            CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, true, false);
-                        }
+                       
                         if (fireBall)
                         {
                             Sound_music.FireballSound(settings);

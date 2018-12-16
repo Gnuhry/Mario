@@ -76,6 +76,7 @@ namespace Mario
         private void btnGoOn_Click(object sender, EventArgs e)
         {
             play.Enabled = true;
+            Sound_music.CheckMusic(settings);
             Close();
         }
     }

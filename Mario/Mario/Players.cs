@@ -7,7 +7,7 @@ namespace Mario
 {
     public partial class Players : UserControl
     {
-        private System.Windows.Forms.Timer player_timer;
+        private Timer player_timer;
         private Settings settings;
         private pause pause;
         private ReadFile readFile;
@@ -246,6 +246,10 @@ namespace Mario
                 help.Offset(0, -Settings.speedY);
                 if (CollisionDetect(help, true, false, true, false, false, false))
                 {
+                    if (!prevup)
+                    {
+                        Sound_music.DoubleJumpSound(settings);
+                    }
                     return -Settings.speedY;
                 }
                 else
@@ -313,7 +317,7 @@ namespace Mario
                         else
                         {
 
-                            if (control.Tag.ToString().Split('_').Length > 1 && player && (up || pickCoinItem))
+                            if (control.Tag.ToString().Split('_').Length > 1 && ((player && up) || pickCoinItem))
                             {
                                 if (control.Tag.ToString().Split('_')[1].Equals("coin"))
                                 {
@@ -376,7 +380,7 @@ namespace Mario
                             }
                             else if (control is Itembox)
                             {
-                                if (up)
+                                if (up||pickCoinItem)
                                 {
                                     Control c = (control as Itembox).Activate(!mushroom);
                                     if (c != null)
@@ -391,7 +395,7 @@ namespace Mario
                                 }
                                 return false;
                             }
-                            else if (control.Tag.ToString().Split('_')[0].Equals("Item") && player)
+                            else if (control.Tag.ToString().Split('_')[0].Equals("Item") && (player||pickCoinItem))
                             {
                                 PickItem(control);
                             }
@@ -474,7 +478,6 @@ namespace Mario
         {
             if (doubleJumping && !prevup)
             {
-                //Sound_music.DoubleJumpSound(settings);
                 jump = true;
                 jumpCounter = Settings.jumpspeed;
                 doubleJumping = false;
@@ -507,6 +510,10 @@ namespace Mario
         }
         private void ItemTimer()
         {
+           /* if (invincible)
+            {
+                Sound_music.StarSound(settings);
+            }*/
             if (coinVisibleCounter-- == 0)
             {
                 gameControls.Remove(coin);
@@ -530,12 +537,17 @@ namespace Mario
                     {
                         help.Offset(-Settings.width, 0);
                     }
+                    if (bumerang)
+                    {
+                        if(!CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, true, false))
+                        {
+                            itemCounter = 1;
+                            backbumerang = true;
+                        }
+                    }
                     if (CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, false, false))
                     {
-                        if (bumerang)
-                        {
-                            CollisionDetect(new Rectangle(help, Settings.size), false, false, false, false, true, false);
-                        }
+                       
                         if (fireBall)
                         {
                             Sound_music.FireballSound(settings);
@@ -554,10 +566,7 @@ namespace Mario
                         backbumerang = true;
                     }
                 }
-                /*else if (invincible&&itemCounter>0)
-                {
-                    Sound_music.StarSound(settings);
-                }*/
+                
                 if (--itemCounter == 0)
                 {
                     if (fireBall || backbumerang)
@@ -648,14 +657,11 @@ namespace Mario
                 Image = Properties.Resources.player_dead,
                 Location = x
             };
-            if (left)
-            {
-                pcB.Image = Properties.Resources.player_small_die_left;
-            }
             (Parent as Play).Controls.Add(pcB);
             pcB.BringToFront();
             deadanimationcounter = 50;
             Visible = false;
+            StopEnemies();
         }
         private void PickItem(Control control)
         {
@@ -688,6 +694,7 @@ namespace Mario
                     case 2:
                         invincible = true;
                         itemCounter = Settings.invincibleCounter;
+                        Sound_music.StarSound(settings);
                         break;
                     case 3:
                         doubleJump = true;

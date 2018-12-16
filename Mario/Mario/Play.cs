@@ -17,6 +17,7 @@ namespace Mario
         {
             allDone.Reset();
             InitializeComponent();
+            Sound_music.CheckMusic(settings);
             Visible = false;
             readFile = new ReadFile(level);
             string[] data = readFile.SearchData().Split('|');

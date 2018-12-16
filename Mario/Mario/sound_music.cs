@@ -132,17 +132,26 @@ namespace Mario
             settings_ = settings;
             if (settings.Music)
             {
-                myPlayer = new MediaPlayer();
-                myPlayer.Open(new System.Uri(Settings.path + @"Resources\music_sound\music.wav"));
-                myPlayer.Play();
-                myPlayer.MediaEnded += MyPlayer_MediaEnded;
-                myPlayer.Volume = settings.Volume;
+                if (myPlayer == null)
+                {
+                    myPlayer = new MediaPlayer();
+                    myPlayer.Open(new System.Uri(Settings.path + @"Resources\music_sound\music.wav"));
+                    myPlayer.Play();
+                    myPlayer.MediaEnded += MyPlayer_MediaEnded;
+                    myPlayer.Volume = settings.Volume;
+                }
+                else
+                {
+                    myPlayer.Play();
+                }
             }
             else
             {
                 if (myPlayer != null)
                 {
                     myPlayer.Stop();
+                    myPlayer.MediaEnded -= MyPlayer_MediaEnded;
+                    myPlayer = null;
                 }
             }
         }
